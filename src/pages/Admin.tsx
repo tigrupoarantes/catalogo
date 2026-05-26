@@ -279,27 +279,27 @@ const Admin = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg border shadow-sm">
+            <div className="bg-white rounded-lg border shadow-sm text-slate-900">
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead>Código</TableHead>
-                    <TableHead>Nome</TableHead>
-                    <TableHead>Marca</TableHead>
-                    <TableHead>Categoria</TableHead>
-                    <TableHead className="text-right">Ações</TableHead>
+                  <TableRow className="border-slate-100 hover:bg-transparent">
+                    <TableHead className="text-slate-500 font-bold">Código</TableHead>
+                    <TableHead className="text-slate-500 font-bold">Nome</TableHead>
+                    <TableHead className="text-slate-500 font-bold">Marca</TableHead>
+                    <TableHead className="text-slate-500 font-bold">Categoria</TableHead>
+                    <TableHead className="text-right text-slate-500 font-bold">Ações</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {products.map((product) => (
-                    <TableRow key={product.id}>
-                      <TableCell className="font-medium">{product.code}</TableCell>
-                      <TableCell>{product.name}</TableCell>
-                      <TableCell>{product.brand}</TableCell>
-                      <TableCell>{product.category}</TableCell>
+                    <TableRow key={product.id} className="border-slate-100 hover:bg-slate-50/50">
+                      <TableCell className="font-semibold text-slate-800">{product.code}</TableCell>
+                      <TableCell className="text-slate-700">{product.name}</TableCell>
+                      <TableCell className="text-slate-700">{product.brand}</TableCell>
+                      <TableCell className="text-slate-700">{product.category}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => openEdit(product)}>
+                          <Button variant="ghost" size="icon" className="text-slate-500 hover:text-slate-900 hover:bg-slate-100" onClick={() => openEdit(product)}>
                             <Pencil className="h-4 w-4" />
                           </Button>
                           <Button variant="ghost" size="icon" className="text-destructive hover:bg-destructive/10" onClick={() => handleDelete(product.id)}>
@@ -311,7 +311,7 @@ const Admin = () => {
                   ))}
                   {products.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={5} className="text-center py-8 text-slate-400">
                         Nenhum produto cadastrado.
                       </TableCell>
                     </TableRow>
