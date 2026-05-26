@@ -184,7 +184,7 @@ const Index = () => {
       <main className="container flex-1 py-4 pb-24 space-y-4">
         {/* Frase "Catálogo Digital" entre o topo e a busca */}
         <div className="text-center">
-          <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] text-blue-600">
+          <p className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] text-white">
             Catálogo Digital
           </p>
         </div>
