@@ -17,9 +17,13 @@ export const supabaseService = {
   },
 
   async addProduct(product: Omit<Product, 'id'>) {
+    const productWithId = {
+      ...product,
+      id: product.code // Use code as primary key ID
+    };
     const { data, error } = await supabase
       .from(PRODUCTS_TABLE)
-      .insert([product])
+      .insert([productWithId])
       .select()
       .single();
       
