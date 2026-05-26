@@ -169,7 +169,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 flex flex-col">
+    <div className="min-h-screen bg-[#3D6B9D] flex flex-col">
       {/* Topo do site com fundo branco */}
       <header className="w-full bg-white border-b border-slate-100/80 shadow-sm">
         <div className="container py-3 flex flex-col items-center justify-center text-center">
@@ -227,7 +227,7 @@ const Index = () => {
           <div className="text-center text-muted-foreground py-12 space-y-2">
             {products.length === 0 ? (
               <>
-                 <h2 className="text-lg font-bold text-[#3B6898]">Nenhum item carregado</h2>
+                 <h2 className="text-lg font-bold text-[#242525]">Nenhum item carregado</h2>
                  <p>Aguardando o upload de um novo catálogo de produtos.</p>
               </>
             ) : (

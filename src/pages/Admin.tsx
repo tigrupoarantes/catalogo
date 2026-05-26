@@ -187,7 +187,7 @@ const Admin = () => {
   // }
 
   return (
-    <div className="min-h-screen bg-muted/40">
+    <div className="min-h-screen bg-[#3D6B9D]">
       <header className="bg-primary py-4 px-6 text-white shadow-md flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h1 className="text-xl font-bold">Painel Administrativo</h1>

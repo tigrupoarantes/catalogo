@@ -33,7 +33,7 @@ const SupportFab = () => {
       )}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="bg-[#3B6898] text-[#FFFFFF] border border-[#3B6898] rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-[#FFFFFF] hover:text-[#3B6898] transition-all duration-300"
+        className="bg-[#242525] text-[#FFFFFF] border border-[#242525] rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:bg-[#FFFFFF] hover:text-[#242525] transition-all duration-300"
         aria-label="Suporte"
       >
         <MessageCircleQuestion size={24} />

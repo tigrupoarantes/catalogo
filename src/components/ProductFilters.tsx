@@ -80,7 +80,7 @@ const ProductFilters = ({
             {isDesktop ? (
               <Button 
                 onClick={onExport} 
-                className="gap-2 bg-[#3B6898] hover:bg-[#1a2d55] px-8"
+                className="gap-2 bg-[#242525] hover:bg-[#101111] px-8"
                 disabled={isExporting}
               >
                 {isExporting ? "Processando..." : "Gerar Catálogo"}
@@ -89,7 +89,7 @@ const ProductFilters = ({
           </div>
           
           {!isDesktop && (
-            <div className="p-3 bg-blue-50 border border-blue-100 rounded-lg text-[11px] text-[#3B6898] font-medium leading-tight max-w-[200px]">
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] text-[#242525] font-medium leading-tight max-w-[200px]">
               A geração de catálogos está disponível apenas em computadores para garantir a melhor qualidade de diagramação.
             </div>
           )}

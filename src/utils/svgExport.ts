@@ -178,8 +178,8 @@ export function generatePageSvg(
         const yOffset = idx * (rowH + pillGap);
         rowsList += `
           <g transform="translate(0, ${yOffset})">
-            <rect width="${tableW}" height="${rowH}" rx="${rowH / 2}" fill="#3B6898" />
-            <rect width="${labelW}" height="${rowH}" rx="${rowH / 2}" fill="#5D82AC" />
+            <rect width="${tableW}" height="${rowH}" rx="${rowH / 2}" fill="#242525" />
+            <rect width="${labelW}" height="${rowH}" rx="${rowH / 2}" fill="#474747" />
             <line x1="${labelW}" y1="0" x2="${labelW}" y2="${rowH}" stroke="white" stroke-width="0.1" stroke-opacity="0.3" />
             <text x="${labelW / 2}" y="${rowH / 2 + 0.9}" font-family="sans-serif" font-size="2.4" fill="white" font-weight="bold" text-anchor="middle">${escapeXml(f.label)}</text>
             <text x="${labelW + 2}" y="${rowH / 2 + 0.9}" font-family="sans-serif" font-size="2.4" fill="white" font-weight="bold">${escapeXml(f.value)}</text>
@@ -191,7 +191,7 @@ export function generatePageSvg(
 
     let brandSvg = "";
     if (showBrand) {
-      brandSvg = `<text x="${cardWidth / 2}" y="${currentY + brandSize}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="${brandSize}" fill="#3B6898">${escapeXml(p.brand).toUpperCase()}</text>`;
+      brandSvg = `<text x="${cardWidth / 2}" y="${currentY + brandSize}" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="${brandSize}" fill="#242525">${escapeXml(p.brand).toUpperCase()}</text>`;
       currentY += brandSize + groupGap;
     }
 
@@ -208,7 +208,7 @@ export function generatePageSvg(
       ).join("");
 
       nameSvg = `
-        <text x="${cardWidth / 2}" y="${currentY + nameSize}" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="${nameSize}" fill="#3B6898" style="line-height: 1.3">
+        <text x="${cardWidth / 2}" y="${currentY + nameSize}" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="${nameSize}" fill="#242525" style="line-height: 1.3">
           ${tspans}
         </text>
       `;
@@ -231,7 +231,7 @@ export function generatePageSvg(
 
   const headerMarkup = hasBanner 
     ? `<image href="${imageMap['header'] || escapeXml(bannerUrl!)}" x="0" y="0" width="195" height="${bannerHeight}" preserveAspectRatio="xMidYMid slice" />`
-    : `<path d="M 0 0 H 195 V 35 C 195 38 190 42 180 42 H 0 Z" fill="#3B6898" />`;
+    : `<path d="M 0 0 H 195 V 35 C 195 38 190 42 180 42 H 0 Z" fill="#242525" />`;
 
   const logoHref = imageMap['logo'] || "/logo.png";
 
@@ -254,7 +254,7 @@ export function generatePageSvg(
   
   <image href="${logoHref}" x="16.5" y="284.5" width="29.75" height="8.5" preserveAspectRatio="xMinYMid meet" />
 
-  <text x="187" y="292" text-anchor="end" font-family="sans-serif" font-size="5" font-weight="900" fill="#3B6898">
+  <text x="187" y="292" text-anchor="end" font-family="sans-serif" font-size="5" font-weight="900" fill="#242525">
     ${escapeXml(pageInfo)}
   </text>
 </svg>`;

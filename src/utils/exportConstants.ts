@@ -10,8 +10,8 @@ export interface ExportConfig {
 }
 
 export const EXPORT_COLORS = {
-  PAGE_BG: "#3B6898",
-  PRIMARY_BLUE: "#3B6898",
+  PAGE_BG: "#242525",
+  PRIMARY_BLUE: "#242525",
   DARK_BLUE: "#001C3F",
   MAGENTA: "#E30613",
   WHITE: "#ffffff",

@@ -218,12 +218,12 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
       <DialogContent className="max-w-[1250px] w-[98vw] h-[95vh] flex flex-col p-0 overflow-hidden bg-[#F1F5F9] border-none shadow-2xl">
         <DialogHeader className="p-4 bg-white border-b flex-row justify-between items-center space-y-0 shrink-0 h-16">
           <div className="flex items-center gap-4">
-            <DialogTitle className="text-[#3B6898] flex items-center gap-2">
+            <DialogTitle className="text-[#242525] flex items-center gap-2">
               Pré-visualização do Catálogo (WYSIWYG)
             </DialogTitle>
             <div className="hidden md:flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full">
               <span className="text-xs text-gray-500 font-bold uppercase tracking-wider">Status:</span>
-              <span className="text-xs text-[#3B6898] font-bold uppercase">{filteredProducts.length} itens filtrados</span>
+              <span className="text-xs text-[#242525] font-bold uppercase">{filteredProducts.length} itens filtrados</span>
             </div>
           </div>
           <div className="flex items-center gap-4 pr-16">
@@ -234,7 +234,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               <Button 
                 variant="outline" 
                 size="icon" 
-                className="h-8 w-8 rounded-full border-[#3B6898]/20 bg-white" 
+                className="h-8 w-8 rounded-full border-[#242525]/20 bg-white" 
                 onClick={() => setCurrentPageIdx(p => Math.max(0, p - 1))}
                 disabled={currentPageIdx === 0}
               >
@@ -243,7 +243,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               <Button 
                 variant="outline" 
                 size="icon" 
-                className="h-8 w-8 rounded-full border-[#3B6898]/20 bg-white" 
+                className="h-8 w-8 rounded-full border-[#242525]/20 bg-white" 
                 onClick={() => setCurrentPageIdx(p => Math.min(pages.length - 1, p + 1))}
                 disabled={currentPageIdx === pages.length - 1}
               >
@@ -256,7 +256,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
         <div className="flex flex-grow overflow-hidden">
           <div className="w-72 bg-white border-r p-6 hidden lg:flex flex-col gap-6 shrink-0 overflow-y-auto">
             <div className="space-y-5">
-              <div className="flex items-center gap-2 text-[#3B6898] font-bold text-sm uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-[#242525] font-bold text-sm uppercase tracking-wider">
                 <Settings2 className="h-4 w-4" /> Configurações
               </div>
               <div className="space-y-2">
@@ -266,7 +266,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                       id={`preview-${field.id}`}
                       checked={config[field.id as keyof ExportConfig]}
                       onCheckedChange={() => handleToggle(field.id as keyof ExportConfig)}
-                      className="h-5 w-5 border-[#3B6898] data-[state=checked]:bg-[#3B6898]"
+                      className="h-5 w-5 border-[#242525] data-[state=checked]:bg-[#242525]"
                     />
                     <Label
                       htmlFor={`preview-${field.id}`}
@@ -280,7 +280,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
 
               <div className="space-y-4 pt-4 border-t">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[#3B6898] font-bold text-sm uppercase tracking-wider">
+                  <div className="flex items-center gap-2 text-[#242525] font-bold text-sm uppercase tracking-wider">
                     <Filter className="h-4 w-4" /> Selecionar Meu Mix
                   </div>
                   <Button 
@@ -304,7 +304,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                             id={`mix-brand-${brand}`}
                             checked={selectedMix.brands.includes(brand)}
                             onCheckedChange={() => handleMixToggle('brands', brand)}
-                            className="h-4 w-4 border-[#3B6898] data-[state=checked]:bg-[#3B6898]"
+                            className="h-4 w-4 border-[#242525] data-[state=checked]:bg-[#242525]"
                           />
                           <Label
                             htmlFor={`mix-brand-${brand}`}
@@ -326,7 +326,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                             id={`mix-cat-${cat}`}
                             checked={selectedMix.categories.includes(cat)}
                             onCheckedChange={() => handleMixToggle('categories', cat)}
-                            className="h-4 w-4 border-[#3B6898] data-[state=checked]:bg-[#3B6898]"
+                            className="h-4 w-4 border-[#242525] data-[state=checked]:bg-[#242525]"
                           />
                           <Label
                             htmlFor={`mix-cat-${cat}`}
@@ -342,7 +342,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <div className="flex items-center gap-2 text-[#3B6898] font-bold text-sm uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-[#242525] font-bold text-sm uppercase tracking-wider">
                   <div className="w-4 h-4 rounded-full" style={{ backgroundColor: config.sidebarColor }} /> Cor da Faixa Lateral
                 </div>
                 <div className="flex items-center gap-3 p-2 border rounded-lg bg-gray-50">
@@ -363,7 +363,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <div className="flex items-center gap-2 text-[#3B6898] font-bold text-sm uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-[#242525] font-bold text-sm uppercase tracking-wider">
                   <ImageIcon className="h-4 w-4" /> Banner da Página
                 </div>
                 
@@ -415,12 +415,12 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                 ) : (
                   <div 
                     onClick={() => document.getElementById('banner-upload')?.click()}
-                    className="border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-[#3B6898]/30 hover:bg-[#3B6898]/5 transition-all cursor-pointer group"
+                    className="border-2 border-dashed border-gray-200 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-[#242525]/30 hover:bg-[#242525]/5 transition-all cursor-pointer group"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-[#3B6898] group-hover:bg-white transition-colors shadow-sm">
+                    <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 group-hover:text-[#242525] group-hover:bg-white transition-colors shadow-sm">
                       <Upload className="h-5 w-5" />
                     </div>
-                    <p className="text-[11px] font-bold text-gray-400 group-hover:text-[#3B6898] uppercase tracking-wider text-center">
+                    <p className="text-[11px] font-bold text-gray-400 group-hover:text-[#242525] uppercase tracking-wider text-center">
                       Upload Banner<br/>Página {currentPageIdx + 1}
                     </p>
                   </div>
@@ -440,8 +440,8 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               </div>
             </div>
 
-            <div className="mt-auto p-4 bg-[#3B6898]/5 rounded-xl border border-[#3B6898]/10">
-              <p className="text-[10px] text-[#3B6898]/60 font-medium leading-relaxed">
+            <div className="mt-auto p-4 bg-[#242525]/5 rounded-xl border border-[#242525]/10">
+              <p className="text-[10px] text-[#242525]/60 font-medium leading-relaxed">
                 Este preview utiliza o motor de renderização real do SVG. O que você vê aqui é exatamente o que será exportado.
               </p>
             </div>
@@ -455,7 +455,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                   <Filter className="h-8 w-8 text-gray-400" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-[#3B6898] font-bold text-lg">
+                  <h3 className="text-[#242525] font-bold text-lg">
                     {products.length === 0 ? 'Nenhum item carregado' : 'Nenhum produto encontrado'}
                   </h3>
                   <p className="text-sm text-gray-500">
@@ -467,7 +467,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
                 <Button 
                   variant="outline" 
                   onClick={clearMix}
-                  className="mt-4 border-[#3B6898] text-[#3B6898] hover:bg-[#3B6898]/5 font-bold text-xs uppercase tracking-widest"
+                  className="mt-4 border-[#242525] text-[#242525] hover:bg-[#242525]/5 font-bold text-xs uppercase tracking-widest"
                 >
                   <X className="h-4 w-4 mr-2" /> Limpar Filtros
                 </Button>
@@ -490,7 +490,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
           <Button 
             variant="ghost" 
             onClick={() => onOpenChange(false)}
-            className="text-gray-500 hover:text-[#3B6898] font-bold text-xs uppercase tracking-widest hover:bg-gray-50"
+            className="text-gray-500 hover:text-[#242525] font-bold text-xs uppercase tracking-widest hover:bg-gray-50"
           >
             <ArrowLeft className="h-4 w-4 mr-2" /> Voltar
           </Button>
@@ -499,7 +499,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
               variant="outline"
               onClick={() => onConfirm(config, pageBanners, 'svg', filteredProducts)}
               disabled={isExporting || pages.length === 0}
-              className="flex-grow sm:flex-none border-[#3B6898] text-[#3B6898] hover:bg-[#3B6898]/5 font-bold text-xs uppercase tracking-widest px-6 h-11"
+              className="flex-grow sm:flex-none border-[#242525] text-[#242525] hover:bg-[#242525]/5 font-bold text-xs uppercase tracking-widest px-6 h-11"
             >
               <FileDown className="h-4 w-4 mr-2" /> 
               {isExporting ? "Exportando..." : "Exportar SVG"}
@@ -507,7 +507,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
             <Button 
               onClick={() => onConfirm(config, pageBanners, 'pdf', filteredProducts)}
               disabled={isExporting || pages.length === 0}
-              className="flex-grow sm:flex-none bg-[#3B6898] hover:bg-[#1a2d55] shadow-lg shadow-[#3B6898]/20 font-bold text-xs uppercase tracking-widest px-12 h-11"
+              className="flex-grow sm:flex-none bg-[#242525] hover:bg-[#101111] shadow-lg shadow-[#242525]/20 font-bold text-xs uppercase tracking-widest px-12 h-11"
             >
               <FileDown className="h-4 w-4 mr-2" /> 
               {isExporting ? "Gerando PDF..." : "Confirmar e Gerar PDF"}

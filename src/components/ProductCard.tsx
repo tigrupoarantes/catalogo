@@ -32,7 +32,7 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
 
   return (
     <>
-      <div className="w-full bg-white border-[2px] border-[#3B6898] rounded-xl p-3 flex flex-col font-sans shadow-sm transition-all hover:shadow-md group h-full">
+      <div className="w-full bg-white border-[2px] border-[#242525] rounded-xl p-3 flex flex-col font-sans shadow-sm transition-all hover:shadow-md group h-full">
         {/* Área da Imagem */}
         <div 
           className="h-[180px] w-full flex items-center justify-center cursor-pointer overflow-hidden bg-white rounded-lg mb-3"
@@ -48,7 +48,7 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
               {...(priority ? { "fetchpriority": "high" } : {})}
             />
           ) : (
-            <span className="text-xl font-bold text-[#3B6898]/20">{product.name.charAt(0)}</span>
+            <span className="text-xl font-bold text-[#242525]/20">{product.name.charAt(0)}</span>
           )}
         </div>
 
@@ -56,21 +56,21 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
         <div className="flex flex-col items-center justify-center flex-grow gap-1.5 mb-3">
           {/* Marca */}
           {displayConfig.showBrand && (
-            <div className="text-[#3B6898] font-bold text-[11px] uppercase tracking-widest text-center">
+            <div className="text-[#242525] font-bold text-[11px] uppercase tracking-widest text-center">
               {product.brand}
             </div>
           )}
           
           {/* Categoria (Mix) */}
           {displayConfig.showCategory && (
-            <div className="text-[#5D82AC] font-semibold text-[10px] uppercase line-clamp-1 text-center">
+            <div className="text-[#474747] font-semibold text-[10px] uppercase line-clamp-1 text-center">
               {product.category}
             </div>
           )}
 
           {/* Descrição do Produto */}
           {displayConfig.showName && (
-            <div className="text-center text-[#3B6898] font-extrabold text-[14px] leading-[1.2] flex items-center justify-center uppercase line-clamp-3 mt-1 px-1">
+            <div className="text-center text-[#242525] font-extrabold text-[14px] leading-[1.2] flex items-center justify-center uppercase line-clamp-3 mt-1 px-1">
               {product.name}
             </div>
           )}
@@ -83,10 +83,10 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
           {/* Linha Cód */}
           {displayConfig.showCode && (
             <div className="flex text-white text-[10px] rounded-full overflow-hidden h-[22px]">
-              <div className="w-[30%] bg-[#5D82AC] flex items-center justify-center font-bold border-r border-white/20">
+              <div className="w-[30%] bg-[#474747] flex items-center justify-center font-bold border-r border-white/20">
                 Cód.
               </div>
-              <div className="w-[70%] bg-[#3B6898] flex items-center pl-3 font-bold text-[11px]">
+              <div className="w-[70%] bg-[#242525] flex items-center pl-3 font-bold text-[11px]">
                 {product.code}
               </div>
             </div>
@@ -95,10 +95,10 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
           {/* Linha Caixa */}
           {displayConfig.showBox && (
             <div className="flex text-white text-[10px] rounded-full overflow-hidden h-[22px]">
-              <div className="w-[30%] bg-[#5D82AC] flex items-center justify-center font-bold border-r border-white/20">
+              <div className="w-[30%] bg-[#474747] flex items-center justify-center font-bold border-r border-white/20">
                 Caixa
               </div>
-              <div className="w-[70%] bg-[#3B6898] flex items-center pl-3 font-bold text-[11px]">
+              <div className="w-[70%] bg-[#242525] flex items-center pl-3 font-bold text-[11px]">
                 {product.packSize}
               </div>
             </div>
@@ -107,10 +107,10 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
           {/* Linha EAN */}
           {displayConfig.showEan && (
             <div className="flex text-white text-[10px] rounded-full overflow-hidden h-[22px]">
-              <div className="w-[30%] bg-[#5D82AC] flex items-center justify-center font-bold border-r border-white/20">
+              <div className="w-[30%] bg-[#474747] flex items-center justify-center font-bold border-r border-white/20">
                 EAN
               </div>
-              <div className="w-[70%] bg-[#3B6898] flex items-center pl-3 font-bold text-[11px] tracking-tight">
+              <div className="w-[70%] bg-[#242525] flex items-center pl-3 font-bold text-[11px] tracking-tight">
                 {product.ean}
               </div>
             </div>
