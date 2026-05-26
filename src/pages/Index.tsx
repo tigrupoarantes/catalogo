@@ -169,7 +169,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#3D6B9D] flex flex-col">
+    <div className="min-h-screen bg-[#606060] flex flex-col">
       {/* Topo do site com fundo branco */}
       <header className="w-full bg-white border-b border-slate-100/80 shadow-sm">
         <div className="container py-3 flex flex-col items-center justify-center text-center">
