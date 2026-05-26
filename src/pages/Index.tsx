@@ -170,34 +170,18 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-50/50">
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-200/80 py-4 shadow-sm transition-all duration-200">
-        <div className="container flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20">
-              <span className="text-white font-extrabold text-base tracking-wider">JA</span>
-            </div>
-            <div>
-              <h1 className="font-extrabold tracking-tight text-base text-slate-900 leading-none">
-                J. Arantes
-              </h1>
-              <p className="text-[9px] font-extrabold uppercase tracking-widest text-blue-600 mt-1">Catálogo Digital</p>
-            </div>
+      <main className="container py-8 pb-24 space-y-8">
+        <div className="flex flex-col items-center justify-center text-center gap-3 pt-6 pb-2">
+          <div className="h-14 w-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/20 transform hover:scale-105 transition-transform duration-300">
+            <span className="text-white font-black text-xl tracking-wider">JA</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => navigate("/admin")} 
-              className="text-xs font-semibold hover:bg-slate-50 border-slate-200 rounded-full px-4 h-9 shadow-sm"
-            >
-              Painel Admin
-            </Button>
+          <div className="space-y-1">
+            <h1 className="font-black tracking-tight text-3xl bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 bg-clip-text text-transparent">
+              J. Arantes
+            </h1>
+            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-blue-600">Catálogo Digital</p>
           </div>
         </div>
-      </header>
-
-
-      <main className="container py-8 pb-24 space-y-8">
         <ProductFilters
           search={search}
           onSearchChange={handleSearchChange}
@@ -293,6 +277,16 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      <footer className="border-t border-slate-200/60 bg-white/50 py-8 text-center mt-12">
+        <Button 
+          variant="link" 
+          onClick={() => navigate("/admin")} 
+          className="text-slate-400 hover:text-blue-600 text-xs font-semibold tracking-wide transition-colors"
+        >
+          Painel Admin
+        </Button>
+      </footer>
 
       <SupportFab />
     </div>
