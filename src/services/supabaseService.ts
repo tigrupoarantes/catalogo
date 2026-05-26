@@ -125,5 +125,28 @@ export const supabaseService = {
     }
 
     console.log('Sync complete.');
+  },
+
+  async uploadProductImage(code: string, file: File): Promise<string> {
+    const fileExt = file.name.split('.').pop()?.toLowerCase() || 'png';
+    const filePath = `${code}.${fileExt}`;
+    
+    const { data, error } = await supabase.storage
+      .from('product-images')
+      .upload(filePath, file, {
+        upsert: true,
+        cacheControl: '3600',
+      });
+      
+    if (error) {
+      console.error("Error uploading image to Supabase:", error);
+      throw error;
+    }
+    
+    const { data: publicUrlData } = supabase.storage
+      .from('product-images')
+      .getPublicUrl(filePath);
+      
+    return publicUrlData.publicUrl;
   }
 };

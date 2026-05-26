@@ -98,19 +98,10 @@ const Admin = () => {
       let imageUrl = editingProduct?.imageUrl || null;
 
       if (imageFile) {
-        const uploadFormData = new FormData();
-        uploadFormData.append("image", imageFile);
-
-        const uploadRes = await fetch("/api/upload-image", {
-          method: "POST",
-          body: uploadFormData,
-        });
-        const uploadJson = await uploadRes.json();
-        
-        if (uploadJson.status === "success") {
-          imageUrl = uploadJson.imageUrl;
-        } else {
-          toast.error("Erro ao fazer upload da imagem");
+        try {
+          imageUrl = await supabaseService.uploadProductImage(formData.code || "", imageFile);
+        } catch (error) {
+          toast.error("Erro ao fazer upload da imagem para o Supabase Storage");
           return;
         }
       }
@@ -328,10 +319,9 @@ const Admin = () => {
 
             <div className="bg-white rounded-lg border shadow-sm p-6 space-y-6">
               <div>
-                <h3 className="text-lg font-medium mb-2">Importar XLSX e Imagens</h3>
+                <h3 className="text-lg font-medium mb-2">Importar XLSX e Imagens em Lote</h3>
                 <p className="text-sm text-[#474747] mb-4">
-                  Selecione seu arquivo XLSX ou MD do catálogo atualizado e todas as imagens (png/jpg) que deseja enviar. 
-                  O sistema usará o servidor Node para processar e atualizar o banco de dados.
+                  Selecione sua planilha (.xlsx/.md) do catálogo e/ou envie imagens em lote. As imagens são processadas e vinculadas de forma automática, sendo salvas diretamente na nuvem (Supabase Storage) para acesso persistente e seguro.
                 </p>
                 
                 <form 
@@ -350,87 +340,116 @@ const Admin = () => {
                       return;
                     }
 
-                    const formData = new FormData();
-                    
-                    if (hasSpreadsheet) {
-                      formData.append("spreadsheet", fileInput.files[0]);
-                    } else {
-                      // Pass current frontend registered products list for image matching
-                      formData.append("existingProducts", JSON.stringify(products));
-                    }
-                    
-                    if (hasImages) {
-                      for (let i = 0; i < imagesInput.files.length; i++) {
-                        formData.append("images", imagesInput.files[i]);
-                      }
-                    }
-
                     setLoading(true);
                     try {
-                      const res = await fetch("/api/upload", {
-                        method: "POST",
-                        body: formData
-                      });
+                      let parsedProducts: any[] = [];
+                      let isSpreadsheetUpload = false;
 
-                      if (!res.ok) {
-                        const text = await res.text();
-                        try {
-                          const json = JSON.parse(text);
-                          toast.error(json.message || `Erro no servidor (${res.status})`);
-                        } catch {
-                          if (res.status === 413) {
-                            toast.error("Arquivo muito grande. Tente enviar menos arquivos por vez.");
-                          } else {
-                            toast.error(`Erro na comunicação com servidor (${res.status})`);
-                          }
-                          console.error("Resposta do servidor não foi JSON:", text);
-                        }
-                        setLoading(false);
-                        return;
-                      }
-
-                      const json = await res.json();
-                      
-                      if (json.status === "success") {
-                        if (hasSpreadsheet) {
-                          toast.info(`Upload bem-sucedido! Sincronizando ${json.processedCount} produtos com o banco...`);
-                        } else {
-                          toast.info(`Upload de imagens bem-sucedido! Vinculando ${json.matchedCount} imagens...`);
-                        }
+                      if (hasSpreadsheet) {
+                        isSpreadsheetUpload = true;
+                        // Post spreadsheet to parse it on backend
+                        const uploadFormData = new FormData();
+                        uploadFormData.append("spreadsheet", fileInput.files[0]);
                         
-                        // Sincroniza com Supabase agora!
-                        try {
-                           await supabaseService.syncInitialData(json.products);
-                           
-                           // Beautiful feedback toast matching guidelines
-                           if (hasSpreadsheet) {
-                             toast.success(`Planilha processada! ${json.processedCount} produtos importados. ${json.matchedCount} imagens vinculadas.`);
-                           } else {
-                             toast.success(`${json.matchedCount} imagens vinculadas com sucesso, ${json.unmatchedCount} imagens ignoradas (código não encontrado).`);
-                           }
+                        const res = await fetch("/api/upload", {
+                          method: "POST",
+                          body: uploadFormData
+                        });
 
-                           if (json.unmatchedCount > 0) {
-                             toast.warning(`Algumas imagens não foram vinculadas por código ausente. Veja a aba Console F12 para detalhes dos nomes ignorados.`, { duration: 10000 });
-                             console.warn("Imagens ignoradas (não vinculadas a produtos):", json.unmatchedImages);
-                           }
-
-                           // Recarrega lista
-                           const data = await supabaseService.getProducts();
-                           setProducts(data);
-                        } catch(err) {
-                           console.error(err);
-                           toast.error("Processado localmente, mas erro ao salvar no Supabase.");
+                        if (!res.ok) {
+                          const text = await res.text();
+                          try {
+                            const json = JSON.parse(text);
+                            toast.error(json.message || `Erro no servidor (${res.status})`);
+                          } catch {
+                            toast.error(`Erro na comunicação com o servidor (${res.status})`);
+                          }
+                          setLoading(false);
+                          return;
                         }
 
-                        if (json.errorCount > 0) {
-                          toast.error(`${json.errorCount} erros detalhados no Console F12.`);
-                          console.log("Erros detalhados de mapeamento ou duplicidade de EAN:", json.errors);
+                        const json = await res.json();
+                        if (json.status === "success") {
+                          parsedProducts = json.products;
+                        } else {
+                          toast.error(json.message || "Erro ao processar a planilha");
+                          setLoading(false);
+                          return;
                         }
                       } else {
-                         toast.error(json.message || "Erro ao processar as planilhas");
+                        // If no spreadsheet, use current registered products list
+                        parsedProducts = [...products];
                       }
-                    } catch (error) {
-                      toast.error("Erro na comunicação com servidor");
+
+                      // Image-only batch matching & direct Supabase upload in frontend
+                      const matchedCodes = new Set<string>();
+                      const unmatchedImages: string[] = [];
+                      const finalProducts = [...parsedProducts];
+
+                      const extractCodeFromFilename = (filename: string): string => {
+                        const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.')) || filename;
+                        if (nameWithoutExt.includes(" - ")) {
+                          return nameWithoutExt.split(" - ")[0].trim();
+                        }
+                        const match = nameWithoutExt.match(/^([a-zA-Z0-9]+)/);
+                        return match ? match[1].trim() : nameWithoutExt.trim();
+                      };
+
+                      if (hasImages && imagesInput.files) {
+                        toast.info(`Processando e fazendo upload de ${imagesInput.files.length} imagem(ns) diretamente para o Supabase Storage...`);
+                        
+                        for (let i = 0; i < imagesInput.files.length; i++) {
+                          const file = imagesInput.files[i];
+                          const extractedCode = extractCodeFromFilename(file.name);
+                          
+                          // Find match
+                          const productIdx = finalProducts.findIndex(
+                            p => String(p.code).trim().toLowerCase() === extractedCode.toLowerCase()
+                          );
+
+                          if (productIdx !== -1) {
+                            const product = finalProducts[productIdx];
+                            try {
+                              // Upload directly to Supabase Storage
+                              const publicUrl = await supabaseService.uploadProductImage(product.code, file);
+                              finalProducts[productIdx] = {
+                                ...product,
+                                imageUrl: publicUrl
+                              };
+                              matchedCodes.add(product.code);
+                            } catch (uploadErr) {
+                              console.error(`Erro no upload da imagem ${file.name}:`, uploadErr);
+                              unmatchedImages.push(`${file.name} (Erro de upload)`);
+                            }
+                          } else {
+                            unmatchedImages.push(file.name);
+                          }
+                        }
+                      }
+
+                      // Synchronize products to Supabase
+                      toast.info("Sincronizando dados no banco...");
+                      await supabaseService.syncInitialData(finalProducts);
+
+                      // Summary toast feedback
+                      if (isSpreadsheetUpload) {
+                        toast.success(`Planilha processada! ${finalProducts.length} produtos importados. ${matchedCodes.size} imagens vinculadas.`);
+                      } else {
+                        toast.success(`${matchedCodes.size} imagem(ns) vinculada(s) com sucesso, ${unmatchedImages.length} imagem(ns) ignorada(s) (código não encontrado).`);
+                      }
+
+                      if (unmatchedImages.length > 0) {
+                        toast.warning(`Algumas imagens não foram vinculadas. Veja a aba Console F12 para a lista de nomes ignorados.`, { duration: 10000 });
+                        console.warn("Imagens ignoradas (não vinculadas a produtos):", unmatchedImages);
+                      }
+
+                      // Recarrega lista
+                      const data = await supabaseService.getProducts();
+                      setProducts(data);
+
+                    } catch (error: any) {
+                      console.error("Batch processing error:", error);
+                      toast.error("Erro na comunicação ou processamento: " + (error.message || "Erro desconhecido"));
                     } finally {
                       setLoading(false);
                     }
