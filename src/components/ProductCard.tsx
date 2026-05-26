@@ -5,7 +5,6 @@ import { ExportConfig } from "@/utils/exportConstants";
 
 const STORAGE_BASE = import.meta.env.VITE_SUPABASE_URL;
 const STORAGE_URL = `${STORAGE_BASE}/storage/v1/object/public/product-images`;
-const RENDER_URL = `${STORAGE_BASE}/storage/v1/render/image/public/product-images`;
 
 interface ProductCardProps {
   product: Product;
@@ -18,7 +17,7 @@ const ProductCard = ({ product, priority = false, config }: ProductCardProps) =>
   const [lightboxOpen, setLightboxOpen] = useState(false);
   
   // Use the pre-mapped local image URL if it exists
-  const thumbnailUrl = product.imageUrl || `${RENDER_URL}/${product.code}.png?width=400&height=400&resize=contain`;
+  const thumbnailUrl = product.imageUrl || `${STORAGE_URL}/${product.code}.png`;
   const fullImageUrl = product.imageUrl || `${STORAGE_URL}/${product.code}.png`;
 
   // Default config if not provided (showing everything)
