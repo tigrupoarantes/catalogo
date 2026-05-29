@@ -31,8 +31,8 @@ const ProductFilters = ({
   const hasFilters = search || category !== "all" || brand !== "all";
 
   return (
-    <div className="rounded-xl border border-slate-100/50 p-6 shadow-[0_4px_24px_rgba(0,0,0,0.04)] text-card-foreground bg-white">
-      <div className="grid grid-cols-1 lg:grid-cols-[1.8fr_auto_1.2fr_1.2fr_auto] gap-5 items-end">
+    <div className="rounded-2xl border border-slate-100/40 p-5 shadow-[0_10px_35px_rgba(0,0,0,0.03)] text-card-foreground bg-white">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.8fr_auto_1.2fr_1.2fr_auto] gap-4 lg:gap-5 items-end">
         <div className="space-y-2 w-full">
           <label className="text-sm font-bold text-slate-800 block pl-1">Buscar produtos</label>
           <div className="relative">
@@ -79,10 +79,15 @@ const ProductFilters = ({
             </SelectContent>
           </Select>
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="flex gap-2">
+        <div className="flex flex-col gap-2 w-full">
+          <div className="flex gap-2 justify-end w-full">
             {hasFilters && (
-              <Button variant="ghost" onClick={onClear} className="gap-2" disabled={isExporting}>
+              <Button 
+                variant="ghost" 
+                onClick={onClear} 
+                className="gap-2 h-11 rounded-xl text-slate-500 font-bold hover:bg-slate-50 hover:text-slate-700 px-4 transition-all duration-300 shrink-0" 
+                disabled={isExporting}
+              >
                 <X className="h-4 w-4" /> Limpar
               </Button>
             )}
@@ -90,7 +95,7 @@ const ProductFilters = ({
             {isDesktop ? (
               <Button 
                 onClick={onExport} 
-                className="gap-2 bg-[#242525] hover:bg-[#101111] px-8"
+                className="gap-2 bg-[#1e1f1f] hover:bg-black text-white px-6 h-11 rounded-xl font-bold text-sm shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.16)] transition-all duration-300 shrink-0"
                 disabled={isExporting}
               >
                 {isExporting ? "Processando..." : "Gerar Catálogo"}
@@ -99,7 +104,7 @@ const ProductFilters = ({
           </div>
           
           {!isDesktop && (
-            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] text-[#242525] font-medium leading-tight max-w-[200px]">
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] text-[#242525] font-medium leading-tight max-w-[200px] mt-1">
               A geração de catálogos está disponível apenas em computadores para garantir a melhor qualidade de diagramação.
             </div>
           )}

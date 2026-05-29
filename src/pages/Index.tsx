@@ -178,42 +178,43 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFCFF] flex flex-col">
-      {/* Topo do site com fundo #FAFCFF */}
-      <header className="w-full bg-[#FAFCFF]">
-        <div className="container pt-7 pb-3 flex flex-col items-center justify-center text-center">
-          <img 
-            src="/J.ARANTES.png" 
-            alt="J. Arantes Distribuição" 
-            className="h-14 sm:h-16 object-contain max-w-[240px] sm:max-w-[280px] transition-transform duration-300 hover:scale-[1.02]" 
-          />
-        </div>
-      </header>
+      <main className="container flex-1 py-6 pb-24 space-y-4">
+        {/* Bloco Superior Unificado: Identidade Visual + Filtros com alinhamento vertical estrito (topo e rodapé) */}
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-5 lg:gap-6 mb-2">
+          {/* Esquerda: Identidade Visual (Logo + Badge) com altura fixa de 114px */}
+          <div className="flex flex-col justify-between items-center shrink-0 gap-3 w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none lg:w-[200px] lg:h-[114px] mx-auto lg:mx-0 py-0.5">
+            <img 
+              src="/J.ARANTES.png" 
+              alt="J. Arantes Distribuição" 
+              className="w-[80%] mx-auto lg:mx-0 object-contain transition-transform duration-300 hover:scale-[1.02]" 
+            />
+            <div className="w-full h-10 flex items-center justify-center bg-white border border-[#E2E8F0] rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.03)] select-none">
+              <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-800 text-center">
+                Catálogo Digital
+              </span>
+            </div>
+          </div>
 
-      <main className="container flex-1 py-4 pb-24 space-y-4">
-        {/* Frase "Catálogo Digital" entre o topo e a busca */}
-        <div className="flex justify-center mb-1.5">
-          <div className="inline-flex items-center justify-center bg-white border border-[#E2E8F0] rounded-full px-6 py-2.5 shadow-[0_4px_12px_rgba(0,0,0,0.03)] select-none">
-            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] text-slate-800">
-              Catálogo Digital
-            </span>
+          {/* Direita: Filtros Horizontais */}
+          <div className="flex-1 w-full">
+            <ProductFilters
+              search={search}
+              onSearchChange={handleSearchChange}
+              category={category}
+              onCategoryChange={handleCategoryChange}
+              brand={brand}
+              onBrandChange={handleBrandChange}
+              showNewOnly={showNewOnly}
+              onShowNewOnlyChange={setShowNewOnly}
+              categories={categoriesForBrand}
+              brands={allBrands}
+              onClear={clearFilters}
+              onExport={() => setIsPreviewModalOpen(true)}
+              isExporting={isExporting}
+              isDesktop={isDesktop}
+            />
           </div>
         </div>
-        <ProductFilters
-          search={search}
-          onSearchChange={handleSearchChange}
-          category={category}
-          onCategoryChange={handleCategoryChange}
-          brand={brand}
-          onBrandChange={handleBrandChange}
-          showNewOnly={showNewOnly}
-          onShowNewOnlyChange={setShowNewOnly}
-          categories={categoriesForBrand}
-          brands={allBrands}
-          onClear={clearFilters}
-          onExport={() => setIsPreviewModalOpen(true)}
-          isExporting={isExporting}
-          isDesktop={isDesktop}
-        />
 
         {isDesktop && (
           <CatalogPreviewModal
@@ -319,6 +320,7 @@ const Index = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
