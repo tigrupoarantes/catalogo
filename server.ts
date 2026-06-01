@@ -262,6 +262,117 @@ app.post(
   }
 );
 
+// Endpoint POST for AI Image Generation Studio
+app.post("/api/generate-ai-image", async (req: any, res: any) => {
+  try {
+    const { productName, category, brand, theme, customPrompt, aspect_ratio } = req.body;
+    
+    // 1. Build prompt based on theme
+    let promptBase = "";
+    if (theme === "minimalist") {
+      promptBase = `A premium professional commercial studio product shot, placed beautifully on a polished concrete shelf, minimalist concrete background, clean studio lighting, high resolution, 8k, sharp focus, award-winning advertising photography.`;
+    } else if (theme === "rustic") {
+      promptBase = `A cozy rustic scene, a rustic weathered wooden table background with fall leaves scattered around, soft warm sunlight filtering through autumn trees, blurred background forest, warm and welcoming, 8k resolution, photorealistic, cinematic lighting.`;
+    } else if (theme === "tropical") {
+      promptBase = `A sunny beach scene, product placed on a sandy table, bright turquoise sea in the background with soft focus, palm tree leaves casting beautiful shadows, tropical vacation aesthetic, bright natural light, crisp and vibrant, 8k.`;
+    } else if (theme === "christmas") {
+      promptBase = `A festive Christmas table setting, glowing holiday lights and warm golden bokeh background, pine cones, red berries and holiday decorations nearby, cozy Christmas home feel, warm atmospheric lighting, cinematic, photorealistic, 8k.`;
+    } else {
+      promptBase = `A professional commercial product display background, elegant soft studio gradient lighting, high resolution, 8k.`;
+    }
+
+    // Append product category context
+    const fullPrompt = `${promptBase} Perfect display setup designed for a ${category || 'product'} brand. ${customPrompt || ""}`.trim();
+
+    // 2. Check if Replicate token is set
+    const replicateToken = process.env.REPLICATE_API_TOKEN;
+    if (replicateToken) {
+      console.log(`Replicate API Token detected. Querying black-forest-labs/flux-schnell for prompt: "${fullPrompt}"`);
+      
+      const response = await fetch("https://api.replicate.com/v1/predictions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Token ${replicateToken}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          version: "50e2a9e3d197920ab763bebc4bfa1e6f77cd5d3a542b26090d8591cb456d2cfd", // FLUX.1 Schnell
+          input: {
+            prompt: fullPrompt,
+            aspect_ratio: aspect_ratio === "16:9" ? "16:9" : "1:1",
+            num_outputs: 1
+          }
+        })
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Replicate API error: ${response.status} - ${errorText}`);
+      }
+
+      const prediction = await response.json();
+      let predictionId = prediction.id;
+      let status = prediction.status;
+      let outputImage = null;
+
+      // Poll Replicate API (FLUX Schnell takes ~2 seconds)
+      let attempts = 0;
+      while (status !== "succeeded" && status !== "failed" && attempts < 10) {
+        await new Promise(resolve => setTimeout(resolve, 800));
+        attempts++;
+        const pollResponse = await fetch(`https://api.replicate.com/v1/predictions/${predictionId}`, {
+          headers: {
+            "Authorization": `Token ${replicateToken}`
+          }
+        });
+        const pollData = await pollResponse.json();
+        status = pollData.status;
+        if (status === "succeeded") {
+          outputImage = pollData.output && pollData.output[0];
+          break;
+        }
+      }
+
+      if (outputImage) {
+        return res.json({
+          status: "success",
+          isDemo: false,
+          imageUrl: outputImage,
+          prompt: fullPrompt
+        });
+      } else {
+        throw new Error("Geração de imagem expirou ou falhou no servidor do Replicate.");
+      }
+    } else {
+      // 3. Fallback to high-quality curated stock images
+      console.log(`Replicate API Token not configured. Returning curated template for theme: ${theme}`);
+      let stockImageUrl = "";
+      if (theme === "minimalist") {
+        stockImageUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80"; // Concrete platform
+      } else if (theme === "rustic") {
+        stockImageUrl = "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1000&auto=format&fit=crop&q=80"; // Rustic forest table
+      } else if (theme === "tropical") {
+        stockImageUrl = "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=1000&auto=format&fit=crop&q=80"; // Tropical beach leaves
+      } else if (theme === "christmas") {
+        stockImageUrl = "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=1000&auto=format&fit=crop&q=80"; // Holiday bokeh lights
+      } else {
+        stockImageUrl = "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1000&auto=format&fit=crop&q=80"; // Elegant gradient
+      }
+
+      return res.json({
+        status: "success",
+        isDemo: true,
+        imageUrl: stockImageUrl,
+        prompt: fullPrompt,
+        message: "Chave REPLICATE_API_TOKEN não configurada no arquivo .env. Exibindo cenário modelo premium simulado."
+      });
+    }
+  } catch (err: any) {
+    console.error("AI Generation Error:", err);
+    return res.status(500).json({ status: "error", message: err.message || "Erro interno na geração de imagem com IA." });
+  }
+});
+
 // Global error handler for API routes
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   if (req.path.startsWith('/api/')) {

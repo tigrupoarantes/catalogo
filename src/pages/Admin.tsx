@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import { supabaseService } from "@/services/supabaseService";
 import { Product, products as initialProducts, parseProductTechnicalData, serializeProductTechnicalData } from "@/data/products";
 import { useFirebase } from "@/contexts/FirebaseContext";
@@ -57,6 +58,185 @@ const Admin = () => {
     isNew: false,
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
+
+  const [selectedProductForAi, setSelectedProductForAi] = useState<ProductWithId | null>(null);
+  const [aiTheme, setAiTheme] = useState<string>("minimalist");
+  const [aiAspectRatio, setAiAspectRatio] = useState<string>("1:1");
+  const [aiCustomPrompt, setAiCustomPrompt] = useState<string>("");
+  const [aiScale, setAiScale] = useState<number>(80);
+  const [aiPosX, setAiPosX] = useState<number>(0);
+  const [aiPosY, setAiPosY] = useState<number>(0);
+  const [aiRotation, setAiRotation] = useState<number>(0);
+  const [aiHasShadow, setAiHasShadow] = useState<boolean>(true);
+  const [aiOverlayText, setAiOverlayText] = useState<string>("");
+  const [aiGeneratedBgUrl, setAiGeneratedBgUrl] = useState<string>("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80");
+  const [isGeneratingAi, setIsGeneratingAi] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (products.length > 0 && !selectedProductForAi) {
+      setSelectedProductForAi(products[0]);
+    }
+  }, [products, selectedProductForAi]);
+
+  useEffect(() => {
+    let stockImageUrl = "";
+    if (aiTheme === "minimalist") {
+      stockImageUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80";
+    } else if (aiTheme === "rustic") {
+      stockImageUrl = "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1000&auto=format&fit=crop&q=80";
+    } else if (aiTheme === "tropical") {
+      stockImageUrl = "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=1000&auto=format&fit=crop&q=80";
+    } else if (aiTheme === "christmas") {
+      stockImageUrl = "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=1000&auto=format&fit=crop&q=80";
+    } else {
+      stockImageUrl = "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1000&auto=format&fit=crop&q=80";
+    }
+    setAiGeneratedBgUrl(stockImageUrl);
+  }, [aiTheme]);
+
+  const handleGenerateAiBg = async () => {
+    if (!selectedProductForAi) {
+      toast.error("Por favor, selecione um produto primeiro.");
+      return;
+    }
+    setIsGeneratingAi(true);
+    try {
+      const res = await fetch("/api/generate-ai-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          productName: selectedProductForAi.name,
+          category: selectedProductForAi.category,
+          brand: selectedProductForAi.brand,
+          theme: aiTheme,
+          customPrompt: aiCustomPrompt,
+          aspect_ratio: aiAspectRatio
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Erro na API (${res.status})`);
+      }
+
+      const json = await res.json();
+      if (json.status === "success") {
+        setAiGeneratedBgUrl(json.imageUrl);
+        if (json.isDemo) {
+          toast.info("Chave de API do Replicate ausente no .env. Mostrando cenário premium simulado!");
+        } else {
+          toast.success("Cenário com IA gerado com sucesso!");
+        }
+      } else {
+        toast.error(json.message || "Erro ao gerar cenário");
+      }
+    } catch (err: any) {
+      console.error("AI Generate Error:", err);
+      toast.error(err.message || "Falha na comunicação com o servidor de IA");
+    } finally {
+      setIsGeneratingAi(false);
+    }
+  };
+
+  const handleDownloadComposite = () => {
+    if (!selectedProductForAi) return;
+    
+    toast.info("Compondo arte promocional de alta qualidade...");
+    
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const bgImg = new Image();
+    bgImg.crossOrigin = "anonymous";
+    bgImg.src = aiGeneratedBgUrl;
+    bgImg.onload = () => {
+      canvas.width = bgImg.naturalWidth || (aiAspectRatio === "16:9" ? 1600 : 1000);
+      canvas.height = bgImg.naturalHeight || (aiAspectRatio === "16:9" ? 900 : 1000);
+
+      ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
+      if (selectedProductForAi.imageUrl) {
+        const prodImg = new Image();
+        prodImg.crossOrigin = "anonymous";
+        prodImg.src = selectedProductForAi.imageUrl.startsWith("http") 
+          ? selectedProductForAi.imageUrl 
+          : window.location.origin + selectedProductForAi.imageUrl;
+        prodImg.onload = () => {
+          ctx.save();
+
+          const baseSize = Math.min(canvas.width, canvas.height) * 0.45;
+          const finalWidth = baseSize * (aiScale / 100);
+          const finalHeight = (prodImg.naturalHeight / prodImg.naturalWidth) * finalWidth;
+
+          const centerX = canvas.width / 2 + (aiPosX / 100) * canvas.width;
+          const centerY = canvas.height / 2 + (aiPosY / 100) * canvas.height;
+
+          ctx.translate(centerX, centerY);
+          ctx.rotate((aiRotation * Math.PI) / 180);
+
+          if (aiHasShadow) {
+            ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
+            ctx.shadowBlur = 32;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 20;
+          }
+
+          ctx.drawImage(prodImg, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
+          ctx.restore();
+
+          if (aiOverlayText) {
+            ctx.save();
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
+            ctx.lineWidth = Math.max(6, canvas.width * 0.008);
+            ctx.font = `bold ${Math.round(canvas.width * 0.045)}px 'Outfit', 'Inter', sans-serif`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+            const textY = canvas.height * 0.86;
+            ctx.strokeText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
+            ctx.fillText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
+            ctx.restore();
+          }
+
+          const link = document.createElement("a");
+          link.download = `promo-${selectedProductForAi.code}-${aiTheme}.png`;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+          toast.success("Arte promocional baixada com sucesso!");
+        };
+        prodImg.onerror = () => {
+          toast.error("Erro ao carregar a imagem do produto no compositor.");
+        };
+      } else {
+        toast.warning("O produto selecionado não possui foto. Arte gerada apenas com o cenário.");
+        if (aiOverlayText) {
+          ctx.save();
+          ctx.fillStyle = "white";
+          ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
+          ctx.lineWidth = Math.max(6, canvas.width * 0.008);
+          ctx.font = `bold ${Math.round(canvas.width * 0.045)}px 'Outfit', 'Inter', sans-serif`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          
+          const textY = canvas.height * 0.86;
+          ctx.strokeText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
+          ctx.fillText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
+          ctx.restore();
+        }
+        
+        const link = document.createElement("a");
+        link.download = `promo-cenario-${aiTheme}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      }
+    };
+    bgImg.onerror = () => {
+      toast.error("Erro ao carregar a imagem de fundo no compositor.");
+    };
+  };
 
   const navigate = useNavigate();
 
@@ -224,6 +404,13 @@ const Admin = () => {
           <TabsList className="mb-4">
             <TabsTrigger value="products">Produtos</TabsTrigger>
             <TabsTrigger value="settings">Configurações</TabsTrigger>
+            <TabsTrigger value="estudio-ia" className="gap-1.5 flex items-center">
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+              </span>
+              Estúdio de IA
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="products" className="space-y-6">
@@ -566,6 +753,381 @@ const Admin = () => {
                     {loading ? "Processando..." : "Enviar Arquivos"}
                   </Button>
                 </form>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="estudio-ia" className="space-y-6">
+            <div className="bg-white rounded-2xl border border-slate-100 p-6 shadow-[0_4px_24px_rgba(0,0,0,0.03)] text-slate-900">
+              <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">Estúdio de Imagens com IA</h2>
+                  <p className="text-sm text-slate-500 mt-1 font-medium">
+                    Crie cenários publicitários e banners promocionais realistas para os seus produtos em segundos.
+                  </p>
+                </div>
+                
+                {/* Status Indicator */}
+                <div className="inline-flex items-center gap-2 p-2 px-3 bg-sky-50 border border-sky-100 rounded-full shrink-0 text-sky-800 text-[11px] font-bold">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="14" 
+                    height="14" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    className="animate-spin text-sky-600"
+                  >
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                  </svg>
+                  Motor Integrado de Composições FLUX.1
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                {/* Coluna da Esquerda: Configuração */}
+                <div className="lg:col-span-5 space-y-6">
+                  
+                  {/* Seletor de Produto */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 block">Produto Comercial do Catálogo</label>
+                    <select 
+                      value={selectedProductForAi?.code || ""} 
+                      onChange={(e) => {
+                        const prod = products.find(p => p.code === e.target.value);
+                        if (prod) setSelectedProductForAi(prod);
+                      }}
+                      className="w-full h-11 px-3 border border-slate-200 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer"
+                    >
+                      {products.map((p) => (
+                        <option key={p.code} value={p.code}>
+                          {p.code} - {p.name}
+                        </option>
+                      ))}
+                    </select>
+
+                    {selectedProductForAi && (
+                      <div className="flex items-center gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-2 select-none">
+                        <div className="h-12 w-12 rounded-lg bg-white border border-slate-200 flex items-center justify-center p-1.5 shrink-0 overflow-hidden shadow-sm">
+                          {selectedProductForAi.imageUrl ? (
+                            <img src={selectedProductForAi.imageUrl} alt={selectedProductForAi.name} className="h-full w-full object-contain" />
+                          ) : (
+                            <div className="text-[10px] text-slate-400 font-black">Sem Foto</div>
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-bold text-xs text-slate-800 truncate leading-tight">{selectedProductForAi.name}</h4>
+                          <p className="text-[10px] text-slate-500 font-semibold truncate mt-0.5">{selectedProductForAi.brand || "Nestlé"} • {selectedProductForAi.category || "Chocolate"}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Seletor de Tema */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 block">Tema do Cenário (Ambientes da IA)</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {[
+                        { id: "minimalist", label: "Estúdio Minimal", emoji: "📸", desc: "Fundo cinza e limpo" },
+                        { id: "rustic", label: "Rústico / Outono", emoji: "🍂", desc: "Mesa rústica e folhas" },
+                        { id: "tropical", label: "Verão / Tropical", emoji: "☀️", desc: "Praia, areia e sol quente" },
+                        { id: "christmas", label: "Natalino", emoji: "🎄", desc: "Enfeites e luz aconchegante" }
+                      ].map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => setAiTheme(t.id)}
+                          className={cn(
+                            "p-3 rounded-xl border text-left flex flex-col justify-between transition-all duration-200 select-none h-[84px] shadow-sm active:scale-95",
+                            aiTheme === t.id 
+                              ? "bg-slate-900 border-transparent text-white" 
+                              : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+                          )}
+                        >
+                          <div className="flex items-center justify-between w-full">
+                            <span className="text-base">{t.emoji}</span>
+                            {aiTheme === t.id && (
+                              <span className="h-2 w-2 rounded-full bg-sky-400"></span>
+                            )}
+                          </div>
+                          <div className="pt-1.5 min-w-0">
+                            <h4 className="font-black text-xs uppercase tracking-wide leading-none">{t.label}</h4>
+                            <p className={cn("text-[9px] mt-0.5 truncate font-semibold leading-tight", aiTheme === t.id ? "text-slate-300" : "text-slate-400")}>{t.desc}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Proporção */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 block">Proporção da Imagem Promocional</label>
+                    <div className="flex gap-3">
+                      {[
+                        { id: "1:1", label: "1:1 Quadrado", desc: "WhatsApp e Feed Social", widthClass: "aspect-square h-5 w-5" },
+                        { id: "16:9", label: "16:9 Horizontal", desc: "Capas de PDF e Banners", widthClass: "aspect-[16/9] h-3 w-5" }
+                      ].map((f) => (
+                        <button
+                          key={f.id}
+                          type="button"
+                          onClick={() => setAiAspectRatio(f.id)}
+                          className={cn(
+                            "flex-1 p-3 rounded-xl border text-left flex items-center gap-3 transition-all duration-200 select-none shadow-sm active:scale-[0.98]",
+                            aiAspectRatio === f.id 
+                              ? "bg-slate-900 border-transparent text-white" 
+                              : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                          )}
+                        >
+                          <div className={cn("rounded border shrink-0 bg-transparent flex items-center justify-center p-0.5", aiAspectRatio === f.id ? "border-white/30" : "border-slate-300")}>
+                            <div className={cn("rounded-sm", f.widthClass, aiAspectRatio === f.id ? "bg-white/40" : "bg-slate-100")} />
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="font-black text-xs uppercase tracking-wide leading-tight">{f.label}</h4>
+                            <p className={cn("text-[9px] mt-0.5 font-semibold leading-tight truncate", aiAspectRatio === f.id ? "text-slate-300" : "text-slate-400")}>{f.desc}</p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sliders de Posição */}
+                  <div className="space-y-3 bg-slate-50/50 p-4 border border-slate-100 rounded-2xl select-none">
+                    <h4 className="text-[10px] font-black text-slate-600 uppercase tracking-wider mb-1">Ajuste de Composição (Arrastar & Escalar)</h4>
+                    
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-xs font-bold text-slate-600">
+                        <span>Tamanho da Embalagem</span>
+                        <span>{aiScale}%</span>
+                      </div>
+                      <input 
+                        type="range" 
+                        min="20" 
+                        max="150" 
+                        value={aiScale} 
+                        onChange={(e) => setAiScale(Number(e.target.value))} 
+                        className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs font-bold text-slate-600">
+                          <span>Posição X</span>
+                          <span>{aiPosX > 0 ? `+${aiPosX}` : aiPosX}%</span>
+                        </div>
+                        <input 
+                          type="range" 
+                          min="-50" 
+                          max="50" 
+                          value={aiPosX} 
+                          onChange={(e) => setAiPosX(Number(e.target.value))} 
+                          className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                        />
+                      </div>
+
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-xs font-bold text-slate-600">
+                          <span>Posição Y</span>
+                          <span>{aiPosY > 0 ? `+${aiPosY}` : aiPosY}%</span>
+                        </div>
+                        <input 
+                          type="range" 
+                          min="-50" 
+                          max="50" 
+                          value={aiPosY} 
+                          onChange={(e) => setAiPosY(Number(e.target.value))} 
+                          className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <div className="flex justify-between text-xs font-bold text-slate-600">
+                        <span>Rotação do Produto</span>
+                        <span>{aiRotation}°</span>
+                      </div>
+                      <input 
+                        type="range" 
+                        min="-180" 
+                        max="180" 
+                        value={aiRotation} 
+                        onChange={(e) => setAiRotation(Number(e.target.value))} 
+                        className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                      />
+                    </div>
+
+                    <div className="flex items-center pt-2">
+                      <input 
+                        id="aiHasShadow" 
+                        type="checkbox" 
+                        checked={aiHasShadow} 
+                        onChange={(e) => setAiHasShadow(e.target.checked)}
+                        className="h-4.5 w-4.5 rounded border-slate-300 text-slate-900 focus:ring-slate-900 cursor-pointer"
+                      />
+                      <label htmlFor="aiHasShadow" className="ml-2 text-xs text-slate-700 font-bold select-none cursor-pointer">
+                        Habilitar sombra 3D projetada realística
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Texto da Arte */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 block">Slogan/Texto da Arte (Opcional)</label>
+                    <Input 
+                      placeholder="Ex: NOVO!, LANÇAMENTO!, MÃES NESTLÉ" 
+                      value={aiOverlayText} 
+                      onChange={(e) => setAiOverlayText(e.target.value)}
+                      className="h-11 rounded-xl text-slate-700 font-bold border-slate-200 bg-white"
+                    />
+                  </div>
+
+                  {/* Custom Prompt */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700 block">Instrução de Ambientação Extras para a IA (Opcional)</label>
+                    <Textarea 
+                      placeholder="Ex: com morangos frescos ao lado na mesa de mármore, iluminação solar suave, foco raso..." 
+                      value={aiCustomPrompt} 
+                      onChange={(e) => setAiCustomPrompt(e.target.value)}
+                      className="rounded-xl text-slate-600 border-slate-200 bg-white h-20 min-h-20 max-h-20"
+                    />
+                  </div>
+
+                  {/* Ação Principal: Gerar Cenário */}
+                  <Button 
+                    type="button" 
+                    onClick={handleGenerateAiBg}
+                    className="w-full gap-2 bg-[#426EA8] hover:bg-[#345889] text-white rounded-xl h-12 font-bold transition-all shadow-md active:scale-95"
+                    disabled={isGeneratingAi}
+                  >
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      className="animate-pulse"
+                    >
+                      <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                      <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5z" opacity="0.7" />
+                    </svg>
+                    {isGeneratingAi ? "Gereando Cenário por IA..." : "Gerar Cenário Promocional"}
+                  </Button>
+
+                </div>
+
+                {/* Coluna da Direita: Visualizador e Compositor */}
+                <div className="lg:col-span-7 space-y-5">
+                  <h3 className="text-sm font-black text-slate-600 uppercase tracking-wider block">Visualizador de Arte Final</h3>
+                  
+                  {/* Container Principal do Compositor */}
+                  <div className={cn("relative overflow-hidden w-full bg-slate-900 border border-slate-100 rounded-2xl shadow-lg flex items-center justify-center select-none shadow-[0_12px_45px_rgba(0,0,0,0.06)] border border-slate-100/40", aiAspectRatio === "16:9" ? "aspect-[16/9]" : "aspect-square")}>
+                    
+                    {/* Camada 1: Cenário (AI Background) */}
+                    <img 
+                      src={aiGeneratedBgUrl} 
+                      alt="Cenário de Fundo" 
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
+                    />
+                    
+                    {/* Camada 2: Embalagem do Produto com transformações responsivas e sombra suave */}
+                    {selectedProductForAi && (
+                      <div 
+                        className="absolute pointer-events-none transition-transform duration-75 flex items-center justify-center"
+                        style={{
+                          top: `calc(50% + ${aiPosY}%)`,
+                          left: `calc(50% + ${aiPosX}%)`,
+                          transform: `translate(-50%, -50%) scale(${aiScale / 100}) rotate(${aiRotation}deg)`,
+                          maxHeight: '75%',
+                          maxWidth: '75%'
+                        }}
+                      >
+                        {selectedProductForAi.imageUrl ? (
+                          <img 
+                            src={selectedProductForAi.imageUrl} 
+                            alt={selectedProductForAi.name} 
+                            className="object-contain pointer-events-none"
+                            style={{
+                              maxHeight: '100%',
+                              maxWidth: '100%',
+                              filter: aiHasShadow ? 'drop-shadow(0 25px 35px rgba(0,0,0,0.45)) drop-shadow(0 10px 10px rgba(0,0,0,0.2))' : 'none'
+                            }}
+                          />
+                        ) : (
+                          <div className="p-4 bg-white/90 backdrop-blur border rounded-xl text-slate-400 font-bold text-xs uppercase shadow-md select-none">
+                            Sem Foto do Produto
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Camada 3: Slogan/Texto sobreposto */}
+                    {aiOverlayText && (
+                      <div className="absolute bottom-[10%] left-0 right-0 text-center pointer-events-none px-4">
+                        <span 
+                          className="text-white font-black uppercase text-xl sm:text-2xl md:text-3xl tracking-wider select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]"
+                          style={{ fontFamily: "'Outfit', 'Inter', sans-serif" }}
+                        >
+                          {aiOverlayText}
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Camada 4: Loader com Spinner Customizado do Cliente */}
+                    {isGeneratingAi && (
+                      <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm flex flex-col items-center justify-center text-center animate-fade-in z-20">
+                        <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-2xl border border-slate-100 max-w-[260px]">
+                          <img src="/loading.gif" alt="Gerando..." className="w-14 h-14 object-contain" />
+                          <h4 className="mt-4 font-black text-xs text-slate-800 uppercase tracking-wider animate-pulse">Desenhando Cenário</h4>
+                          <p className="text-[10px] text-slate-400 font-semibold leading-relaxed mt-1">Conectando ao motor neural FLUX para renderizar em alta fidelidade...</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Dica discreta */}
+                    <div className="absolute top-4 left-4 bg-slate-950/70 backdrop-blur-sm text-white/90 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider select-none">
+                      Estúdio Compositor Visual v1.0
+                    </div>
+
+                  </div>
+
+                  {/* Ações Finais da Arte */}
+                  <div className="flex gap-4">
+                    <Button 
+                      type="button" 
+                      onClick={handleDownloadComposite}
+                      className="flex-1 gap-2 bg-[#242525] hover:bg-[#101111] text-white rounded-xl h-12 font-bold shadow-md transition-all active:scale-[0.98]"
+                      disabled={isGeneratingAi || !selectedProductForAi}
+                    >
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="16" 
+                        height="16" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        className="shrink-0"
+                      >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" x2="12" y1="15" y2="3"/>
+                      </svg>
+                      Baixar Arte Promocional (PNG)
+                    </Button>
+                  </div>
+                  {/* Nota informativa sobre a Chave de IA */}
+                  <div className="p-4 bg-slate-50 border border-slate-200/60 rounded-2xl text-[11px] text-slate-600 font-medium leading-relaxed">
+                    💡 **Dica de Produção**: O Estúdio está rodando no **Modo Compositor Inteligente**. Para liberar a geração de cenários customizados e novos por Inteligência Artificial ilimitada via FLUX.1, configure a chave `REPLICATE_API_TOKEN` no arquivo `.env` da raiz do seu servidor!
+                  </div>
+
+                </div>
+
               </div>
             </div>
           </TabsContent>
