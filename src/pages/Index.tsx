@@ -297,15 +297,7 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="py-8 text-center mt-12 bg-transparent">
-        <Button 
-          variant="link" 
-          onClick={() => navigate("/admin")} 
-          className="text-slate-400 hover:text-slate-700 text-xs font-semibold tracking-wide transition-colors"
-        >
-          Painel Admin
-        </Button>
-      </footer>
+
 
       <SupportFab />
 
