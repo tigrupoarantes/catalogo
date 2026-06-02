@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { supabaseService } from "@/services/supabaseService";
 import { Product, products as initialProducts, parseProductTechnicalData, serializeProductTechnicalData } from "@/data/products";
@@ -40,6 +40,16 @@ interface ProductWithId extends Product {
   id: string;
 }
 
+interface ProductLayer {
+  id: string;
+  product: ProductWithId;
+  scale: number;
+  posX: number;
+  posY: number;
+  rotation: number;
+  hasShadow: boolean;
+}
+
 const Admin = () => {
   const { user, loading: authLoading, isAdmin } = useFirebase();
   const [products, setProducts] = useState<ProductWithId[]>([]);
@@ -63,40 +73,67 @@ const Admin = () => {
   const [aiTheme, setAiTheme] = useState<string>("minimalist");
   const [aiAspectRatio, setAiAspectRatio] = useState<string>("1:1");
   const [aiCustomPrompt, setAiCustomPrompt] = useState<string>("");
-  const [aiScale, setAiScale] = useState<number>(80);
-  const [aiPosX, setAiPosX] = useState<number>(0);
-  const [aiPosY, setAiPosY] = useState<number>(0);
-  const [aiRotation, setAiRotation] = useState<number>(0);
-  const [aiHasShadow, setAiHasShadow] = useState<boolean>(true);
   const [aiOverlayText, setAiOverlayText] = useState<string>("");
-  const [aiGeneratedBgUrl, setAiGeneratedBgUrl] = useState<string>("https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80");
+  const [aiGeneratedBgUrl, setAiGeneratedBgUrl] = useState<string>("solid-gray");
   const [isGeneratingAi, setIsGeneratingAi] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (products.length > 0 && !selectedProductForAi) {
-      setSelectedProductForAi(products[0]);
-    }
-  }, [products, selectedProductForAi]);
+  // Novos estados para múltiplas camadas e busca
+  const [aiSearchQuery, setAiSearchQuery] = useState<string>("");
+  const [productLayers, setProductLayers] = useState<ProductLayer[]>([]);
+  const [activeLayerId, setActiveLayerId] = useState<string | null>(null);
+
+  const activeLayer = productLayers.find(l => l.id === activeLayerId);
+
+  const updateActiveLayer = (updates: Partial<ProductLayer>) => {
+    if (!activeLayerId) return;
+    setProductLayers(prev => prev.map(layer => layer.id === activeLayerId ? { ...layer, ...updates } : layer));
+  };
+
+  // Busca e filtro de produtos no estúdio de IA
+  const filteredProductsForAi = useMemo(() => {
+    if (!aiSearchQuery.trim()) return products;
+    const query = aiSearchQuery.toLowerCase();
+    return products.filter(p => 
+      p.code.toLowerCase().includes(query) || 
+      p.name.toLowerCase().includes(query) ||
+      (p.brand && p.brand.toLowerCase().includes(query))
+    );
+  }, [products, aiSearchQuery]);
 
   useEffect(() => {
-    let stockImageUrl = "";
-    if (aiTheme === "minimalist") {
-      stockImageUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1000&auto=format&fit=crop&q=80";
-    } else if (aiTheme === "rustic") {
-      stockImageUrl = "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1000&auto=format&fit=crop&q=80";
-    } else if (aiTheme === "tropical") {
-      stockImageUrl = "https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=1000&auto=format&fit=crop&q=80";
-    } else if (aiTheme === "christmas") {
-      stockImageUrl = "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=1000&auto=format&fit=crop&q=80";
+    if (filteredProductsForAi.length > 0) {
+      if (!selectedProductForAi || !filteredProductsForAi.some(p => p.code === selectedProductForAi.code)) {
+        setSelectedProductForAi(filteredProductsForAi[0]);
+      }
     } else {
-      stockImageUrl = "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1000&auto=format&fit=crop&q=80";
+      setSelectedProductForAi(null);
     }
-    setAiGeneratedBgUrl(stockImageUrl);
-  }, [aiTheme]);
+  }, [filteredProductsForAi, selectedProductForAi]);
+
+  // Inicializa o cenário com o primeiro produto do catálogo como uma camada padrão
+  useEffect(() => {
+    if (products.length > 0 && productLayers.length === 0) {
+      const defaultProd = products[0];
+      const newLayer: ProductLayer = {
+        id: "layer-" + Date.now(),
+        product: defaultProd,
+        scale: 80,
+        posX: 0,
+        posY: 0,
+        rotation: 0,
+        hasShadow: true,
+      };
+      setProductLayers([newLayer]);
+      setActiveLayerId(newLayer.id);
+    }
+  }, [products, productLayers]);
+
+
 
   const handleGenerateAiBg = async () => {
-    if (!selectedProductForAi) {
-      toast.error("Por favor, selecione um produto primeiro.");
+    const mainProduct = selectedProductForAi || (productLayers.length > 0 ? productLayers[0].product : null);
+    if (!mainProduct) {
+      toast.error("Por favor, selecione ou adicione um produto primeiro.");
       return;
     }
     setIsGeneratingAi(true);
@@ -107,9 +144,9 @@ const Admin = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          productName: selectedProductForAi.name,
-          category: selectedProductForAi.category,
-          brand: selectedProductForAi.brand,
+          productName: mainProduct.name,
+          category: mainProduct.category,
+          brand: mainProduct.brand,
           theme: aiTheme,
           customPrompt: aiCustomPrompt,
           aspect_ratio: aiAspectRatio
@@ -140,7 +177,10 @@ const Admin = () => {
   };
 
   const handleDownloadComposite = () => {
-    if (!selectedProductForAi) return;
+    if (productLayers.length === 0) {
+      toast.warning("Adicione pelo menos um produto ao cenário antes de baixar.");
+      return;
+    }
     
     toast.info("Compondo arte promocional de alta qualidade...");
     
@@ -148,70 +188,58 @@ const Admin = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const bgImg = new Image();
-    bgImg.crossOrigin = "anonymous";
-    bgImg.src = aiGeneratedBgUrl;
-    bgImg.onload = () => {
-      canvas.width = bgImg.naturalWidth || (aiAspectRatio === "16:9" ? 1600 : 1000);
-      canvas.height = bgImg.naturalHeight || (aiAspectRatio === "16:9" ? 900 : 1000);
+    // Define o tamanho baseado estritamente na proporção selecionada
+    canvas.width = aiAspectRatio === "9:16" ? 1080 : 1080;
+    canvas.height = aiAspectRatio === "9:16" ? 1920 : 1080;
 
-      ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+    // Função auxiliar para carregar as imagens das camadas
+    const loadLayerImage = (layer: ProductLayer): Promise<{ layer: ProductLayer; img: HTMLImageElement | null }> => {
+      return new Promise((resolve) => {
+        if (!layer.product.imageUrl) {
+          resolve({ layer, img: null });
+          return;
+        }
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.src = layer.product.imageUrl.startsWith("http") 
+          ? layer.product.imageUrl 
+          : window.location.origin + layer.product.imageUrl;
+        img.onload = () => resolve({ layer, img });
+        img.onerror = () => resolve({ layer, img: null });
+      });
+    };
 
-      if (selectedProductForAi.imageUrl) {
-        const prodImg = new Image();
-        prodImg.crossOrigin = "anonymous";
-        prodImg.src = selectedProductForAi.imageUrl.startsWith("http") 
-          ? selectedProductForAi.imageUrl 
-          : window.location.origin + selectedProductForAi.imageUrl;
-        prodImg.onload = () => {
+    const drawProductsAndSave = async () => {
+      try {
+        const loadedLayers = await Promise.all(productLayers.map(loadLayerImage));
+
+        // Desenha sequencialmente cada camada de produto carregada
+        loadedLayers.forEach(({ layer, img }) => {
+          if (!img) return;
           ctx.save();
 
           const baseSize = Math.min(canvas.width, canvas.height) * 0.45;
-          const finalWidth = baseSize * (aiScale / 100);
-          const finalHeight = (prodImg.naturalHeight / prodImg.naturalWidth) * finalWidth;
+          const finalWidth = baseSize * (layer.scale / 100);
+          const finalHeight = (img.naturalHeight / img.naturalWidth) * finalWidth;
 
-          const centerX = canvas.width / 2 + (aiPosX / 100) * canvas.width;
-          const centerY = canvas.height / 2 + (aiPosY / 100) * canvas.height;
+          const centerX = canvas.width / 2 + (layer.posX / 100) * canvas.width;
+          const centerY = canvas.height / 2 + (layer.posY / 100) * canvas.height;
 
           ctx.translate(centerX, centerY);
-          ctx.rotate((aiRotation * Math.PI) / 180);
+          ctx.rotate((layer.rotation * Math.PI) / 180);
 
-          if (aiHasShadow) {
+          if (layer.hasShadow) {
             ctx.shadowColor = "rgba(0, 0, 0, 0.4)";
             ctx.shadowBlur = 32;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 20;
           }
 
-          ctx.drawImage(prodImg, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
+          ctx.drawImage(img, -finalWidth / 2, -finalHeight / 2, finalWidth, finalHeight);
           ctx.restore();
+        });
 
-          if (aiOverlayText) {
-            ctx.save();
-            ctx.fillStyle = "white";
-            ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
-            ctx.lineWidth = Math.max(6, canvas.width * 0.008);
-            ctx.font = `bold ${Math.round(canvas.width * 0.045)}px 'Outfit', 'Inter', sans-serif`;
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            
-            const textY = canvas.height * 0.86;
-            ctx.strokeText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
-            ctx.fillText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
-            ctx.restore();
-          }
-
-          const link = document.createElement("a");
-          link.download = `promo-${selectedProductForAi.code}-${aiTheme}.png`;
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-          toast.success("Arte promocional baixada com sucesso!");
-        };
-        prodImg.onerror = () => {
-          toast.error("Erro ao carregar a imagem do produto no compositor.");
-        };
-      } else {
-        toast.warning("O produto selecionado não possui foto. Arte gerada apenas com o cenário.");
+        // Desenha o slogan do banner
         if (aiOverlayText) {
           ctx.save();
           ctx.fillStyle = "white";
@@ -226,16 +254,54 @@ const Admin = () => {
           ctx.fillText(aiOverlayText.toUpperCase(), canvas.width / 2, textY);
           ctx.restore();
         }
-        
+
+        // Faz o download da imagem finalizada
         const link = document.createElement("a");
-        link.download = `promo-cenario-${aiTheme}.png`;
+        const nameSuffix = productLayers.map(l => l.product.code).join("-").slice(0, 30);
+        link.download = `promo-${nameSuffix || "ia"}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
+        toast.success("Arte promocional baixada com sucesso!");
+      } catch (err) {
+        console.error("Erro na composição final:", err);
+        toast.error("Ocorreu um erro ao compor a arte final.");
       }
     };
-    bgImg.onerror = () => {
-      toast.error("Erro ao carregar a imagem de fundo no compositor.");
-    };
+
+    if (aiGeneratedBgUrl === "solid-gray") {
+      // 1. Caso de Fundo Cinza Chapado
+      ctx.fillStyle = "#CCCCCC";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawProductsAndSave();
+    } else {
+      // 2. Caso de Fundo com Imagem Gerada por IA
+      const bgImg = new Image();
+      bgImg.crossOrigin = "anonymous";
+      bgImg.src = aiGeneratedBgUrl;
+      bgImg.onload = async () => {
+        // Desenha o cenário de fundo simulando "object-fit: cover" (centralizado e cortado sem distorção)
+        const canvasRatio = canvas.width / canvas.height;
+        const imgRatio = (bgImg.naturalWidth || 1000) / (bgImg.naturalHeight || 1000);
+        let drawWidth = canvas.width;
+        let drawHeight = canvas.height;
+        let drawX = 0;
+        let drawY = 0;
+
+        if (imgRatio > canvasRatio) {
+          drawWidth = canvas.height * imgRatio;
+          drawX = (canvas.width - drawWidth) / 2;
+        } else {
+          drawHeight = canvas.width / imgRatio;
+          drawY = (canvas.height - drawHeight) / 2;
+        }
+
+        ctx.drawImage(bgImg, drawX, drawY, drawWidth, drawHeight);
+        drawProductsAndSave();
+      };
+      bgImg.onerror = () => {
+        toast.error("Erro ao carregar a imagem de fundo no compositor.");
+      };
+    }
   };
 
   const navigate = useNavigate();
@@ -404,11 +470,7 @@ const Admin = () => {
           <TabsList className="mb-4">
             <TabsTrigger value="products">Produtos</TabsTrigger>
             <TabsTrigger value="settings">Configurações</TabsTrigger>
-            <TabsTrigger value="estudio-ia" className="gap-1.5 flex items-center">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-              </span>
+            <TabsTrigger value="estudio-ia">
               Estúdio de IA
             </TabsTrigger>
           </TabsList>
@@ -793,20 +855,63 @@ const Admin = () => {
                   {/* Seletor de Produto */}
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700 block">Produto Comercial do Catálogo</label>
-                    <select 
-                      value={selectedProductForAi?.code || ""} 
-                      onChange={(e) => {
-                        const prod = products.find(p => p.code === e.target.value);
-                        if (prod) setSelectedProductForAi(prod);
-                      }}
-                      className="w-full h-11 px-3 border border-slate-200 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer"
-                    >
-                      {products.map((p) => (
-                        <option key={p.code} value={p.code}>
-                          {p.code} - {p.name}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                       <Input 
+                         placeholder="Buscar produto por nome ou código..." 
+                         value={aiSearchQuery} 
+                         onChange={(e) => setAiSearchQuery(e.target.value)}
+                         className="h-11 rounded-xl text-slate-700 font-bold border-slate-200 bg-white w-full"
+                       />
+                     </div>
+
+                      <div className="grid grid-cols-[minmax(0,_1.7fr)_minmax(0,_1.3fr)] gap-2 mt-2 w-full">
+                        <div className="min-w-0">
+                          <select 
+                            value={selectedProductForAi?.code || ""} 
+                            onChange={(e) => {
+                              const prod = products.find(p => p.code === e.target.value);
+                              if (prod) setSelectedProductForAi(prod);
+                            }}
+                            className="w-full h-11 px-3 border border-slate-200 rounded-xl font-bold text-slate-700 bg-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer min-w-0 text-xs sm:text-sm"
+                          >
+                            {filteredProductsForAi.length === 0 ? (
+                              <option value="">Nenhum produto encontrado</option>
+                            ) : (
+                              filteredProductsForAi.map((p) => (
+                                <option key={p.code} value={p.code}>
+                                  {p.code} - {p.name}
+                                </option>
+                              ))
+                            )}
+                          </select>
+                        </div>
+                        
+                        <div className="min-w-0">
+                          <Button 
+                            type="button"
+                            onClick={() => {
+                              if (selectedProductForAi) {
+                                const newLayer: ProductLayer = {
+                                  id: "layer-" + Date.now() + Math.random().toString(36).substr(2, 4),
+                                  product: selectedProductForAi,
+                                  scale: 60,
+                                  posX: Math.floor(Math.random() * 20) - 10,
+                                  posY: Math.floor(Math.random() * 20) - 10,
+                                  rotation: 0,
+                                  hasShadow: true,
+                                };
+                                setProductLayers(prev => [...prev, newLayer]);
+                                setActiveLayerId(newLayer.id);
+                                toast.success("Produto adicionado ao cenário!");
+                              }
+                            }}
+                            className="h-11 bg-slate-900 hover:bg-black text-white rounded-xl font-bold px-3 shrink-0 shadow-sm active:scale-95 transition-all text-xs truncate w-full"
+                            disabled={!selectedProductForAi}
+                          >
+                            Adicionar ao Cenário
+                          </Button>
+                        </div>
+                      </div>
 
                     {selectedProductForAi && (
                       <div className="flex items-center gap-3 p-3 bg-slate-50 border border-slate-100 rounded-xl mt-2 select-none">
@@ -825,40 +930,64 @@ const Admin = () => {
                     )}
                   </div>
 
-                  {/* Seletor de Tema */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 block">Tema do Cenário (Ambientes da IA)</label>
-                    <div className="grid grid-cols-2 gap-3">
-                      {[
-                        { id: "minimalist", label: "Estúdio Minimal", emoji: "📸", desc: "Fundo cinza e limpo" },
-                        { id: "rustic", label: "Rústico / Outono", emoji: "🍂", desc: "Mesa rústica e folhas" },
-                        { id: "tropical", label: "Verão / Tropical", emoji: "☀️", desc: "Praia, areia e sol quente" },
-                        { id: "christmas", label: "Natalino", emoji: "🎄", desc: "Enfeites e luz aconchegante" }
-                      ].map((t) => (
-                        <button
-                          key={t.id}
-                          type="button"
-                          onClick={() => setAiTheme(t.id)}
-                          className={cn(
-                            "p-3 rounded-xl border text-left flex flex-col justify-between transition-all duration-200 select-none h-[84px] shadow-sm active:scale-95",
-                            aiTheme === t.id 
-                              ? "bg-slate-900 border-transparent text-white" 
-                              : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
-                          )}
-                        >
-                          <div className="flex items-center justify-between w-full">
-                            <span className="text-base">{t.emoji}</span>
-                            {aiTheme === t.id && (
-                              <span className="h-2 w-2 rounded-full bg-sky-400"></span>
+                  {/* Lista de Produtos Adicionados (Camadas) */}
+                  <div className="space-y-2 bg-slate-50/50 p-4 border border-slate-100 rounded-2xl select-none">
+                    <h4 className="text-[10px] font-black text-slate-600 uppercase tracking-wider mb-1">Produtos no Cenário ({productLayers.length})</h4>
+                    {productLayers.length === 0 ? (
+                      <p className="text-xs text-slate-400 font-semibold italic text-center py-2">Nenhum produto adicionado ao cenário.</p>
+                    ) : (
+                      <div className="space-y-2 max-h-40 overflow-y-auto no-scrollbar">
+                        {productLayers.map((layer) => (
+                          <div 
+                            key={layer.id}
+                            onClick={() => setActiveLayerId(layer.id)}
+                            className={cn(
+                              "flex items-center justify-between p-2 rounded-xl border transition-all cursor-pointer",
+                              activeLayerId === layer.id 
+                                ? "bg-slate-900 text-white border-transparent shadow-md" 
+                                : "bg-white border-slate-100 hover:bg-slate-50 text-slate-700"
                             )}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="h-8 w-8 rounded bg-white border border-slate-100 flex items-center justify-center p-1 shrink-0 overflow-hidden shadow-sm">
+                                {layer.product.imageUrl ? (
+                                  <img src={layer.product.imageUrl} alt={layer.product.name} className="h-full w-full object-contain" />
+                                ) : (
+                                  <div className="text-[8px] text-slate-400 font-black">Sem Foto</div>
+                                )}
+                              </div>
+                              <div className="min-w-0">
+                                <p className="font-bold text-[10px] truncate leading-tight">{layer.product.name}</p>
+                                <p className={cn("text-[8px] font-semibold mt-0.5 truncate", activeLayerId === layer.id ? "text-slate-400" : "text-slate-500")}>Cód: {layer.product.code}</p>
+                              </div>
+                            </div>
+                            
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setProductLayers(prev => prev.filter(l => l.id !== layer.id));
+                                if (activeLayerId === layer.id) {
+                                  const remaining = productLayers.filter(l => l.id !== layer.id);
+                                  setActiveLayerId(remaining.length > 0 ? remaining[0].id : null);
+                                }
+                                toast.success("Produto removido do cenário.");
+                              }}
+                              className={cn(
+                                "h-7 w-7 rounded-lg shrink-0",
+                                activeLayerId === layer.id 
+                                  ? "text-red-400 hover:text-red-500 hover:bg-slate-800" 
+                                  : "text-slate-400 hover:text-red-500 hover:bg-slate-50"
+                              )}
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </Button>
                           </div>
-                          <div className="pt-1.5 min-w-0">
-                            <h4 className="font-black text-xs uppercase tracking-wide leading-none">{t.label}</h4>
-                            <p className={cn("text-[9px] mt-0.5 truncate font-semibold leading-tight", aiTheme === t.id ? "text-slate-300" : "text-slate-400")}>{t.desc}</p>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   {/* Proporção */}
@@ -867,7 +996,7 @@ const Admin = () => {
                     <div className="flex gap-3">
                       {[
                         { id: "1:1", label: "1:1 Quadrado", desc: "WhatsApp e Feed Social", widthClass: "aspect-square h-5 w-5" },
-                        { id: "16:9", label: "16:9 Horizontal", desc: "Capas de PDF e Banners", widthClass: "aspect-[16/9] h-3 w-5" }
+                        { id: "9:16", label: "9:16 Vertical", desc: "Stories e Reels", widthClass: "aspect-[9/16] h-5 w-3" }
                       ].map((f) => (
                         <button
                           key={f.id}
@@ -896,80 +1025,94 @@ const Admin = () => {
                   <div className="space-y-3 bg-slate-50/50 p-4 border border-slate-100 rounded-2xl select-none">
                     <h4 className="text-[10px] font-black text-slate-600 uppercase tracking-wider mb-1">Ajuste de Composição (Arrastar & Escalar)</h4>
                     
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-600">
-                        <span>Tamanho da Embalagem</span>
-                        <span>{aiScale}%</span>
+                    {!activeLayer ? (
+                      <div className="py-4 text-center">
+                        <p className="text-xs text-slate-400 font-bold italic leading-relaxed">
+                          ⚠️ Selecione um produto na lista de camadas acima para calibrar sua posição e tamanho no cenário.
+                        </p>
                       </div>
-                      <input 
-                        type="range" 
-                        min="20" 
-                        max="150" 
-                        value={aiScale} 
-                        onChange={(e) => setAiScale(Number(e.target.value))} 
-                        className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-xs font-bold text-slate-600">
-                          <span>Posição X</span>
-                          <span>{aiPosX > 0 ? `+${aiPosX}` : aiPosX}%</span>
+                    ) : (
+                      <>
+                        <div className="p-2 bg-slate-900 text-white rounded-xl text-[10px] font-bold text-center truncate mb-1">
+                          Ajustando: {activeLayer.product.name}
                         </div>
-                        <input 
-                          type="range" 
-                          min="-50" 
-                          max="50" 
-                          value={aiPosX} 
-                          onChange={(e) => setAiPosX(Number(e.target.value))} 
-                          className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
-                        />
-                      </div>
 
-                      <div className="space-y-1">
-                        <div className="flex justify-between text-xs font-bold text-slate-600">
-                          <span>Posição Y</span>
-                          <span>{aiPosY > 0 ? `+${aiPosY}` : aiPosY}%</span>
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-xs font-bold text-slate-600">
+                            <span>Tamanho da Embalagem</span>
+                            <span>{activeLayer.scale}%</span>
+                          </div>
+                          <input 
+                            type="range" 
+                            min="20" 
+                            max="150" 
+                            value={activeLayer.scale} 
+                            onChange={(e) => updateActiveLayer({ scale: Number(e.target.value) })} 
+                            className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                          />
                         </div>
-                        <input 
-                          type="range" 
-                          min="-50" 
-                          max="50" 
-                          value={aiPosY} 
-                          onChange={(e) => setAiPosY(Number(e.target.value))} 
-                          className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
-                        />
-                      </div>
-                    </div>
 
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-600">
-                        <span>Rotação do Produto</span>
-                        <span>{aiRotation}°</span>
-                      </div>
-                      <input 
-                        type="range" 
-                        min="-180" 
-                        max="180" 
-                        value={aiRotation} 
-                        onChange={(e) => setAiRotation(Number(e.target.value))} 
-                        className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
-                      />
-                    </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <div className="flex justify-between text-xs font-bold text-slate-600">
+                              <span>Posição X</span>
+                              <span>{activeLayer.posX > 0 ? `+${activeLayer.posX}` : activeLayer.posX}%</span>
+                            </div>
+                            <input 
+                              type="range" 
+                              min="-50" 
+                              max="50" 
+                              value={activeLayer.posX} 
+                              onChange={(e) => updateActiveLayer({ posX: Number(e.target.value) })} 
+                              className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                            />
+                          </div>
 
-                    <div className="flex items-center pt-2">
-                      <input 
-                        id="aiHasShadow" 
-                        type="checkbox" 
-                        checked={aiHasShadow} 
-                        onChange={(e) => setAiHasShadow(e.target.checked)}
-                        className="h-4.5 w-4.5 rounded border-slate-300 text-slate-900 focus:ring-slate-900 cursor-pointer"
-                      />
-                      <label htmlFor="aiHasShadow" className="ml-2 text-xs text-slate-700 font-bold select-none cursor-pointer">
-                        Habilitar sombra 3D projetada realística
-                      </label>
-                    </div>
+                          <div className="space-y-1">
+                            <div className="flex justify-between text-xs font-bold text-slate-600">
+                              <span>Posição Y</span>
+                              <span>{activeLayer.posY > 0 ? `+${activeLayer.posY}` : activeLayer.posY}%</span>
+                            </div>
+                            <input 
+                              type="range" 
+                              min="-50" 
+                              max="50" 
+                              value={activeLayer.posY} 
+                              onChange={(e) => updateActiveLayer({ posY: Number(e.target.value) })} 
+                              className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1">
+                          <div className="flex justify-between text-xs font-bold text-slate-600">
+                            <span>Rotação do Produto</span>
+                            <span>{activeLayer.rotation}°</span>
+                          </div>
+                          <input 
+                            type="range" 
+                            min="-180" 
+                            max="180" 
+                            value={activeLayer.rotation} 
+                            onChange={(e) => updateActiveLayer({ rotation: Number(e.target.value) })} 
+                            className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                          />
+                        </div>
+
+                        <div className="flex items-center pt-2">
+                          <input 
+                            id="aiHasShadow" 
+                            type="checkbox" 
+                            checked={activeLayer.hasShadow} 
+                            onChange={(e) => updateActiveLayer({ hasShadow: e.target.checked })}
+                            className="h-4.5 w-4.5 rounded border-slate-300 text-slate-900 focus:ring-slate-900 cursor-pointer"
+                          />
+                          <label htmlFor="aiHasShadow" className="ml-2 text-xs text-slate-700 font-bold select-none cursor-pointer">
+                            Habilitar sombra 3D projetada realística
+                          </label>
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   {/* Texto da Arte */}
@@ -985,7 +1128,7 @@ const Admin = () => {
 
                   {/* Custom Prompt */}
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 block">Instrução de Ambientação Extras para a IA (Opcional)</label>
+                    <label className="text-sm font-bold text-slate-700 block">Instrução de Ambientação Extras para a IA</label>
                     <Textarea 
                       placeholder="Ex: com morangos frescos ao lado na mesa de mármore, iluminação solar suave, foco raso..." 
                       value={aiCustomPrompt} 
@@ -1023,75 +1166,96 @@ const Admin = () => {
                 <div className="lg:col-span-7 space-y-5">
                   <h3 className="text-sm font-black text-slate-600 uppercase tracking-wider block">Visualizador de Arte Final</h3>
                   
-                  {/* Container Principal do Compositor */}
-                  <div className={cn("relative overflow-hidden w-full bg-slate-900 border border-slate-100 rounded-2xl shadow-lg flex items-center justify-center select-none shadow-[0_12px_45px_rgba(0,0,0,0.06)] border border-slate-100/40", aiAspectRatio === "16:9" ? "aspect-[16/9]" : "aspect-square")}>
-                    
-                    {/* Camada 1: Cenário (AI Background) */}
-                    <img 
-                      src={aiGeneratedBgUrl} 
-                      alt="Cenário de Fundo" 
-                      className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
-                    />
-                    
-                    {/* Camada 2: Embalagem do Produto com transformações responsivas e sombra suave */}
-                    {selectedProductForAi && (
-                      <div 
-                        className="absolute pointer-events-none transition-transform duration-75 flex items-center justify-center"
-                        style={{
-                          top: `calc(50% + ${aiPosY}%)`,
-                          left: `calc(50% + ${aiPosX}%)`,
-                          transform: `translate(-50%, -50%) scale(${aiScale / 100}) rotate(${aiRotation}deg)`,
-                          maxHeight: '75%',
-                          maxWidth: '75%'
-                        }}
-                      >
-                        {selectedProductForAi.imageUrl ? (
-                          <img 
-                            src={selectedProductForAi.imageUrl} 
-                            alt={selectedProductForAi.name} 
-                            className="object-contain pointer-events-none"
-                            style={{
-                              maxHeight: '100%',
-                              maxWidth: '100%',
-                              filter: aiHasShadow ? 'drop-shadow(0 25px 35px rgba(0,0,0,0.45)) drop-shadow(0 10px 10px rgba(0,0,0,0.2))' : 'none'
-                            }}
-                          />
-                        ) : (
-                          <div className="p-4 bg-white/90 backdrop-blur border rounded-xl text-slate-400 font-bold text-xs uppercase shadow-md select-none">
-                            Sem Foto do Produto
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Camada 3: Slogan/Texto sobreposto */}
-                    {aiOverlayText && (
-                      <div className="absolute bottom-[10%] left-0 right-0 text-center pointer-events-none px-4">
-                        <span 
-                          className="text-white font-black uppercase text-xl sm:text-2xl md:text-3xl tracking-wider select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]"
-                          style={{ fontFamily: "'Outfit', 'Inter', sans-serif" }}
+                  {/* Wrapper para Centralização Perfeita sem Esticar */}
+                  <div className="flex justify-center items-center bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-[0_4px_16px_rgba(0,0,0,0.02)] min-h-[350px]">
+                    {/* Container Principal do Compositor */}
+                    <div className={cn("relative overflow-hidden w-full shadow-lg flex items-center justify-center select-none shadow-[0_12px_45px_rgba(0,0,0,0.06)] border border-slate-100/40 rounded-xl bg-slate-900", 
+                      aiAspectRatio === "9:16" ? "max-w-[270px] aspect-[9/16]" : "max-w-full aspect-square"
+                    )}>
+                      
+                      {/* Camada 1: Cenário (AI Background) */}
+                      {aiGeneratedBgUrl === "solid-gray" ? (
+                        <div className="absolute inset-0 w-full h-full bg-[#CCCCCC]" />
+                      ) : (
+                        <img 
+                          src={aiGeneratedBgUrl} 
+                          alt="Cenário de Fundo" 
+                          className="absolute inset-0 w-full h-full object-cover pointer-events-none" 
+                        />
+                      )}
+                      
+                      {/* Camada 2: Embalagens dos Produtos com transformações responsivas e sombra suave */}
+                      {productLayers.map((layer) => (
+                        <div 
+                          key={layer.id}
+                          onClick={() => setActiveLayerId(layer.id)}
+                          className={cn(
+                            "absolute cursor-pointer transition-all duration-75 flex items-center justify-center group",
+                            activeLayerId === layer.id 
+                              ? "ring-2 ring-sky-400 ring-offset-1 rounded-xl p-1 z-10" 
+                              : "hover:ring-1 hover:ring-slate-300 rounded-xl p-1 z-5"
+                          )}
+                          style={{
+                            top: `calc(50% + ${layer.posY}%)`,
+                            left: `calc(50% + ${layer.posX}%)`,
+                            transform: `translate(-50%, -50%) scale(${layer.scale / 100}) rotate(${layer.rotation}deg)`,
+                            maxHeight: '75%',
+                            maxWidth: '75%'
+                          }}
                         >
-                          {aiOverlayText}
-                        </span>
-                      </div>
-                    )}
+                          {layer.product.imageUrl ? (
+                            <img 
+                              src={layer.product.imageUrl} 
+                              alt={layer.product.name} 
+                              className="object-contain pointer-events-none"
+                              style={{
+                                maxHeight: '100%',
+                                maxWidth: '100%',
+                                filter: layer.hasShadow ? 'drop-shadow(0 25px 35px rgba(0,0,0,0.45)) drop-shadow(0 10px 10px rgba(0,0,0,0.2))' : 'none'
+                              }}
+                            />
+                          ) : (
+                            <div className="p-4 bg-white/90 backdrop-blur border rounded-xl text-slate-400 font-bold text-xs uppercase shadow-md select-none">
+                              Sem Foto do Produto
+                            </div>
+                          )}
 
-                    {/* Camada 4: Loader com Spinner Customizado do Cliente */}
-                    {isGeneratingAi && (
-                      <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm flex flex-col items-center justify-center text-center animate-fade-in z-20">
-                        <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-2xl border border-slate-100 max-w-[260px]">
-                          <img src="/loading.gif" alt="Gerando..." className="w-14 h-14 object-contain" />
-                          <h4 className="mt-4 font-black text-xs text-slate-800 uppercase tracking-wider animate-pulse">Desenhando Cenário</h4>
-                          <p className="text-[10px] text-slate-400 font-semibold leading-relaxed mt-1">Conectando ao motor neural FLUX para renderizar em alta fidelidade...</p>
+                          {/* Etiqueta pequena do produto ativa no hover */}
+                          <div className="absolute -top-6 bg-slate-950/80 backdrop-blur-sm text-white text-[8px] font-bold uppercase tracking-wider px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                            {layer.product.code}
+                          </div>
                         </div>
+                      ))}
+
+                      {/* Camada 3: Slogan/Texto sobreposto */}
+                      {aiOverlayText && (
+                        <div className="absolute bottom-[10%] left-0 right-0 text-center pointer-events-none px-4">
+                          <span 
+                            className="text-white font-black uppercase text-xl sm:text-2xl md:text-3xl tracking-wider select-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.85)]"
+                            style={{ fontFamily: "'Outfit', 'Inter', sans-serif" }}
+                          >
+                            {aiOverlayText}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Camada 4: Loader com Spinner Customizado do Cliente */}
+                      {isGeneratingAi && (
+                        <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm flex flex-col items-center justify-center text-center animate-fade-in z-20">
+                          <div className="relative flex flex-col items-center justify-center p-8 bg-white rounded-2xl shadow-2xl border border-slate-100 max-w-[260px]">
+                            <img src="/loading.gif" alt="Gerando..." className="w-14 h-14 object-contain" />
+                            <h4 className="mt-4 font-black text-xs text-slate-800 uppercase tracking-wider animate-pulse">Desenhando Cenário</h4>
+                            <p className="text-[10px] text-slate-400 font-semibold leading-relaxed mt-1">Conectando ao motor neural FLUX para renderizar em alta fidelidade...</p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Dica discreta */}
+                      <div className="absolute top-4 left-4 bg-slate-950/70 backdrop-blur-sm text-white/90 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider select-none">
+                        Estúdio Compositor Visual v1.0
                       </div>
-                    )}
 
-                    {/* Dica discreta */}
-                    <div className="absolute top-4 left-4 bg-slate-950/70 backdrop-blur-sm text-white/90 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider select-none">
-                      Estúdio Compositor Visual v1.0
                     </div>
-
                   </div>
 
                   {/* Ações Finais da Arte */}
@@ -1100,7 +1264,7 @@ const Admin = () => {
                       type="button" 
                       onClick={handleDownloadComposite}
                       className="flex-1 gap-2 bg-[#242525] hover:bg-[#101111] text-white rounded-xl h-12 font-bold shadow-md transition-all active:scale-[0.98]"
-                      disabled={isGeneratingAi || !selectedProductForAi}
+                      disabled={isGeneratingAi || productLayers.length === 0}
                     >
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 

@@ -270,7 +270,7 @@ app.post("/api/generate-ai-image", async (req: any, res: any) => {
     // 1. Build prompt based on theme
     let promptBase = "";
     if (theme === "minimalist") {
-      promptBase = `A premium professional commercial studio product shot, placed beautifully on a polished concrete shelf, minimalist concrete background, clean studio lighting, high resolution, 8k, sharp focus, award-winning advertising photography.`;
+      promptBase = `A premium professional commercial studio product shot, placed beautifully on a polished concrete shelf, minimalist concrete background in pure shades of gray, monochrome grey backdrop, clean studio lighting, high resolution, 8k, sharp focus, award-winning advertising photography.`;
     } else if (theme === "rustic") {
       promptBase = `A cozy rustic scene, a rustic weathered wooden table background with fall leaves scattered around, soft warm sunlight filtering through autumn trees, blurred background forest, warm and welcoming, 8k resolution, photorealistic, cinematic lighting.`;
     } else if (theme === "tropical") {
@@ -278,7 +278,7 @@ app.post("/api/generate-ai-image", async (req: any, res: any) => {
     } else if (theme === "christmas") {
       promptBase = `A festive Christmas table setting, glowing holiday lights and warm golden bokeh background, pine cones, red berries and holiday decorations nearby, cozy Christmas home feel, warm atmospheric lighting, cinematic, photorealistic, 8k.`;
     } else {
-      promptBase = `A professional commercial product display background, elegant soft studio gradient lighting, high resolution, 8k.`;
+      promptBase = `A professional commercial product display background, elegant soft studio gradient lighting in shades of gray, high resolution, 8k.`;
     }
 
     // Append product category context
@@ -299,7 +299,7 @@ app.post("/api/generate-ai-image", async (req: any, res: any) => {
           version: "50e2a9e3d197920ab763bebc4bfa1e6f77cd5d3a542b26090d8591cb456d2cfd", // FLUX.1 Schnell
           input: {
             prompt: fullPrompt,
-            aspect_ratio: aspect_ratio === "16:9" ? "16:9" : "1:1",
+            aspect_ratio: aspect_ratio === "9:16" ? "9:16" : "1:1",
             num_outputs: 1
           }
         })
