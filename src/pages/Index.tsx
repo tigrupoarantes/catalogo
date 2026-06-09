@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import ProductFilters from "@/components/ProductFilters";
 import ProductCard from "@/components/ProductCard";
 import SupportFab from "@/components/SupportFab";
-import { products as staticProducts, allCategories as staticCategories, allBrands as staticBrands } from "@/data/products";
+import { Product, products as staticProducts, allCategories as staticCategories, allBrands as staticBrands } from "@/data/products";
 import { supabaseService } from "@/services/supabaseService";
 import { exportCatalogAsSvg, exportCatalogAsPdf } from "@/utils/svgExport";
 import { ExportConfig } from "@/utils/exportConstants";
@@ -11,17 +11,19 @@ import CatalogPreviewModal from "@/components/CatalogPreviewModal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
 
 const ITEMS_PER_PAGE = 48;
 
 const Index = () => {
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState(staticProducts);
+  const [products, setProducts] = useState<Product[]>(staticProducts);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [brand, setBrand] = useState("all");
   const [showNewOnly, setShowNewOnly] = useState(false);
+  const [quickFilter, setQuickFilter] = useState<QuickFilterType>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [isExporting, setIsExporting] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
@@ -91,11 +93,20 @@ const Index = () => {
   const handleBrandChange = (newBrand: string) => {
     setBrand(newBrand);
     setCategory("all");
+    setQuickFilter("all");
     setCurrentPage(1);
   };
 
   const handleCategoryChange = (newCat: string) => {
     setCategory(newCat);
+    setQuickFilter("all");
+    setCurrentPage(1);
+  };
+
+  const handleQuickFilterChange = (filter: QuickFilterType) => {
+    setQuickFilter(filter);
+    setBrand("all");
+    setCategory("all");
     setCurrentPage(1);
   };
 
@@ -103,6 +114,43 @@ const Index = () => {
     setSearch(newSearch);
     setCurrentPage(1);
   };
+
+  const quickFilterCounts = useMemo(() => {
+    const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
+    const nescafeBrands = ['NESCAFE SOLUVEL + T&M', 'SISTEMA DOLCE GUSTO'];
+
+    let purina = 0;
+    let nespresso = 0;
+    let nescafe = 0;
+    let sorvetes = 0;
+
+    products.forEach(p => {
+      const brandVal = p.brand || "";
+      const nameVal = p.name || "";
+      const catVal = p.category || "";
+
+      if (purinaBrands.includes(brandVal)) {
+        purina++;
+      }
+      if (brandVal === 'COMPATIVEIS NESPRESSO' || nameVal.toLowerCase().includes('nespresso')) {
+        nespresso++;
+      }
+      if (nescafeBrands.includes(brandVal) || nameVal.toLowerCase().includes('nescafe') || nameVal.toLowerCase().includes('dolce gusto')) {
+        nescafe++;
+      }
+      if (brandVal.toLowerCase().includes('sorvete') || catVal.toLowerCase().includes('sorvete') || nameVal.toLowerCase().includes('sorvete') || nameVal.toLowerCase().includes('picolé') || nameVal.toLowerCase().includes('picole')) {
+        sorvetes++;
+      }
+    });
+
+    return {
+      all: products.length,
+      purina,
+      nespresso,
+      nescafe,
+      sorvetes
+    };
+  }, [products]);
 
   const filtered = useMemo(() => {
     return products
@@ -119,10 +167,24 @@ const Index = () => {
         const matchCategory = category === "all" || p.category === category;
         const matchBrand = brand === "all" || p.brand === brand;
         const matchNewOnly = !showNewOnly || !!p.isNew;
-        return matchSearch && matchCategory && matchBrand && matchNewOnly;
+        
+        let matchQuickFilter = true;
+        if (quickFilter === "purina") {
+          const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
+          matchQuickFilter = purinaBrands.includes(p.brand);
+        } else if (quickFilter === "nespresso") {
+          matchQuickFilter = p.brand === 'COMPATIVEIS NESPRESSO' || p.name.toLowerCase().includes('nespresso');
+        } else if (quickFilter === "nescafe") {
+          const nescafeBrands = ['NESCAFE SOLUVEL + T&M', 'SISTEMA DOLCE GUSTO'];
+          matchQuickFilter = nescafeBrands.includes(p.brand) || p.name.toLowerCase().includes('nescafe') || p.name.toLowerCase().includes('dolce gusto');
+        } else if (quickFilter === "sorvetes") {
+          matchQuickFilter = p.brand?.toLowerCase().includes('sorvete') || p.category?.toLowerCase().includes('sorvete') || p.name.toLowerCase().includes('sorvete') || p.name.toLowerCase().includes('picolé') || p.name.toLowerCase().includes('picole');
+        }
+
+        return matchSearch && matchCategory && matchBrand && matchNewOnly && matchQuickFilter;
       })
       .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
-  }, [search, category, brand, showNewOnly, products]);
+  }, [search, category, brand, showNewOnly, products, quickFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paginatedProducts = filtered.slice(
@@ -140,6 +202,7 @@ const Index = () => {
     setCategory("all");
     setBrand("all");
     setShowNewOnly(false);
+    setQuickFilter("all");
     setCurrentPage(1);
   };
 
@@ -215,6 +278,12 @@ const Index = () => {
             />
           </div>
         </div>
+
+        <QuickBrandFilters
+          activeFilter={quickFilter}
+          onChange={handleQuickFilterChange}
+          productsCount={quickFilterCounts}
+        />
 
         {isDesktop && (
           <CatalogPreviewModal

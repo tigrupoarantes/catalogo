@@ -503,13 +503,23 @@ const dunMapping = {
 
 
 const fs = require('fs');
-
 const data = JSON.parse(fs.readFileSync('./src/products.json', 'utf-8'));
 let images = [];
 try {
-  images = fs.readdirSync('./public/product-images');
+  if (fs.existsSync('./public/product-images')) {
+    images = fs.readdirSync('./public/product-images');
+  }
 } catch (e) {
-  console.log("no dir", e.message);
+  console.log("no dir product-images", e.message);
+}
+
+let uploadImages = [];
+try {
+  if (fs.existsSync('./public/uploads/produtos')) {
+    uploadImages = fs.readdirSync('./public/uploads/produtos');
+  }
+} catch (e) {
+  console.log("no dir uploads/produtos", e.message);
 }
 
 // helper
@@ -521,43 +531,54 @@ function normalize(str) {
 function findImage(code, ean, name) {
     const eanNoZeros = ean.replace(/^0+/, '');
     
-    // Exact match using includes on the cleaned filename
-    let match = images.find(i => i.includes(code) || i.includes(eanNoZeros) || i.includes(ean));
-    if (match) return match;
+    function search(files, prefix) {
+        // Exact match
+        let match = files.find(i => i.includes(code) || i.includes(eanNoZeros) || i.includes(ean));
+        if (match) return prefix + match;
 
-    // Fallbacks
-    if (name.toUpperCase().includes('SUFLAIR')) {
-         const altName = name.toUpperCase().replace('SUFLAIR', 'SFLR');
-         const normAltName = normalize(altName);
-         match = images.find(i => {
-           const normImg = normalize(i.replace('.png', '').replace('.jpg', ''));
-           return normAltName.includes(normImg) || normImg.includes(normAltName);
-         });
-         if (match) return match;
-    }
-    
-    // Check description loosely
-    const normName = normalize(name);
-    if (normName.length > 8) {
-       match = images.find(i => {
-          const normImg = normalize(i.replace('.png', '').replace('.jpg', ''));
-          return normImg.length > 5 && (normName.includes(normImg) || normImg.includes(normName));
-       });
-       if (match) return match;
-    }
-
-    const chunks = name.split(' ').filter(x => x.length >= 4);
-    for (const img of images) {
-        if (img.includes('.db')) continue;
-        const normImg = normalize(img);
-        let matches = 0;
-        for (const chunk of chunks) {
-            if (normImg.includes(normalize(chunk))) {
-                matches++;
-            }
+        // Suflair fallback
+        if (name.toUpperCase().includes('SUFLAIR')) {
+             const altName = name.toUpperCase().replace('SUFLAIR', 'SFLR');
+             const normAltName = normalize(altName);
+             match = files.find(i => {
+               const normImg = normalize(i.replace(/\.(png|jpg|jpeg|webp|avif)$/i, ''));
+               return normAltName.includes(normImg) || normImg.includes(normAltName);
+             });
+             if (match) return prefix + match;
         }
-        if (matches >= 2) return img; 
+
+        // Check description loosely
+        const normName = normalize(name);
+        if (normName.length > 8) {
+           match = files.find(i => {
+              const normImg = normalize(i.replace(/\.(png|jpg|jpeg|webp|avif)$/i, ''));
+              return normImg.length > 5 && (normName.includes(normImg) || normImg.includes(normName));
+           });
+           if (match) return prefix + match;
+        }
+
+        const chunks = name.split(' ').filter(x => x.length >= 4);
+        for (const img of files) {
+            if (img.includes('.db')) continue;
+            const normImg = normalize(img);
+            let matches = 0;
+            for (const chunk of chunks) {
+                if (normImg.includes(normalize(chunk))) {
+                    matches++;
+                }
+            }
+            if (matches >= 2) return prefix + img; 
+        }
+        return null;
     }
+
+    // Search in uploads/produtos first
+    let result = search(uploadImages, '/uploads/produtos/');
+    if (result) return result;
+
+    // Search in product-images second
+    result = search(images, '/product-images/');
+    if (result) return result;
 
     return null;
 }
@@ -571,7 +592,8 @@ const productsTsData = data.map(p => {
   
   const ncm = p['Classificação Fiscal'] || p['Classificação Fisc'] || p['ncm'] || p['NCM'] || '';
   const dun = dunMapping[code] || p['DUN'] || p['dun'] || '';
-  const combinedEan = `${ean}|${ncm}|${dun}`;
+  const isNew = p['Lançamento'] === 'Lançamento' || p['Lançamento'] === 'sim' || p['isNew'] === true || p['isNew'] === 'true' || !!p['isNew'];
+  const combinedEan = `${ean}|${ncm}|${dun}|${isNew ? "true" : "false"}`;
   
   return {
     code: code,
@@ -580,7 +602,8 @@ const productsTsData = data.map(p => {
     category: p['SUB CATEGORIA'] ? String(p['SUB CATEGORIA']) : '',
     packSize: String(p['FATOR'] || ''),
     ean: combinedEan,
-    imageUrl: imageMatch ? '/product-images/' + imageMatch : null
+    imageUrl: imageMatch ? imageMatch : null,
+    isNew: isNew
   };
 });
 
@@ -592,6 +615,7 @@ const fileContent = `export interface Product {
   packSize: string;
   ean: string;
   imageUrl?: string | null;
+  isNew?: boolean;
 }
 
 export function parseProductTechnicalData(product: Product) {
@@ -599,12 +623,13 @@ export function parseProductTechnicalData(product: Product) {
   return {
     ean: parts[0] || "",
     ncm: parts[1] || "",
-    dun: parts[2] || ""
+    dun: parts[2] || "",
+    isNew: parts[3] === "true" || !!product.isNew
   };
 }
 
-export function serializeProductTechnicalData(ean: string, ncm: string, dun: string) {
-  return \`\${ean || ""}|\${ncm || ""}|\${dun || ""}\`;
+export function serializeProductTechnicalData(ean: string, ncm: string, dun: string, isNew?: boolean) {
+  return \`\${ean || ""}|\${ncm || ""}|\${dun || ""}|\${isNew ? "true" : "false"}\`;
 }
 
 export const products: Product[] = ${JSON.stringify(productsTsData, null, 2)};
