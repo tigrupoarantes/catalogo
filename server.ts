@@ -10,7 +10,7 @@ const PORT = 3000;
 
 app.use(express.json());
 
-import { idmlExportHandler } from './src/controllers/idmlExportController';
+import { idmlExportHandler } from './src/controllers/idmlExportController.js';
 
 // Set up Multer for Excel and Images upload
 const storage = multer.memoryStorage(); // Keep files in memory temporarily
