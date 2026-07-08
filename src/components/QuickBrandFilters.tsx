@@ -62,7 +62,7 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
   return (
     <div className="w-full py-1">
       {/* Horizontal scrolling wrapper with hide scrollbar utilities */}
-      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-3 justify-start sm:justify-center px-1">
+      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-3 justify-start px-4 md:px-6">
         {filters.map((filter) => {
           const Icon = filter.icon;
           const isActive = activeFilter === filter.id;
