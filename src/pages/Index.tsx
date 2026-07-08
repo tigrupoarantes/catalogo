@@ -216,28 +216,20 @@ const Index = () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ productIds }),
       });
-      const { jobId } = await res.json();
-      const poll = async () => {
-        const jobRes = await fetch(`/api/export/idml/${jobId}`);
-        const job = await jobRes.json();
-        if (job.status === 'ready') {
-          const link = document.createElement('a');
-          link.href = job.filePath;
-          link.download = `${jobId}.idml`;
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          setIsExporting(false);
-        } else if (job.status === 'error') {
-          console.error('IDML export error:', job.error);
-          setIsExporting(false);
-        } else {
-          setTimeout(poll, 1000);
-        }
-      };
-      poll();
+      if (!res.ok) {
+        throw new Error(`Erro no servidor: Código ${res.status}`);
+      }
+      const blob = await res.blob();
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `catalogo_${Date.now()}.idml`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
     } catch (err) {
       console.error('IDML export request failed:', err);
+    } finally {
       setIsExporting(false);
     }
   };

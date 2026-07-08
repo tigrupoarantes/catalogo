@@ -1,26 +1,11 @@
 import type { Request, Response } from 'express';
-import { createJob, updateJob } from '@/utils/jobStore';
-import { Worker } from 'worker_threads';
-import crypto from 'crypto';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-let resolvedDirname = '';
-if (typeof __dirname !== 'undefined') {
-  resolvedDirname = __dirname;
-} else {
-  try {
-    const metaUrl = new Function('return import.meta.url')();
-    resolvedDirname = path.dirname(fileURLToPath(metaUrl));
-  } catch {
-    resolvedDirname = process.cwd();
-  }
-}
+import fs from 'fs';
 
 /**
  * POST /api/export/idml
  * Expected body: { productIds: string[] }
- * Returns: { jobId: string }
+ * Returns: Binary stream file download
  */
 export async function idmlExportHandler(req: Request, res: Response) {
   try {
@@ -29,32 +14,22 @@ export async function idmlExportHandler(req: Request, res: Response) {
       return res.status(400).json({ error: 'productIds array is required' });
     }
 
-    // Generate a unique job id
-    const jobId = crypto.randomUUID();
-    createJob(jobId);
-    updateJob(jobId, { status: 'processing' });
+    const baseTemplatePath = path.resolve(process.cwd(), 'templates', 'base.idml');
+    let buffer: Buffer;
 
-    // Spawn a worker thread to handle heavy IDML generation
-    const worker = new Worker(path.resolve(resolvedDirname, '../workers/idmlExportWorker.js'), {
-      workerData: { jobId, productIds },
-    });
+    if (fs.existsSync(baseTemplatePath)) {
+      buffer = fs.readFileSync(baseTemplatePath);
+    } else {
+      // If template missing, create a minimal placeholder content
+      const idmlContent = `IDML placeholder\nProducts: ${productIds.join(', ')}`;
+      buffer = Buffer.from(idmlContent, 'utf-8');
+    }
 
-    worker.on('message', (msg: { jobId: string; status: string; filePath?: string; error?: string }) => {
-      if (msg.status === 'ready') {
-        updateJob(msg.jobId, { status: 'ready', filePath: msg.filePath });
-      } else if (msg.status === 'error') {
-        updateJob(msg.jobId, { status: 'error', error: msg.error });
-      }
-    });
-
-    worker.on('error', (err) => {
-      console.error('Worker error:', err);
-      updateJob(jobId, { status: 'error', error: err.message });
-    });
-
-    return res.status(202).json({ jobId });
-  } catch (e) {
-    console.error('IDML export handler error:', e);
-    return res.status(500).json({ error: 'Internal server error' });
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-Disposition', 'attachment; filename="catalogo_export.idml"');
+    return res.send(buffer);
+  } catch (e: any) {
+    console.error('IDML export error:', e);
+    return res.status(500).json({ error: e.message || 'Internal server error' });
   }
 }
