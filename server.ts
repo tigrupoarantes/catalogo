@@ -87,9 +87,12 @@ const validateUniqueEAN = async (req: express.Request, res: express.Response, ne
   }
 };
 
-// Ensure uploads directory exists
-const uploadDir = path.join(process.cwd(), "public", "uploads", "produtos");
-fs.mkdir(uploadDir, { recursive: true }).catch(console.error);
+// Ensure uploads directory exists (local dev only — Vercel fs is read-only).
+// UPLOADS_DIR indirection keeps @vercel/nft from tracing public/ into the function bundle.
+const uploadDir = path.join(process.cwd(), process.env.UPLOADS_DIR || "public", "uploads", "produtos");
+if (!process.env.VERCEL) {
+  fs.mkdir(uploadDir, { recursive: true }).catch(console.error);
+}
 
 // Endpoint POST for single image
 app.post(
@@ -286,7 +289,8 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
+    // SERVE_DIR indirection keeps @vercel/nft from tracing dist/ into the function bundle.
+    const distPath = path.join(process.cwd(), process.env.SERVE_DIR || "dist");
     app.use(express.static(distPath));
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
