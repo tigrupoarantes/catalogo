@@ -26,3 +26,7 @@ dist-ssr
 
 # Scratch/utility scripts
 scratch/
+
+# Imagens de produto ficam no Supabase Storage (bucket product-images),
+# não no repositório. Cópia local mantida apenas como backup.
+public/uploads/
