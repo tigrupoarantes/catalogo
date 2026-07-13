@@ -4110,9 +4110,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS PLENOS DOCES TOSTINES",
     "packSize": "54",
-    "ean": "7891000397961|1905.31.00|17891000397975|false",
+    "ean": "7891000397961|1905.31.00|17891000397975|true",
     "imageUrl": "/uploads/produtos/12586084 - TOSTINES Biscoito Especiarias 54x150g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12586515",
@@ -4150,9 +4150,9 @@ export const products: Product[] = [
     "brand": "LEITES DE CRESCIMENTO",
     "category": "NESTONUTRI",
     "packSize": "12",
-    "ean": "7891000400210|1901.10.90|17891000400217|false",
+    "ean": "7891000400210|1901.10.90|17891000400217|true",
     "imageUrl": "/uploads/produtos/12589907 - NESTONUTRI 1+ FI 12x800g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12590501",
@@ -4270,9 +4270,9 @@ export const products: Product[] = [
     "brand": "NHS ACTIVE NUTRITION",
     "category": "NUTREN PROTEIN RTD",
     "packSize": "24",
-    "ean": "7891000405079|2202.99.00EX01|17891000405076|false",
+    "ean": "7891000405079|2202.99.00EX01|17891000405076|true",
     "imageUrl": "/uploads/produtos/12595377 - NUTREN Protein 15g RTD Choc 4(6x260ml)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12595468",
@@ -4280,9 +4280,9 @@ export const products: Product[] = [
     "brand": "NHS ACTIVE NUTRITION",
     "category": "NUTREN PROTEIN RTD",
     "packSize": "24",
-    "ean": "7891000405222|2202.99.00|17891000405229|false",
+    "ean": "7891000405222|2202.99.00|17891000405229|true",
     "imageUrl": "/uploads/produtos/12595468 - NUTREN Protein 15g Baunilha 4(6x260ml)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12598146",
@@ -4420,9 +4420,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS PLENOS DOCES TOSTINES",
     "packSize": "48",
-    "ean": "7891000413579|1905.31.00|17891000413576|false",
+    "ean": "7891000413579|1905.31.00|17891000413576|true",
     "imageUrl": "/uploads/produtos/12606771 - TOSTINES Leite Maltado 48x160g N1 BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12609048",
@@ -4500,9 +4500,9 @@ export const products: Product[] = [
     "brand": "RTD ADULTOS",
     "category": "RTD ADULTOS PROTEINADOS",
     "packSize": "24",
-    "ean": "7891000417348|2202.99.00EX01|17891000417345|false",
+    "ean": "7891000417348|2202.99.00EX01|17891000417345|true",
     "imageUrl": "/uploads/produtos/12610745 - NESCAFE CAPPU ProEnergy Canl4(6x270ml)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12610767",
@@ -4510,9 +4510,9 @@ export const products: Product[] = [
     "brand": "RTD ADULTOS",
     "category": "RTD ADULTOS PROTEINADOS",
     "packSize": "24",
-    "ean": "7891000417331|2202.99.00EX01|17891000417338|false",
+    "ean": "7891000417331|2202.99.00EX01|17891000417338|true",
     "imageUrl": "/uploads/produtos/12610767 - NESCAFE CAPPU ClasProEnergy 4(6x270ml)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12610829",
@@ -4520,9 +4520,9 @@ export const products: Product[] = [
     "brand": "RTD ADULTOS",
     "category": "RTD ADULTOS PROTEINADOS",
     "packSize": "24",
-    "ean": "7891000417409|2202.99.00EX01|17891000417406|false",
+    "ean": "7891000417409|2202.99.00EX01|17891000417406|true",
     "imageUrl": "/uploads/produtos/12610829 - NESCAFE ProEnergy Chocno 4(6x270ml) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12611501",
@@ -4530,9 +4530,9 @@ export const products: Product[] = [
     "brand": "MAGGI",
     "category": "TEMPEROS GRANULADO SACHET",
     "packSize": "48",
-    "ean": "7891000418277|2103.90.21|17891000418274|false",
+    "ean": "7891000418277|2103.90.21|17891000418274|true",
     "imageUrl": "/uploads/produtos/12611501 - MAGGI Tempr Grnul p Frango 48(10x5g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12611512",
@@ -4540,9 +4540,9 @@ export const products: Product[] = [
     "brand": "MAGGI",
     "category": "TEMPEROS GRANULADO SACHET",
     "packSize": "48",
-    "ean": "7891000418284|2103.90.21|17891000418281|false",
+    "ean": "7891000418284|2103.90.21|17891000418281|true",
     "imageUrl": "/uploads/produtos/12611512 - MAGGI Tempr Grnl p Carne 48(10x5g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12611772",
@@ -4570,9 +4570,9 @@ export const products: Product[] = [
     "brand": "MAGGI",
     "category": "TEMPEROS GRANULADO SACHET",
     "packSize": "48",
-    "ean": "7891000419601|2103.90.21|17891000419608|false",
+    "ean": "7891000419601|2103.90.21|17891000419608|true",
     "imageUrl": "/uploads/produtos/12612574 - MAGGI Tempr Grnl p Legumes 48(10x5g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12613072",
@@ -4770,9 +4770,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS OUTROS",
     "packSize": "66",
-    "ean": "7891000424834|1905.31.00|17891000424831|false",
+    "ean": "7891000424834|1905.31.00|17891000424831|true",
     "imageUrl": "/uploads/produtos/12616029 - TOSTINES Espec Bisc Rech Cappu 66x93g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12616589",
@@ -4810,9 +4810,9 @@ export const products: Product[] = [
     "brand": "LEITES CULINARIOS",
     "category": "SPREADS",
     "packSize": "12",
-    "ean": "7891000432143|1806.90.00|17891000432140|false",
+    "ean": "7891000432143|1806.90.00|17891000432140|true",
     "imageUrl": "/uploads/produtos/12618976 - KIT KAT Rech&Cob Chocolate 12x330g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12620125",
@@ -4830,9 +4830,9 @@ export const products: Product[] = [
     "brand": "CHOCOLATES NESTLE",
     "category": "KIT KAT 4 FINGERS",
     "packSize": "24",
-    "ean": "7891000433843|1905.32.00|17891000433840|false",
+    "ean": "7891000433843|1905.32.00|17891000433840|true",
     "imageUrl": "/uploads/produtos/12623003 - KIT KAT 4Fngr Churros 4(24x41,5g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12624035",
@@ -4900,9 +4900,9 @@ export const products: Product[] = [
     "brand": "CHOCOLATES NESTLE",
     "category": "JUMBOS RECHEADOS NESTLE",
     "packSize": "14",
-    "ean": "7891000435267|1806.31.10|17891000435264|false",
+    "ean": "7891000435267|1806.31.10|17891000435264|true",
     "imageUrl": "/uploads/produtos/12624355 - NESTLE Tab Rech Negresco 4(14x90g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12624593",
@@ -4910,9 +4910,9 @@ export const products: Product[] = [
     "brand": "CHOCOLATES NESTLE",
     "category": "JUMBOS RECHEADOS NESTLE",
     "packSize": "14",
-    "ean": "7891000435458|1806.31.10|17891000435455|false",
+    "ean": "7891000435458|1806.31.10|17891000435455|true",
     "imageUrl": "/uploads/produtos/12624593 - PRESTIGIO Tablete Recheado 4(14x90g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12625382",
@@ -4920,9 +4920,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS PLENOS DOCES TOSTINES",
     "packSize": "54",
-    "ean": "7891000436110|1905.31.00|17891000436117|false",
+    "ean": "7891000436110|1905.31.00|17891000436117|true",
     "imageUrl": "/uploads/produtos/12625382 - TOSTINES Bisc Espec Gengibre 54x150g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12625733",
@@ -4960,9 +4960,9 @@ export const products: Product[] = [
     "brand": "GAROTO",
     "category": "JUMBOS TALENTO",
     "packSize": "15",
-    "ean": "7891000392805|1806.32.10|17891000392826|false",
+    "ean": "7891000392805|1806.32.10|17891000392826|true",
     "imageUrl": "/uploads/produtos/12627358 - TALENTO CstnCajuParaAmendoim 8(15x75g)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12628857",
@@ -4970,9 +4970,9 @@ export const products: Product[] = [
     "brand": "NHS ACTIVE NUTRITION",
     "category": "NUTREN PROTEIN RTD",
     "packSize": "24",
-    "ean": "7891000440483|2202.99.00EX01|17891000440480|false",
+    "ean": "7891000440483|2202.99.00EX01|17891000440480|true",
     "imageUrl": "/uploads/produtos/12628857 - NUTREN Prtn15gRTDChocoWafer 4(6x260ml)BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12629594",
@@ -5010,9 +5010,9 @@ export const products: Product[] = [
     "brand": "CHOCOLATES NESTLE",
     "category": "JUMBOS RECHEADOS NESTLE",
     "packSize": "14",
-    "ean": "7891000442265|1806.31.10|17891000442262|false",
+    "ean": "7891000442265|1806.31.10|17891000442262|true",
     "imageUrl": "/uploads/produtos/12631039 - CHARGE Tablete Recheado 4(14x90g) BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12655014",
@@ -5050,9 +5050,9 @@ export const products: Product[] = [
     "brand": "NHS ACTIVE NUTRITION",
     "category": "NUTREN ACTIVE",
     "packSize": "12",
-    "ean": "7891000443422|1901.90.90|17891000443429|false",
+    "ean": "7891000443422|1901.90.90|17891000443429|true",
     "imageUrl": "/uploads/produtos/12799262 - NUTREN ACTIVE Baun 12x400g PRL400P340gBR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12804629",
@@ -5070,9 +5070,9 @@ export const products: Product[] = [
     "brand": "NINHO FASES",
     "category": "NINHO FASES",
     "packSize": "24",
-    "ean": "7891000001080|1901.10.90|17891000001087|false",
+    "ean": "7891000001080|1901.10.90|17891000001087|true",
     "imageUrl": "/uploads/produtos/13069775 - NINHO 1+ PBIO1 Fases Lepo 24x400g N5 BR.jpg",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13320068",
@@ -5090,9 +5090,9 @@ export const products: Product[] = [
     "brand": "CEREAIS MATINAIS",
     "category": "NESCAU ATE 300G",
     "packSize": "20",
-    "ean": "7891000447277|1904.10.00|17891000447274|false",
+    "ean": "7891000447277|1904.10.00|17891000447274|true",
     "imageUrl": "/uploads/produtos/13383314.jpg",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13389256",
@@ -5110,9 +5110,9 @@ export const products: Product[] = [
     "brand": "CEREAIS MATINAIS",
     "category": "NESCAU ATE 300G",
     "packSize": "20",
-    "ean": "7891000449486|1904.10.00|17891000449483|false",
+    "ean": "7891000449486|1904.10.00|17891000449483|true",
     "imageUrl": "/uploads/produtos/13463462.jpg",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13466600",
@@ -5120,9 +5120,9 @@ export const products: Product[] = [
     "brand": "NESCAFE SOLUVEL + T&M",
     "category": "DEMAIS NESCAFE",
     "packSize": "24",
-    "ean": "7891000449608|2101.11.10|17891000449605|false",
+    "ean": "7891000449608|2101.11.10|17891000449605|true",
     "imageUrl": "/uploads/produtos/13466600.jpg",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13522061",
@@ -5130,9 +5130,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS BONO",
     "packSize": "66",
-    "ean": "7891000376843|1905.31.00|17891000376857|false",
+    "ean": "7891000376843|1905.31.00|17891000376857|true",
     "imageUrl": "/uploads/produtos/13522061 - BONO Biscoito Recheado Choc 66x90g N1 BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13528301",
@@ -5140,9 +5140,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS NEGRESCO",
     "packSize": "66",
-    "ean": "7891000376805|1905.31.00|17891000376819|false",
+    "ean": "7891000376805|1905.31.00|17891000376819|true",
     "imageUrl": "/uploads/produtos/13528301 - NEGRESCO Biscoito Rech Mrg 66x90g N1 BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13528866",
@@ -5150,9 +5150,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS NEGRESCO",
     "packSize": "66",
-    "ean": "7891000377130|1905.31.00|17891000377144|false",
+    "ean": "7891000377130|1905.31.00|17891000377144|true",
     "imageUrl": "/uploads/produtos/13528866 - NEGRESCO Bisc Rech Choc 66x90g N1 BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13528867",
@@ -5160,9 +5160,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS NEGRESCO",
     "packSize": "66",
-    "ean": "7891000376768|1905.31.00|17891000376772|false",
+    "ean": "7891000376768|1905.31.00|17891000376772|true",
     "imageUrl": "/uploads/produtos/13528867 - NEGRESCO Biscoito Recheado 66x90g N1 BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13597100",
@@ -5170,9 +5170,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS NEGRESCO",
     "packSize": "66",
-    "ean": "7891000451656|1905.31.00|17891000451653|false",
+    "ean": "7891000451656|1905.31.00|17891000451653|true",
     "imageUrl": "/uploads/produtos/13597100 - NEGRES Nevado Recheado Baun 66x90g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13597926",
@@ -5180,9 +5180,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS NEGRESCO",
     "packSize": "66",
-    "ean": "7891000451786|1905.31.00|17891000451783|false",
+    "ean": "7891000451786|1905.31.00|17891000451783|true",
     "imageUrl": "/uploads/produtos/13597926 - NEGRES Nevado Recheado Morango 66x90g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13720753",
@@ -5200,9 +5200,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS CHOCOBISCUIT",
     "packSize": "30",
-    "ean": "7891000456941|1905.31.00|17891000456948|false",
+    "ean": "7891000456941|1905.31.00|17891000456948|true",
     "imageUrl": "/uploads/produtos/13926876 - NEST Chocobiscuit Choc Branco 30x78g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13945245",
@@ -5210,9 +5210,9 @@ export const products: Product[] = [
     "brand": "GAROTO",
     "category": "CAIXAS GAROTO",
     "packSize": "30",
-    "ean": "7891000457092|1806.90.00|17891000457099|false",
+    "ean": "7891000457092|1806.90.00|17891000457099|true",
     "imageUrl": "/uploads/produtos/13945245 - GRT Bombons Sortidos Caixa 30x220g BR.png",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "13982513",
@@ -5230,9 +5230,9 @@ export const products: Product[] = [
     "brand": "CHOCOLATES NESTLE",
     "category": "KIT KAT 4 FINGERS",
     "packSize": "24",
-    "ean": "7891000457641|1905.32.00|17891000457648|false",
+    "ean": "7891000457641|1905.32.00|17891000457648|true",
     "imageUrl": "/uploads/produtos/14024359.jpg",
-    "isNew": false
+    "isNew": true
   },
   {
     "code": "12328050",
