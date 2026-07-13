@@ -103,3 +103,46 @@
     scrollbar-width: none;
   }
 }
+
+/* O passarinho começa invisível e fora da tela */
+.passarinho-animado {
+  position: fixed;
+  left: -150px; /* Começa fora da tela à esquerda */
+  z-index: 9999;
+  pointer-events: none; /* Garante que não bloqueie cliques em botões */
+  width: 100px;
+  height: 100px;
+  animation: voar 15s linear infinite; /* Tempo total do ciclo */
+  animation-delay: 20s; /* Aparece apenas após 20 segundos */
+}
+
+.animate-flapping {
+  transform-origin: 28px 34px;
+  animation: flapping 0.4s ease-in-out infinite;
+}
+
+@keyframes voar {
+  0% {
+    left: -150px;
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-30px); /* Sobe */
+  }
+  50% {
+    transform: translateY(0); /* Desce */
+  }
+  100% {
+    left: 100vw; /* Voa até o final da tela */
+    transform: translateY(0);
+  }
+}
+
+@keyframes flapping {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+}

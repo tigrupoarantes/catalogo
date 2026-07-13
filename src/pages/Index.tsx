@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
+import PassarinhoAnimado from "@/components/PassarinhoAnimado";
 
 const ITEMS_PER_PAGE = 48;
 
@@ -485,6 +486,7 @@ const Index = () => {
 
 
       <SupportFab />
+      <PassarinhoAnimado />
 
       {isExporting && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-[999] flex items-center justify-center animate-fade-in">
