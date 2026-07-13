@@ -50,7 +50,7 @@ const ProductFilters = ({
           </div>
         </div>
         
-        <div className="shrink-0 flex gap-2 items-center w-full md:w-auto">
+        <div className="shrink-0 grid grid-cols-2 md:flex gap-2 items-center w-full md:w-auto">
           <BotaoLancamentos showNewOnly={showNewOnly} onShowNewOnlyChange={onShowNewOnlyChange} disabled={isExporting} />
           <BotaoCalendario activeEvent={activeSeasonalEvent} onSelectEvent={onSelectSeasonalEvent} disabled={isExporting} />
         </div>
