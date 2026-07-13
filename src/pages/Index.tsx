@@ -21,7 +21,28 @@ const calendarMixMapping: Record<string, string[]> = {
   "Dia dos Namorados": ["Vinhos", "Espumantes", "Chocolate"],
   "Dia dos Pais": ["Whisky", "Cachaça", "Gin"],
   "Black Friday": ["Todos", "Ofertas Prioritárias"],
-  "Natal": ["Panettone", "Vinhos", "Espumantes", "Todos"]
+  "Natal": ["Panettone", "Vinhos", "Espumantes", "Todos"],
+  // Julho
+  "Dia Mundial do Chocolate": ["Chocolate", "Garoto", "Nestle"],
+  "Dia Mundial do Rock": ["Nescafé", "Dolce Gusto", "Coffee", "Nespresso"],
+  "Dia Internacional da Amizade": ["Biscoitos", "Bono", "Negresco"],
+  "Dia Nacional do Escritor": ["Nescafé", "Dolce Gusto"],
+  "Dia dos Avós": ["Ninho", "Biscoitos", "Aveia"],
+  // Agosto
+  "Dia Nacional do Estudante": ["Cereais", "Nescau", "Nutren"],
+  "Dia Mundial da Fotografia": ["Chocolate", "Biscoitos"],
+  "Dia do Folclore": ["Todos"],
+  "Dia Nacional da Educação Infantil": ["Mucilon", "Ninho", "Ninho Fases"],
+  "Dia do Psicólogo": ["Nescafé", "Dolce Gusto"],
+  // Setembro
+  "Dia Nacional da Cachaça": ["Cachaça", "Gin", "Whisky"],
+  "Dia do Cliente": ["Todos"],
+  "Dia da Árvore": ["Todos"],
+  "Dia Internacional da Paz": ["Todos"],
+  "Dia do Contador": ["Nescafé", "Dolce Gusto"],
+  "Dia Mundial do Turismo": ["Chocolate", "Biscoitos"],
+  // Outubro
+  "Dia das Crianças": ["Chocolate", "Biscoitos", "Nescau", "Garoto"]
 };
 
 const Index = () => {
