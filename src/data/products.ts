@@ -6263,6 +6263,486 @@ export const products: Product[] = [
     "ean": "7891000244036|2309.10.00||true",
     "imageUrl": "/uploads/produtos/12482401.jpg",
     "isNew": true
+  },
+  {
+    "code": "12628280",
+    "name": "NINHO 1+ PREBIO 1 Fases Lepo 6x800g N4BR",
+    "brand": "NINHO",
+    "category": "NINHO FASES",
+    "packSize": "6",
+    "ean": "7891000062661|1901.10.90|17891000062668|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13612736",
+    "name": "BONO Mini Biscoito Rech Mrg 60x24g BR",
+    "brand": "BONO",
+    "category": "BISCOITOS",
+    "packSize": "60",
+    "ean": "7891000452158|1905.31.00|17891000452155|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13612737",
+    "name": "BONO Mini Biscoito Rech Choc 60x24g BR",
+    "brand": "BONO",
+    "category": "BISCOITOS",
+    "packSize": "60",
+    "ean": "7891000452165|1905.31.00|17891000452162|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13680781",
+    "name": "NTRN Protein15gRTD ColagChoc4(6x260ml)BR",
+    "brand": "NTRN",
+    "category": "NHS ACTIVE NUTRITION",
+    "packSize": "24",
+    "ean": "7891000452912|2202.99.00EX01|17891000452919|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13720732",
+    "name": "SPRSA Biscoito Recheado 70x130g BR",
+    "brand": "SPRSA",
+    "category": "BISCOITOS",
+    "packSize": "70",
+    "ean": "7891000453407|1905.31.00|17891000453404|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13720757",
+    "name": "NCU Cereal Matinal 24x210g PR15%Grts BR",
+    "brand": "NCU",
+    "category": "CEREAIS MATINAIS",
+    "packSize": "24",
+    "ean": "7891000453421|1904.10.00|17891000453428|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13754078",
+    "name": "FRSK Filhotes Frango 9x850g BR",
+    "brand": "FRSK",
+    "category": "PREMIUM DRY CAT",
+    "packSize": "9",
+    "ean": "7891000454152|2309.10.00|17891000454159|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13754108",
+    "name": "FRSK Mar de Sabores 9x850g BR",
+    "brand": "FRSK",
+    "category": "PREMIUM DRY CAT",
+    "packSize": "9",
+    "ean": "7891000454145|2309.10.00|17891000454142|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13759759",
+    "name": "FRSK Delicias da Granja Frango 9x850g BR",
+    "brand": "FRSK",
+    "category": "PREMIUM DRY CAT",
+    "packSize": "9",
+    "ean": "7891000454169|2309.10.00|17891000454166|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13799711",
+    "name": "MAG Tempero Sabor Manteiga 30x110g BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "30",
+    "ean": "7891000454695|2103.90.21|17891000454692|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13800870",
+    "name": "MAG Tempero Lemmon Pepper 30x110g BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "30",
+    "ean": "7891000454794|2103.90.21|17891000454791|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13837463",
+    "name": "MAG Tempero Empana LemonPpr 12(9x60g)BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "108",
+    "ean": "7891000455227|1901.90.90|17891000455224|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13837465",
+    "name": "KK 4Fngr Tutti Frutti 4(24x41,5g) BR",
+    "brand": "KK",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "24",
+    "ean": "7891000455296|1905.32.00|17891000455293|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13837609",
+    "name": "KK 4Fngr Dark ChocMint 4(24x41,5g) BR",
+    "brand": "KK",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "24",
+    "ean": "7891000455487|1905.32.00|17891000455484|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13850171",
+    "name": "SFLR Chocolate Duo 4(16x80g) N1 BR",
+    "brand": "SFLR",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "16",
+    "ean": "7891000455708|1704.90.10|17891000455705|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13864756",
+    "name": "GLK Tablete Recheado 4(14x90g) BR",
+    "brand": "GLK",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "14",
+    "ean": "7891000455951|1806.31.10|17891000455958|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13882992",
+    "name": "MAG Macarrao Sabor Bechamel 12(9x65g) BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "108",
+    "ean": "7891000456217|1902.30.00|17891000456214|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13882993",
+    "name": "MAG Macarrao Sabor Tomate 12(9x65g) BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "108",
+    "ean": "7891000456200|1902.30.00|17891000456207|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13882994",
+    "name": "MAG Macarrao Sab MacN Chse 12(9x65g) BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "108",
+    "ean": "7891000456224|1902.30.00|17891000456221|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13991250",
+    "name": "ESPD Bombons Sortidos Caixa 30x220g BR",
+    "brand": "ESPD",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "30",
+    "ean": "7891000457467|1806.90.00|17891000457464|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14106543",
+    "name": "GRT Tablete Rech Crocante 4(14x90g) N1BR",
+    "brand": "GRT",
+    "category": "GAROTO",
+    "packSize": "14",
+    "ean": "7891000459041|1806.31.10|17891000459048|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14106626",
+    "name": "SRT AMOR Tablete Recheado 4(14x90g)BR",
+    "brand": "SRT",
+    "category": "GAROTO",
+    "packSize": "14",
+    "ean": "7891000459058|1806.31.10|17891000459055|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14123616",
+    "name": "SRT AMOR Choco Trio 4(12x90g) BR",
+    "brand": "SRT",
+    "category": "GAROTO",
+    "packSize": "12",
+    "ean": "7891000460245|1806.31.10|17891000460242|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14131309",
+    "name": "BTN Tablete Rech 4(14x90g) BR",
+    "brand": "BTN",
+    "category": "GAROTO",
+    "packSize": "14",
+    "ean": "7891000460665|1806.31.10|17891000460662|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14476614",
+    "name": "GRT Tablete Pe de Moleque 4(16x80g) BR",
+    "brand": "GRT",
+    "category": "GAROTO",
+    "packSize": "16",
+    "ean": "7891000466728|1806.32.10|17891000466725|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14513265",
+    "name": "NEST ChocoStickCrmlSalgado 12(12x24g)BR",
+    "brand": "NEST",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "12",
+    "ean": "0|0|0|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13522062",
+    "name": "BONO Biscoito Recheado Ddl 66x90g N1 BR",
+    "brand": "BONO",
+    "category": "BISCOITOS",
+    "packSize": "66",
+    "ean": "7891000376928|1905.31.00|17891000376932|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13522060",
+    "name": "BONO Biscoito Recheado Mrg 66x90g N1 BR",
+    "brand": "BONO",
+    "category": "BISCOITOS",
+    "packSize": "66",
+    "ean": "7891000376959|1905.31.00|17891000376734|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13760033",
+    "name": "FRSK Mix Carne Castrados 9x850g BR",
+    "brand": "FRSK",
+    "category": "PREMIUM DRY CAT",
+    "packSize": "9",
+    "ean": "7891000454190|2309.10.00|17891000454197|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "12941325",
+    "name": "KIT KAT 4Fngr Cereja 4(24x41,5g) BR",
+    "brand": "KIT",
+    "category": "CHOCOLATES",
+    "packSize": "24",
+    "ean": "7891000445020|1905.32.00|17891000445027|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13563897",
+    "name": "NDG Caramelo Salgado 10Caps 6x175g BR",
+    "brand": "NDG",
+    "category": "SISTEMA DOLCE GUSTO",
+    "packSize": "6",
+    "ean": "7891000451106|2101.12.00|17891000451103|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13332567",
+    "name": "NESCAU Protein 24x250ml BR",
+    "brand": "NESCAU",
+    "category": "RTD ADULTOS",
+    "packSize": "24",
+    "ean": "7891000446799|2202.99.00EX01|17891000446796|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13783814",
+    "name": "PRST Frutas Vermelhas Choc 18(30x33g) BR",
+    "brand": "PRST",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "30",
+    "ean": "7891000454589|1806.31.20|17891000454586|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13842963",
+    "name": "SFLR Chocolate ao Leite 4(16x80g) N1 BR",
+    "brand": "SFLR",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "16",
+    "ean": "7891000455562|1806.31.10|17891000455569|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "12581445",
+    "name": "MUCILON Mini Biscuits Banana 8(7x30g) BR",
+    "brand": "MUCILON",
+    "category": "CEREAIS INFANTIS",
+    "packSize": "7",
+    "ean": "7891000395189|1905.31.00|17891000395209|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "12581433",
+    "name": "MUCILON Mini Biscuits Leite 8(7x30g) BR",
+    "brand": "MUCILON",
+    "category": "CEREAIS INFANTIS",
+    "packSize": "7",
+    "ean": "7891000395134|1905.31.00|17891000395155|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "12581434",
+    "name": "MUCILON Mini Biscuits Maisena 8(7x30g)BR",
+    "brand": "MUCILON",
+    "category": "CEREAIS INFANTIS",
+    "packSize": "7",
+    "ean": "7891000395233|1905.31.00|17891000395254|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "12612894",
+    "name": "CHARGE Biscoito Recheado 70x130g BR",
+    "brand": "CHARGE",
+    "category": "BISCOITOS",
+    "packSize": "70",
+    "ean": "7891000419939|1905.31.00|17891000419936|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14506131",
+    "name": "PSTMP Biscoito Rech Galak 66x90g BR",
+    "brand": "PSTMP",
+    "category": "BISCOITOS",
+    "packSize": "66",
+    "ean": "7891000469156|1905.31.00|17891000469153|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14506333",
+    "name": "PSTMP Biscoito Rech Prestigio 66x90g BR",
+    "brand": "PSTMP",
+    "category": "BISCOITOS",
+    "packSize": "66",
+    "ean": "7891000469552|1905.31.00|17891000469559|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14506353",
+    "name": "PSTMP Biscoito Rech Alpino 66x90g BR",
+    "brand": "PSTMP",
+    "category": "BISCOITOS",
+    "packSize": "66",
+    "ean": "7891000469545|1905.31.00|17891000469542|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14506130",
+    "name": "NDG Moca PistacchioLatte 10Caps 6x175gBR",
+    "brand": "NDG",
+    "category": "SISTEMA DOLCE GUSTO",
+    "packSize": "6",
+    "ean": "7891000469132|2101.12.00|17891000469139|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13837644",
+    "name": "MAG Tempero Empana Parmesao12(9x60g)BR",
+    "brand": "MAG",
+    "category": "MAGGI",
+    "packSize": "9",
+    "ean": "7891000455289|1901.90.90|17891000455286|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "13680782",
+    "name": "NTRN Protein15gRTD ColagBaun4(6x260ml)BR",
+    "brand": "NTRN",
+    "category": "NHS ACTIVE NUTRITION",
+    "packSize": "6",
+    "ean": "7891000452936|2202.99.00|17891000452933|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14513277",
+    "name": "BTN ChocoStick Caribe 12(12x24g) BR",
+    "brand": "BTN",
+    "category": "GAROTO",
+    "packSize": "12",
+    "ean": "0|0|0|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14513949",
+    "name": "BTN ChocoStick TriploChoc 12(12x26g)BR",
+    "brand": "BTN",
+    "category": "GAROTO",
+    "packSize": "12",
+    "ean": "0|0|0|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14513974",
+    "name": "BTN ChocoStickCookies&Cream 12(12x26g)BR",
+    "brand": "BTN",
+    "category": "GAROTO",
+    "packSize": "12",
+    "ean": "0|0|0|true",
+    "imageUrl": null,
+    "isNew": true
+  },
+  {
+    "code": "14513980",
+    "name": "NEST ChocoStick Avela 12(12x26g) BR",
+    "brand": "NEST",
+    "category": "CHOCOLATES NESTLE",
+    "packSize": "12",
+    "ean": "0|0|0|true",
+    "imageUrl": null,
+    "isNew": true
   }
 ];
 
