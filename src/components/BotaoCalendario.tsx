@@ -232,15 +232,15 @@ export default function BotaoCalendario({ activeEvent, onSelectEvent, disabled }
         <button
           type="button"
           className={cn(
-            "relative z-10 flex items-center justify-center gap-2 rounded-xl border-[2.5px] px-5 py-2 h-11 font-black transition-all duration-150 active:scale-95 select-none w-full md:w-auto shadow-sm",
+            "relative z-10 flex items-center justify-center gap-1.5 rounded-xl border-[2.5px] px-2 md:px-5 py-2 h-11 font-black transition-all duration-150 active:scale-95 select-none w-full md:w-auto shadow-sm",
             activeEvent
               ? "bg-[#EA0086] border-[#222222] text-white hover:bg-[#c90074]"
               : "bg-white border-[#E2E8F0] text-slate-700 hover:bg-slate-50 hover:border-slate-300"
           )}
           disabled={disabled}
         >
-          <CalendarIcon className="h-[18px] w-[18px] shrink-0" strokeWidth={2.5} />
-          <span className="tracking-wide text-xs uppercase">
+          <CalendarIcon className="h-[16px] w-[16px] shrink-0" strokeWidth={2.5} />
+          <span className="tracking-wide text-[10px] md:text-xs leading-tight uppercase">
             {activeEvent ? activeEvent : "Calendário Sazonal"}
           </span>
         </button>

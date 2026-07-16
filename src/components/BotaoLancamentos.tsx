@@ -114,7 +114,7 @@ export default function BotaoLancamentos({ showNewOnly, onShowNewOnlyChange, dis
           onShowNewOnlyChange(!showNewOnly);
         }}
         className={cn(
-          "relative z-10 flex items-center justify-center gap-2 rounded-xl border-[2.5px] px-5 py-2 h-11 font-black transition-all duration-150 active:scale-95 select-none w-full md:w-auto shadow-sm",
+          "relative z-10 flex items-center justify-center gap-1.5 rounded-xl border-[2.5px] px-2 md:px-5 py-2 h-11 font-black transition-all duration-150 active:scale-95 select-none w-full md:w-auto shadow-sm",
           showNewOnly
             ? "bg-[#4267B2] border-[#222222] text-white active:bg-[#365499]"
             : "bg-white border-[#E2E8F0] text-slate-700 hover:bg-slate-50 hover:border-slate-300"
@@ -124,8 +124,8 @@ export default function BotaoLancamentos({ showNewOnly, onShowNewOnlyChange, dis
         {/* Ícone de Brilho / Sparkles (SVG embutido puro) */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
-          width="18" 
-          height="18" 
+          width="16" 
+          height="16" 
           viewBox="0 0 24 24" 
           fill="none" 
           stroke="currentColor" 
@@ -138,7 +138,7 @@ export default function BotaoLancamentos({ showNewOnly, onShowNewOnlyChange, dis
           <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5z" opacity="0.8" />
           <path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1z" opacity="0.8" />
         </svg>
-        <span className="tracking-wide text-xs uppercase">Lançamentos</span>
+        <span className="tracking-wide text-[10px] md:text-xs leading-tight uppercase">Lançamentos</span>
       </button>
     </div>
   );

@@ -1,4 +1,5 @@
-import { LayoutGrid, PawPrint, Coffee, IceCream } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { LayoutGrid, PawPrint, Coffee, IceCream, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type QuickFilterType = "all" | "purina" | "nespresso" | "nescafe" | "sorvetes";
@@ -16,6 +17,48 @@ interface QuickBrandFiltersProps {
 }
 
 const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrandFiltersProps) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollAmount = clientWidth * 0.75;
+      const targetScroll = direction === "left" 
+        ? scrollLeft - scrollAmount 
+        : scrollLeft + scrollAmount;
+      
+      scrollContainerRef.current.scrollTo({
+        left: targetScroll,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 5);
+      setShowRightArrow(scrollLeft + clientWidth < scrollWidth - 5);
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", checkScroll);
+      const timer = setTimeout(checkScroll, 100);
+      window.addEventListener("resize", checkScroll);
+      
+      return () => {
+        container.removeEventListener("scroll", checkScroll);
+        window.removeEventListener("resize", checkScroll);
+        clearTimeout(timer);
+      };
+    }
+  }, [productsCount]);
+
   const filters = [
     {
       id: "all" as const,
@@ -60,9 +103,24 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
   ];
 
   return (
-    <div className="w-full py-1">
+    <div className="w-full py-1 relative flex items-center px-10 md:px-12 group">
+      {/* Left scroll button */}
+      {showLeftArrow && (
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-1 md:left-2 top-[calc(50%-6px)] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/95 border border-slate-100 flex items-center justify-center shadow-md text-slate-600 hover:text-slate-900 transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
+          aria-label="Mover para esquerda"
+        >
+          <ChevronLeft className="h-4.5 w-4.5" />
+        </button>
+      )}
+
       {/* Horizontal scrolling wrapper with hide scrollbar utilities */}
-      <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-3 justify-start px-4 md:px-6">
+      <div 
+        ref={scrollContainerRef}
+        onScroll={checkScroll}
+        className="w-full flex items-center gap-3 overflow-x-auto no-scrollbar pb-3 justify-start"
+      >
         {filters.map((filter) => {
           const Icon = filter.icon;
           const isActive = activeFilter === filter.id;
@@ -72,7 +130,7 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
               key={filter.id}
               onClick={() => onChange(filter.id)}
               className={cn(
-                "flex items-center gap-2 px-5 py-3 rounded-2xl font-bold text-xs transition-all duration-300 transform select-none shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:scale-[1.03] active:scale-[0.98]",
+                "flex items-center gap-1 sm:gap-2 px-3 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-[10px] sm:text-xs transition-all duration-300 transform select-none shrink-0 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:scale-[1.03] active:scale-[0.98]",
                 isActive
                   ? filter.activeClass
                   : "bg-white text-slate-600 border border-slate-100 " + filter.hoverClass
@@ -94,6 +152,17 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
           );
         })}
       </div>
+
+      {/* Right scroll button */}
+      {showRightArrow && (
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-1 md:right-2 top-[calc(50%-6px)] -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white/95 border border-slate-100 flex items-center justify-center shadow-md text-slate-600 hover:text-slate-900 transition-all duration-200 focus:outline-none hover:scale-105 active:scale-95"
+          aria-label="Mover para direita"
+        >
+          <ChevronRight className="h-4.5 w-4.5" />
+        </button>
+      )}
     </div>
   );
 };

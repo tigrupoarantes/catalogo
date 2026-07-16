@@ -108,11 +108,7 @@ const ProductFilters = ({
             ) : null}
           </div>
           
-          {!isDesktop && (
-            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] text-[#242525] font-medium leading-tight max-w-[200px] mt-1">
-              A geração de catálogos está disponível apenas em computadores para garantir a melhor qualidade de diagramação.
-            </div>
-          )}
+
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
     },
     allowedHosts: true,
     watch: {
-      ignored: ["**/*.xlsx", "**/*.xls", "**/.workspace/**"],
+      ignored: ["**/*.xlsx", "**/*.xls", "**/.workspace/**", "**/scratch/**", "**/public/**", "**/*.idml"],
     },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),

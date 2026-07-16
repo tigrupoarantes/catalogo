@@ -21,7 +21,7 @@ interface CatalogPreviewModalProps {
   onOpenChange: (open: boolean) => void;
   products: Product[];
   onConfirm: (config: ExportConfig, banners: Record<number, string>, type: 'svg' | 'pdf', filteredProducts?: Product[]) => void;
-  onIdmlExport?: () => void;
+  onIdmlExport?: (config: ExportConfig) => void;
   isExporting: boolean;
 }
 
@@ -501,7 +501,7 @@ const CatalogPreviewModal: React.FC<CatalogPreviewModalProps> = ({
             {onIdmlExport && (
               <Button 
                 variant="outline"
-                onClick={onIdmlExport}
+                onClick={() => onIdmlExport(config)}
                 disabled={isExporting || pages.length === 0}
                 className="flex-grow sm:flex-none border-[#EA0086] text-[#EA0086] hover:bg-[#EA0086]/5 font-bold text-xs uppercase tracking-widest px-6 h-11"
               >

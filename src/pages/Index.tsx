@@ -260,7 +260,7 @@ const Index = () => {
     setCurrentPage(1);
   };
 
-  const handleIdmlExport = async () => {
+  const handleIdmlExport = async (config?: ExportConfig) => {
     setIsExporting(true);
     const dataToExport = filtered;
     const productIds = dataToExport.map(p => p.code);
@@ -268,7 +268,7 @@ const Index = () => {
       const res = await fetch('/api/export/idml', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ productIds }),
+        body: JSON.stringify({ productIds, config }),
       });
       if (!res.ok) {
         throw new Error(`Erro no servidor: Código ${res.status}`);
@@ -276,7 +276,7 @@ const Index = () => {
       const blob = await res.blob();
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = `catalogo_${Date.now()}.idml`;
+      link.download = `catalogo_${Date.now()}.zip`;
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -436,8 +436,8 @@ const Index = () => {
         )}
 
         {totalPages > 1 && !isPreviewModalOpen && !isExportModalOpen && (
-          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70] flex items-center justify-center">
-            <div className="bg-white border border-gray-100 rounded-full px-2 py-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.15)] flex items-center gap-1">
+          <div className="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 py-3 z-[70] flex items-center justify-center shadow-[0_-8px_30px_rgba(0,0,0,0.06)]">
+            <div className="flex items-center gap-1">
               <Button
                 variant="ghost"
                 size="icon"
@@ -485,13 +485,17 @@ const Index = () => {
 
 
 
-      <SupportFab />
+
       <PassarinhoAnimado />
 
       {isExporting && (
         <div className="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-[999] flex items-center justify-center animate-fade-in">
           <div className="bg-white rounded-2xl p-8 flex flex-col items-center justify-center shadow-2xl max-w-xs text-center border border-slate-100/50">
-            <img src="/loading.gif" alt="Gerando Catálogo..." className="w-16 h-16 object-contain" />
+            <div className="relative w-16 h-16 flex items-center justify-center shrink-0">
+              <div className="absolute inset-0 rounded-full border-4 border-primary/10 animate-pulse" />
+              <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary border-l-primary animate-spin" />
+              <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+            </div>
             <h3 className="mt-4 font-black text-sm text-slate-800 uppercase tracking-wide animate-pulse">Gerando Catálogo</h3>
             <p className="mt-2 text-xs text-slate-400 leading-relaxed font-semibold">
               Estamos preparando o seu catálogo em alta resolução. Isso pode levar alguns segundos...
