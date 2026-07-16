@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/**/*.ts": {
-      "excludeFiles": "{public,dist}/**"
+      "excludeFiles": "{public/uploads,dist}/**"
     }
   },
   "rewrites": [
