@@ -50,17 +50,66 @@ export async function idmlExportHandler(req: Request, res: Response) {
       outerZip.file('links/CHOK.png', logoBuffer);
     }
 
-    // 4. Add product images to links/ folder
-    selectedProducts.forEach((p) => {
-      const imgRelativePath = p.imageUrl ? p.imageUrl : `/uploads/produtos/${p.code}.png`;
-      const imgFullPath = path.join(publicDir, imgRelativePath);
+    // 4. Add product images to links/ folder (with local read and HTTP fetch fallback)
+    for (const p of selectedProducts) {
+      const imgName = p.imageUrl ? path.basename(p.imageUrl.split('?')[0]) : `${p.code}.png`;
+      let imgBuffer: Buffer | null = null;
 
-      if (fs.existsSync(imgFullPath)) {
-        const imgBuffer = fs.readFileSync(imgFullPath);
-        const imgName = path.basename(imgFullPath);
+      // Try reading locally if it's a relative path
+      if (p.imageUrl && !p.imageUrl.startsWith('http://') && !p.imageUrl.startsWith('https://')) {
+        const localPath = path.join(publicDir, p.imageUrl);
+        if (fs.existsSync(localPath)) {
+          try {
+            imgBuffer = fs.readFileSync(localPath);
+          } catch (err) {
+            console.error(`Failed to read local image ${localPath}:`, err);
+          }
+        }
+      } else if (!p.imageUrl) {
+        const localPathPng = path.join(publicDir, 'uploads', 'produtos', `${p.code}.png`);
+        const localPathJpg = path.join(publicDir, 'uploads', 'produtos', `${p.code}.jpg`);
+        if (fs.existsSync(localPathPng)) {
+          imgBuffer = fs.readFileSync(localPathPng);
+        } else if (fs.existsSync(localPathJpg)) {
+          imgBuffer = fs.readFileSync(localPathJpg);
+        }
+      }
+
+      // If local read failed or it's a remote URL, fetch via HTTP
+      if (!imgBuffer) {
+        let fetchUrl = "";
+        if (p.imageUrl) {
+          if (p.imageUrl.startsWith('http://') || p.imageUrl.startsWith('https://')) {
+            fetchUrl = p.imageUrl;
+          } else {
+            fetchUrl = `http://localhost:3000${p.imageUrl.startsWith('/') ? '' : '/'}${p.imageUrl}`;
+          }
+        } else {
+          fetchUrl = `http://localhost:3000/uploads/produtos/${p.code}.png`;
+        }
+
+        try {
+          const fetchRes = await fetch(fetchUrl);
+          if (fetchRes.ok) {
+            const arrayBuffer = await fetchRes.arrayBuffer();
+            imgBuffer = Buffer.from(arrayBuffer);
+          } else if (!p.imageUrl) {
+            // Try fallback to .jpg
+            const fetchResJpg = await fetch(`http://localhost:3000/uploads/produtos/${p.code}.jpg`);
+            if (fetchResJpg.ok) {
+              const arrayBuffer = await fetchResJpg.arrayBuffer();
+              imgBuffer = Buffer.from(arrayBuffer);
+            }
+          }
+        } catch (fetchErr) {
+          console.error(`Failed to fetch image from ${fetchUrl}:`, fetchErr);
+        }
+      }
+
+      if (imgBuffer) {
         outerZip.file(`links/${imgName}`, imgBuffer);
       }
-    });
+    }
 
     // 5. Add Document Fonts to auto-activate in InDesign
     try {
