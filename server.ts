@@ -8,9 +8,7 @@ import fs from "fs/promises";
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
-
-import { idmlExportHandler } from './src/controllers/idmlExportController.js';
+app.use(express.json({ limit: '50mb' }));
 
 // Set up Multer for Excel and Images upload
 const storage = multer.memoryStorage(); // Keep files in memory temporarily
@@ -267,8 +265,16 @@ app.post(
 );
 
 
-// IDML export endpoint
-app.post('/api/export/idml', idmlExportHandler);
+// IDML export endpoint (dynamic import to prevent serverless cold start crash)
+app.post('/api/export/idml', async (req: express.Request, res: express.Response) => {
+  try {
+    const { idmlExportHandler } = await import('./src/controllers/idmlExportController.js');
+    return idmlExportHandler(req, res);
+  } catch (err: any) {
+    console.error('IDML export dynamic import error:', err);
+    return res.status(500).json({ error: err.message || 'Failed to load export module' });
+  }
+});
 
 // Global error handler for API routes
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
