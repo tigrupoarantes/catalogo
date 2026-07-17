@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
-import { products } from '../data/products';
-import { generateIdmlPackage } from '../utils/idmlGenerator';
-import { ExportConfig } from '../utils/exportConstants';
+import { products } from '../data/products.js';
+import { generateIdmlPackage } from '../utils/idmlGenerator.js';
+import { ExportConfig } from '../utils/exportConstants.js';
 import fs from 'fs';
 import path from 'path';
 import JSZip from 'jszip';

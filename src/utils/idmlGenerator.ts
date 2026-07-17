@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
-import { Product, parseProductTechnicalData } from '../data/products';
-import { ExportConfig, EXPORT_DIM } from './exportConstants';
+import { Product, parseProductTechnicalData } from '../data/products.js';
+import { ExportConfig, EXPORT_DIM } from './exportConstants.js';
 import fs from 'fs';
 import path from 'path';
 
