@@ -77,15 +77,19 @@ export async function idmlExportHandler(req: Request, res: Response) {
 
       // If local read failed or it's a remote URL, fetch via HTTP
       if (!imgBuffer) {
+        const protocol = (req.headers['x-forwarded-proto'] as string) || 'http';
+        const host = req.headers.host || 'localhost:3000';
+        const baseUrl = `${protocol}://${host}`;
+
         let fetchUrl = "";
         if (p.imageUrl) {
           if (p.imageUrl.startsWith('http://') || p.imageUrl.startsWith('https://')) {
             fetchUrl = p.imageUrl;
           } else {
-            fetchUrl = `http://localhost:3000${p.imageUrl.startsWith('/') ? '' : '/'}${p.imageUrl}`;
+            fetchUrl = `${baseUrl}${p.imageUrl.startsWith('/') ? '' : '/'}${p.imageUrl}`;
           }
         } else {
-          fetchUrl = `http://localhost:3000/uploads/produtos/${p.code}.png`;
+          fetchUrl = `${baseUrl}/uploads/produtos/${p.code}.png`;
         }
 
         try {
@@ -95,7 +99,7 @@ export async function idmlExportHandler(req: Request, res: Response) {
             imgBuffer = Buffer.from(arrayBuffer);
           } else if (!p.imageUrl) {
             // Try fallback to .jpg
-            const fetchResJpg = await fetch(`http://localhost:3000/uploads/produtos/${p.code}.jpg`);
+            const fetchResJpg = await fetch(`${baseUrl}/uploads/produtos/${p.code}.jpg`);
             if (fetchResJpg.ok) {
               const arrayBuffer = await fetchResJpg.arrayBuffer();
               imgBuffer = Buffer.from(arrayBuffer);
