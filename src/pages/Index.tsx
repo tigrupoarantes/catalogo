@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
 import PassarinhoAnimado from "@/components/PassarinhoAnimado";
-import { isSecaProduct, isPurinaProduct, isFoodProduct, isBebidasProduct } from "@/data/categoryMappings";
+import { isSecaProduct, isPurinaProduct, isFoodProduct, isBebidasProduct, isLancamento } from "@/data/categoryMappings";
 
 const ITEMS_PER_PAGE = 48;
 
@@ -86,10 +86,14 @@ const Index = () => {
               const staticProd = staticMap.get(fp.code);
               return {
                 ...fp,
+                isNew: isLancamento(fp.code),
                 imageUrl: fp.imageUrl || staticProd?.imageUrl || null
               };
             }),
-            ...staticProducts.filter(p => !data.some(fp => fp.code === p.code))
+            ...staticProducts.filter(p => !data.some(fp => fp.code === p.code)).map(p => ({
+              ...p,
+              isNew: isLancamento(p.code)
+            }))
           ];
           setProducts(combined);
         } else {

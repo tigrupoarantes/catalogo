@@ -990,9 +990,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "KANINA LARGE BAGS",
     "packSize": "1",
-    "ean": "7896015605193|2309.10.00|7891000001462|true",
+    "ean": "7896015605193|2309.10.00|7891000001462|false",
     "imageUrl": "/uploads/produtos/12305178.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12307594",
@@ -1390,9 +1390,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOGUITOS SNACKS",
     "packSize": "20",
-    "ean": "7891000623008|2309.10.00|7891000258552|true",
+    "ean": "7891000623008|2309.10.00|7891000258552|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12378083",
@@ -1400,9 +1400,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOGUITOS SNACKS",
     "packSize": "20",
-    "ean": "7891000623107|2309.10.00|7891000258569|true",
+    "ean": "7891000623107|2309.10.00|7891000258569|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12378133",
@@ -1420,9 +1420,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOGUITOS SNACKS",
     "packSize": "20",
-    "ean": "7891000005620|2309.10.00|7891000259078|true",
+    "ean": "7891000005620|2309.10.00|7891000259078|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12379776",
@@ -1460,9 +1460,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DOG CHOW ORAL SNACKS",
     "packSize": "20",
-    "ean": "7891000261989|2309.10.00|7891000261996|true",
+    "ean": "7891000261989|2309.10.00|7891000261996|false",
     "imageUrl": "/uploads/produtos/12384866.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12384867",
@@ -1470,9 +1470,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DOG CHOW ORAL SNACKS",
     "packSize": "20",
-    "ean": "7891000262023|2309.10.00|7891000262030|true",
+    "ean": "7891000262023|2309.10.00|7891000262030|false",
     "imageUrl": "/uploads/produtos/12384867.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12384868",
@@ -1480,9 +1480,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DOG CHOW ORAL SNACKS",
     "packSize": "20",
-    "ean": "7891000262009|2309.10.00|7891000262016|true",
+    "ean": "7891000262009|2309.10.00|7891000262016|false",
     "imageUrl": "/uploads/produtos/12384868.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12386036",
@@ -1550,9 +1550,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000244135|2309.90.10EX01|7891000244142|true",
+    "ean": "7891000244135|2309.90.10EX01|7891000244142|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405429",
@@ -1560,9 +1560,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000244722|2309.90.10EX01|7891000244739|true",
+    "ean": "7891000244722|2309.90.10EX01|7891000244739|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405432",
@@ -1570,9 +1570,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000115657|2309.90.10EX01|7891000115664|true",
+    "ean": "7891000115657|2309.90.10EX01|7891000115664|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405471",
@@ -1580,9 +1580,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000244111|2309.90.10EX01|7891000244128|true",
+    "ean": "7891000244111|2309.90.10EX01|7891000244128|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405472",
@@ -1590,9 +1590,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000244746|2309.90.10EX01|7891000244753|true",
+    "ean": "7891000244746|2309.90.10EX01|7891000244753|false",
     "imageUrl": "/uploads/produtos/12655182 - DCHOW XLfeLactFilhMdGdCarFrgArz7x2,5kgBR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405475",
@@ -1600,9 +1600,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000115633|2309.90.10EX01|7891000115640|true",
+    "ean": "7891000115633|2309.90.10EX01|7891000115640|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405477",
@@ -1610,9 +1610,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000115671|2309.90.10EX01|7891000115688|true",
+    "ean": "7891000115671|2309.90.10EX01|7891000115688|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12405478",
@@ -1620,9 +1620,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "DOG CHOW WET POUCH",
     "packSize": "15",
-    "ean": "7891000115695|2309.90.10EX01|7891000115701|true",
+    "ean": "7891000115695|2309.90.10EX01|7891000115701|false",
     "imageUrl": "/uploads/produtos/12655182 - DCHOW XLfeLactFilhMdGdCarFrgArz7x2,5kgBR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12406317",
@@ -2050,9 +2050,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG SMALL BAGS",
     "packSize": "11",
-    "ean": "7891000319826|2309.90.10EX01|7891000319833|true",
+    "ean": "7891000319826|2309.90.10EX01|7891000319833|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454109",
@@ -2060,9 +2060,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000319901|2309.90.10EX01|7891000319918|true",
+    "ean": "7891000319901|2309.90.10EX01|7891000319918|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454127",
@@ -2070,9 +2070,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG SMALL BAGS",
     "packSize": "11",
-    "ean": "7891000319864|2309.90.10EX01|7891000319871|true",
+    "ean": "7891000319864|2309.90.10EX01|7891000319871|false",
     "imageUrl": "/uploads/produtos/12454127.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454208",
@@ -2080,9 +2080,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000319956|2309.90.10EX01|7891000319963|true",
+    "ean": "7891000319956|2309.90.10EX01|7891000319963|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454355",
@@ -2110,9 +2110,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000320426|2309.90.10EX01|7891000320433|true",
+    "ean": "7891000320426|2309.90.10EX01|7891000320433|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454676",
@@ -2120,9 +2120,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000320518|2309.90.10EX01|7891000320525|true",
+    "ean": "7891000320518|2309.90.10EX01|7891000320525|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454893",
@@ -2140,9 +2140,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "20",
-    "ean": "7891000321805|2309.90.10EX01|7891000321812|true",
+    "ean": "7891000321805|2309.90.10EX01|7891000321812|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455098",
@@ -2150,9 +2150,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "20",
-    "ean": "7891000321881|2309.90.10EX01|7891000321898|true",
+    "ean": "7891000321881|2309.90.10EX01|7891000321898|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455107",
@@ -2160,9 +2160,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "20",
-    "ean": "7891000321966|2309.90.10EX01|7891000321973|true",
+    "ean": "7891000321966|2309.90.10EX01|7891000321973|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455123",
@@ -2170,9 +2170,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000322000|2309.90.10EX01|7891000322017|true",
+    "ean": "7891000322000|2309.90.10EX01|7891000322017|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455124",
@@ -2180,9 +2180,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000322123|2309.90.10EX01|7891000322130|true",
+    "ean": "7891000322123|2309.90.10EX01|7891000322130|false",
     "imageUrl": "/uploads/produtos/12455124.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12458810",
@@ -2250,9 +2250,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE DOG WET POUCH",
     "packSize": "15",
-    "ean": "7891000332108|2309.10.00|7891000333051|true",
+    "ean": "7891000332108|2309.10.00|7891000333051|false",
     "imageUrl": "/uploads/produtos/12468787.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468794",
@@ -2260,9 +2260,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE DOG WET POUCH",
     "packSize": "15",
-    "ean": "7891000332344|2309.10.00|7891000332931|true",
+    "ean": "7891000332344|2309.10.00|7891000332931|false",
     "imageUrl": "/uploads/produtos/12468794.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468803",
@@ -2270,9 +2270,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE CAT WET POUCH",
     "packSize": "15",
-    "ean": "7891000332382|2309.10.00|7891000333099|true",
+    "ean": "7891000332382|2309.10.00|7891000333099|false",
     "imageUrl": "/uploads/produtos/12468803.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468816",
@@ -2280,9 +2280,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE CAT WET POUCH",
     "packSize": "15",
-    "ean": "7891000332429|2309.10.00|7891000332894|true",
+    "ean": "7891000332429|2309.10.00|7891000332894|false",
     "imageUrl": "/uploads/produtos/12468816.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468817",
@@ -2290,9 +2290,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE CAT WET POUCH",
     "packSize": "15",
-    "ean": "7891000332467|2309.10.00|7891000332979|true",
+    "ean": "7891000332467|2309.10.00|7891000332979|false",
     "imageUrl": "/uploads/produtos/12468817.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468818",
@@ -2300,9 +2300,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "ONE DOG WET POUCH",
     "packSize": "15",
-    "ean": "7891000332306|2309.10.00|7891000333013|true",
+    "ean": "7891000332306|2309.10.00|7891000333013|false",
     "imageUrl": "/uploads/produtos/12468818.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12469063",
@@ -2450,9 +2450,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "ALPO SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000347263|2309.90.10EX01|7891000001462|true",
+    "ean": "7891000347263|2309.90.10EX01|7891000001462|false",
     "imageUrl": "/uploads/produtos/12489996.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12492194",
@@ -2460,9 +2460,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "ALPO LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000050781|2309.10.00|17891000391584|true",
+    "ean": "7891000050781|2309.10.00|17891000391584|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12492195",
@@ -2470,9 +2470,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "ALPO LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000240380|2309.10.00|7891000261996|true",
+    "ean": "7891000240380|2309.10.00|7891000261996|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12492196",
@@ -2480,9 +2480,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "ALPO SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000050804|2309.90.10EX01|7891000113967|true",
+    "ean": "7891000050804|2309.90.10EX01|7891000113967|false",
     "imageUrl": "/uploads/produtos/12492196.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12492197",
@@ -2510,9 +2510,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "ALPO LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000240496|2309.10.00|7891000262016|true",
+    "ean": "7891000240496|2309.10.00|7891000262016|false",
     "imageUrl": "/uploads/produtos/12492201.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12492202",
@@ -2620,9 +2620,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "KANINA LARGE BAGS",
     "packSize": "1",
-    "ean": "7896015603236|2309.10.00|7891000113967|true",
+    "ean": "7896015603236|2309.10.00|7891000113967|false",
     "imageUrl": "/uploads/produtos/12506651.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12510020",
@@ -2790,9 +2790,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000363898|2309.90.10EX01|17891000363901|true",
+    "ean": "7891000363898|2309.90.10EX01|17891000363901|false",
     "imageUrl": "/uploads/produtos/12519758.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519762",
@@ -2800,9 +2800,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000363935|2309.90.10EX01|17891000363949|true",
+    "ean": "7891000363935|2309.90.10EX01|17891000363949|false",
     "imageUrl": "/uploads/produtos/12623819 - FRISKIES Megamix 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519867",
@@ -2810,9 +2810,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000364000|2309.90.10EX01|17891000364014|true",
+    "ean": "7891000364000|2309.90.10EX01|17891000364014|false",
     "imageUrl": "/uploads/produtos/12519867.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519874",
@@ -2830,9 +2830,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000257968|2309.90.10EX01|7891000298275|true",
+    "ean": "7891000257968|2309.90.10EX01|7891000298275|false",
     "imageUrl": "/uploads/produtos/12519987.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519988",
@@ -2840,9 +2840,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000069431|2309.90.10EX01|7891000298138|true",
+    "ean": "7891000069431|2309.90.10EX01|7891000298138|false",
     "imageUrl": "/uploads/produtos/12519988.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520001",
@@ -2860,9 +2860,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000032664|2309.90.10EX01|7891000298169|true",
+    "ean": "7891000032664|2309.90.10EX01|7891000298169|false",
     "imageUrl": "/uploads/produtos/13392684 - FRISKIES Delicias daGranja Frg 7x2,5kgBR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520011",
@@ -2870,9 +2870,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000077276|2309.90.10EX01|7891000244807|true",
+    "ean": "7891000077276|2309.90.10EX01|7891000244807|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520012",
@@ -2880,9 +2880,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000069905|2309.90.10EX01|7891000244791|true",
+    "ean": "7891000069905|2309.90.10EX01|7891000244791|false",
     "imageUrl": "/uploads/produtos/12623506 - FRISKIES Mix de Carnes 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520223",
@@ -2890,9 +2890,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000621608|2309.90.10EX01|7891000244715|true",
+    "ean": "7891000621608|2309.90.10EX01|7891000244715|false",
     "imageUrl": "/uploads/produtos/13392684 - FRISKIES Delicias daGranja Frg 7x2,5kgBR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520224",
@@ -2900,9 +2900,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000257944|2309.90.10EX01|7891000257951|true",
+    "ean": "7891000257944|2309.90.10EX01|7891000257951|false",
     "imageUrl": "/uploads/produtos/12623819 - FRISKIES Megamix 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520229",
@@ -2910,9 +2910,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000069462|2309.10.00|7891000116548|true",
+    "ean": "7891000069462|2309.10.00|7891000116548|false",
     "imageUrl": "/uploads/produtos/12320782 - MAGGI Caldo de Carne NPro 6x1,01kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520234",
@@ -2920,9 +2920,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "12",
-    "ean": "7891000324127|2309.90.10EX01|7891000324134|true",
+    "ean": "7891000324127|2309.90.10EX01|7891000324134|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520236",
@@ -2930,9 +2930,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000069455|2309.10.00|17891000406967|true",
+    "ean": "7891000069455|2309.10.00|17891000406967|false",
     "imageUrl": "/uploads/produtos/12623520 - FRISKIES Mar de Sabores 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12521363",
@@ -3040,9 +3040,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000296073|2309.90.10EX01|7891000296080|true",
+    "ean": "7891000296073|2309.90.10EX01|7891000296080|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526276",
@@ -3050,9 +3050,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000295915|2309.10.00|17891000368319|true",
+    "ean": "7891000295915|2309.10.00|17891000368319|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526286",
@@ -3060,9 +3060,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000296196|2309.10.00|17891000368357|true",
+    "ean": "7891000296196|2309.10.00|17891000368357|false",
     "imageUrl": "/uploads/produtos/12526286.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526301",
@@ -3070,9 +3070,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000295717|2309.10.00|17891000368432|true",
+    "ean": "7891000295717|2309.10.00|17891000368432|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526303",
@@ -3080,9 +3080,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000295991|2309.10.00|17891000368470|true",
+    "ean": "7891000295991|2309.10.00|17891000368470|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526304",
@@ -3100,9 +3100,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000296158|2309.10.00|17891000368517|true",
+    "ean": "7891000296158|2309.10.00|17891000368517|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12526311",
@@ -3130,9 +3130,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000295793|2309.10.00|17891000368692|true",
+    "ean": "7891000295793|2309.10.00|17891000368692|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12527297",
@@ -3280,9 +3280,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000118115|2309.90.10EX01|7891000116043|true",
+    "ean": "7891000118115|2309.90.10EX01|7891000116043|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534476",
@@ -3290,9 +3290,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000118061|2309.90.10EX01|7891000116012|true",
+    "ean": "7891000118061|2309.90.10EX01|7891000116012|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534477",
@@ -3300,9 +3300,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000115763|2309.90.10EX01|7891000115770|true",
+    "ean": "7891000115763|2309.90.10EX01|7891000115770|false",
     "imageUrl": "/uploads/produtos/12534477.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534494",
@@ -3310,9 +3310,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000118108|2309.90.10EX01|7891000116067|true",
+    "ean": "7891000118108|2309.90.10EX01|7891000116067|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534495",
@@ -3320,9 +3320,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000118054|2309.90.10EX01|7891000116005|true",
+    "ean": "7891000118054|2309.90.10EX01|7891000116005|false",
     "imageUrl": "/uploads/produtos/12534495.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534514",
@@ -3330,9 +3330,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000115787|2309.90.10EX01|7891000115794|true",
+    "ean": "7891000115787|2309.90.10EX01|7891000115794|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534547",
@@ -3370,9 +3370,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000115800|2309.90.10EX01|7891000115817|true",
+    "ean": "7891000115800|2309.90.10EX01|7891000115817|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12535692",
@@ -3380,9 +3380,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FRISKIES WET POUCH",
     "packSize": "15",
-    "ean": "7891000118085|2309.90.10EX01|7891000116036|true",
+    "ean": "7891000118085|2309.90.10EX01|7891000116036|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12537280",
@@ -3400,9 +3400,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "FANCY FEAST WET POUCH",
     "packSize": "15",
-    "ean": "7891000295830|2309.10.00|17891000374587|true",
+    "ean": "7891000295830|2309.10.00|17891000374587|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12549968",
@@ -3760,9 +3760,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116449|2309.10.00||true",
+    "ean": "7891000116449|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12655182 - DCHOW XLfeLactFilhMdGdCarFrgArz7x2,5kgBR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562154",
@@ -3770,9 +3770,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000350652|2309.10.00||true",
+    "ean": "7891000350652|2309.10.00||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562164",
@@ -3780,9 +3780,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000016213|2309.10.00||true",
+    "ean": "7891000016213|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12655182 - DCHOW XLfeLactFilhMdGdCarFrgArz7x2,5kgBR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562294",
@@ -3790,9 +3790,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000350591|2309.10.00||true",
+    "ean": "7891000350591|2309.10.00||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562302",
@@ -3800,9 +3800,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000116494|2309.90.10EX01|7891000116500|true",
+    "ean": "7891000116494|2309.90.10EX01|7891000116500|false",
     "imageUrl": "/uploads/produtos/12655182 - DCHOW XLfeLactFilhMdGdCarFrgArz7x2,5kgBR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562402",
@@ -3810,9 +3810,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000350881|2309.90.10EX01|7891000001547|true",
+    "ean": "7891000350881|2309.90.10EX01|7891000001547|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562410",
@@ -3820,9 +3820,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116463|2309.10.00||true",
+    "ean": "7891000116463|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12562410.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562754",
@@ -3910,9 +3910,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "GATSY DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000325506|2309.10.00|7891000247129|true",
+    "ean": "7891000325506|2309.10.00|7891000247129|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12571524",
@@ -3920,9 +3920,9 @@ export const products: Product[] = [
     "brand": "MAINSTREAM",
     "category": "GATSY DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000318492|2309.10.00|7891000247204|true",
+    "ean": "7891000318492|2309.10.00|7891000247204|false",
     "imageUrl": "/uploads/produtos/12571524.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12572613",
@@ -4160,9 +4160,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOG CHOW BISCUITS SNACKS",
     "packSize": "16",
-    "ean": "7891000400548|2309.90.30|17891000400545|true",
+    "ean": "7891000400548|2309.90.30|17891000400545|false",
     "imageUrl": "/uploads/produtos/12590501.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12591103",
@@ -4230,9 +4230,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOG CHOW BISCUITS SNACKS",
     "packSize": "16",
-    "ean": "7891000403037|2309.90.30|17891000403034|true",
+    "ean": "7891000403037|2309.90.30|17891000403034|false",
     "imageUrl": "/uploads/produtos/12592351.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12592352",
@@ -4240,9 +4240,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "DOG CHOW BISCUITS SNACKS",
     "packSize": "16",
-    "ean": "7891000403075|2309.90.30|17891000403072|true",
+    "ean": "7891000403075|2309.90.30|17891000403072|false",
     "imageUrl": "/uploads/produtos/12592352.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12592353",
@@ -4290,9 +4290,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "FRISKIES TREATS",
     "packSize": "15",
-    "ean": "7891000406960|2309.10.00|17891000406967|true",
+    "ean": "7891000406960|2309.10.00|17891000406967|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12598254",
@@ -4300,9 +4300,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "FRISKIES TREATS",
     "packSize": "15",
-    "ean": "7891000407189|2309.10.00|17891000407186|true",
+    "ean": "7891000407189|2309.10.00|17891000407186|false",
     "imageUrl": "/uploads/produtos/12623506 - FRISKIES Mix de Carnes 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12598255",
@@ -4310,9 +4310,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "FRISKIES TREATS",
     "packSize": "15",
-    "ean": "7891000407196|2309.10.00|17891000407193|true",
+    "ean": "7891000407196|2309.10.00|17891000407193|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12599819",
@@ -4620,9 +4620,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000350942|2309.10.00||true",
+    "ean": "7891000350942|2309.10.00||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12613349",
@@ -4670,9 +4670,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116715|2309.10.00||true",
+    "ean": "7891000116715|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12613546.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12613548",
@@ -4690,9 +4690,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000247518|2309.10.00||true",
+    "ean": "7891000247518|2309.10.00||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12613570",
@@ -4700,9 +4700,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000350973|2309.10.00||true",
+    "ean": "7891000350973|2309.10.00||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12613573",
@@ -4710,9 +4710,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116487|2309.10.00||true",
+    "ean": "7891000116487|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12613573.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12614177",
@@ -4840,9 +4840,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "1",
-    "ean": "7891000434796|2309.90.10EX01|17891000434793|true",
+    "ean": "7891000434796|2309.90.10EX01|17891000434793|false",
     "imageUrl": "/uploads/produtos/12624035.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12624062",
@@ -4850,9 +4850,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "1",
-    "ean": "7891000434802|2309.90.10EX01|17891000434809|true",
+    "ean": "7891000434802|2309.90.10EX01|17891000434809|false",
     "imageUrl": "/uploads/produtos/12624062.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12624098",
@@ -4880,9 +4880,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "1",
-    "ean": "7891000435106|2309.90.10EX01|17891000435103|true",
+    "ean": "7891000435106|2309.90.10EX01|17891000435103|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12624229",
@@ -4890,9 +4890,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "1",
-    "ean": "7891000435151|2309.90.10EX01|17891000435158|true",
+    "ean": "7891000435151|2309.90.10EX01|17891000435158|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12624355",
@@ -5130,9 +5130,9 @@ export const products: Product[] = [
     "brand": "BISCOITOS",
     "category": "BISCOITOS RECHEADOS BONO",
     "packSize": "66",
-    "ean": "7891000376843|1905.31.00|17891000376857|true",
+    "ean": "7891000376843|1905.31.00|17891000376857|false",
     "imageUrl": "/uploads/produtos/13522061 - BONO Biscoito Recheado Choc 66x90g N1 BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "13528301",
@@ -5240,9 +5240,9 @@ export const products: Product[] = [
     "brand": "NFA",
     "category": "TIDY CAT",
     "packSize": "6",
-    "ean": "7896015601164|2512.00.00|7891000247105|true",
+    "ean": "7896015601164|2512.00.00|7891000247105|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12575945",
@@ -5250,9 +5250,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DOG CHOW ORAL SNACKS",
     "packSize": "12",
-    "ean": "7891000391570|2309.10.00|17891000380540|true",
+    "ean": "7891000391570|2309.10.00|17891000380540|false",
     "imageUrl": "/uploads/produtos/12575945.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12339560",
@@ -5260,9 +5260,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DENTALIFE",
     "packSize": "7",
-    "ean": "7891000247198|2309.10.00|7891000351031|true",
+    "ean": "7891000247198|2309.10.00|7891000351031|false",
     "imageUrl": "/uploads/produtos/12339560.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12339526",
@@ -5270,9 +5270,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DENTALIFE",
     "packSize": "7",
-    "ean": "7891000247112|2309.10.00|17891000380588|true",
+    "ean": "7891000247112|2309.10.00|17891000380588|false",
     "imageUrl": "/uploads/produtos/12339526.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12339674",
@@ -5280,9 +5280,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DENTALIFE",
     "packSize": "7",
-    "ean": "7891000247099|2309.10.00|17891000380502|true",
+    "ean": "7891000247099|2309.10.00|17891000380502|false",
     "imageUrl": "/uploads/produtos/12339674.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12339902",
@@ -5290,9 +5290,9 @@ export const products: Product[] = [
     "brand": "ORAL CARE",
     "category": "DENTALIFE",
     "packSize": "12",
-    "ean": "7891000247495|2309.10.00|17891000380403|true",
+    "ean": "7891000247495|2309.10.00|17891000380403|false",
     "imageUrl": "/uploads/produtos/12339902.avif",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557599",
@@ -5300,9 +5300,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000380666|2309.90.10EX01|17891000380366|true",
+    "ean": "7891000380666|2309.90.10EX01|17891000380366|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557602",
@@ -5310,9 +5310,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000380611|2309.90.10EX01|17891000379896|true",
+    "ean": "7891000380611|2309.90.10EX01|17891000379896|false",
     "imageUrl": "/uploads/produtos/12557602.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557620",
@@ -5320,9 +5320,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000380536|2309.90.10EX01|17891000379933|true",
+    "ean": "7891000380536|2309.90.10EX01|17891000379933|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12481476",
@@ -5330,9 +5330,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000248027|2309.10.00|7891000324134|true",
+    "ean": "7891000248027|2309.10.00|7891000324134|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12481526",
@@ -5340,9 +5340,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000351024|2309.90.10EX01|7891000244807|true",
+    "ean": "7891000351024|2309.90.10EX01|7891000244807|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12481492",
@@ -5350,9 +5350,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000248010|2309.10.00|7891000244791|true",
+    "ean": "7891000248010|2309.10.00|7891000244791|false",
     "imageUrl": "/uploads/produtos/12320782 - MAGGI Caldo de Carne NPro 6x1,01kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557597",
@@ -5360,9 +5360,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000380574|2309.90.10EX01|7891000299067|true",
+    "ean": "7891000380574|2309.90.10EX01|7891000299067|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557610",
@@ -5370,9 +5370,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000380499|2309.90.10EX01|7891000244715|true",
+    "ean": "7891000380499|2309.90.10EX01|7891000244715|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12481519",
@@ -5380,9 +5380,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000247983|2309.10.00|7891000298169|true",
+    "ean": "7891000247983|2309.10.00|7891000298169|false",
     "imageUrl": "/uploads/produtos/12481519.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557072",
@@ -5390,9 +5390,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000380390|2309.90.10EX01|7891000257951|true",
+    "ean": "7891000380390|2309.90.10EX01|7891000257951|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12557053",
@@ -5400,9 +5400,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000380352|2309.90.10EX01|7891000298275|true",
+    "ean": "7891000380352|2309.90.10EX01|7891000298275|false",
     "imageUrl": "/uploads/produtos/12557053.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12556838",
@@ -5410,9 +5410,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000379882|2309.90.10EX01|17891000363901|true",
+    "ean": "7891000379882|2309.90.10EX01|17891000363901|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12521575",
@@ -5420,9 +5420,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000365397|2309.10.00|17891000363949|true",
+    "ean": "7891000365397|2309.10.00|17891000363949|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12556860",
@@ -5430,9 +5430,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000379929|2309.90.10EX01|7891000248034|true",
+    "ean": "7891000379929|2309.90.10EX01|7891000248034|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12481983",
@@ -5440,9 +5440,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "CAT CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000248003|2309.10.00|7891000298138|true",
+    "ean": "7891000248003|2309.10.00|7891000298138|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520569",
@@ -5450,9 +5450,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000114575|2309.10.00|7891000116623|true",
+    "ean": "7891000114575|2309.10.00|7891000116623|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520109",
@@ -5460,9 +5460,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "6",
-    "ean": "7891000069417|2309.90.10EX01|7891000001547|true",
+    "ean": "7891000069417|2309.90.10EX01|7891000001547|false",
     "imageUrl": "/uploads/produtos/12623506 - FRISKIES Mix de Carnes 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520226",
@@ -5470,9 +5470,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116807|2309.10.00|17891000434809|true",
+    "ean": "7891000116807|2309.10.00|17891000434809|false",
     "imageUrl": "/uploads/produtos/12623506 - FRISKIES Mix de Carnes 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520118",
@@ -5480,9 +5480,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000009192|2309.10.00|17891000435158|true",
+    "ean": "7891000009192|2309.10.00|17891000435158|false",
     "imageUrl": "/uploads/produtos/13392684 - FRISKIES Delicias daGranja Frg 7x2,5kgBR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12521771",
@@ -5490,9 +5490,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000292150|2309.10.00|17891000403072|true",
+    "ean": "7891000292150|2309.10.00|17891000403072|false",
     "imageUrl": "/uploads/produtos/12623819 - FRISKIES Megamix 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519868",
@@ -5500,9 +5500,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000364154|2309.10.00|7891000258569|true",
+    "ean": "7891000364154|2309.10.00|7891000258569|false",
     "imageUrl": "/uploads/produtos/12623819 - FRISKIES Megamix 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519989",
@@ -5510,9 +5510,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000069783|2309.90.10EX01|7891000259078|true",
+    "ean": "7891000069783|2309.90.10EX01|7891000259078|false",
     "imageUrl": "/uploads/produtos/12623520 - FRISKIES Mar de Sabores 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12520225",
@@ -5520,9 +5520,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000116814|2309.10.00|17891000409937|true",
+    "ean": "7891000116814|2309.10.00|17891000409937|false",
     "imageUrl": "/uploads/produtos/12623520 - FRISKIES Mar de Sabores 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12519873",
@@ -5530,9 +5530,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY CAT",
     "category": "FRISKIES DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000363973|2309.10.00|8445290538635|true",
+    "ean": "7891000363973|2309.10.00|8445290538635|false",
     "imageUrl": "/uploads/produtos/12320782 - MAGGI Caldo de Carne NPro 6x1,01kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562286",
@@ -5540,9 +5540,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "10",
-    "ean": "7891000116616|2309.90.10EX01||true",
+    "ean": "7891000116616|2309.90.10EX01||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12562295",
@@ -5550,9 +5550,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "5",
-    "ean": "7891000116531|2309.90.10EX01||true",
+    "ean": "7891000116531|2309.90.10EX01||false",
     "imageUrl": "/uploads/produtos/12562295.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12613556",
@@ -5560,9 +5560,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000350621|2309.10.00||true",
+    "ean": "7891000350621|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12613556.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12624063",
@@ -5570,9 +5570,9 @@ export const products: Product[] = [
     "brand": "PREMIUM DRY DOG",
     "category": "DOG CHOW DRY SMALL BAGS",
     "packSize": "1",
-    "ean": "7891000434819|2309.90.10EX01||true",
+    "ean": "7891000434819|2309.90.10EX01||false",
     "imageUrl": "/uploads/produtos/12624063.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12601967",
@@ -5580,9 +5580,9 @@ export const products: Product[] = [
     "brand": "SNACKS",
     "category": "FRISKIES TREATS",
     "packSize": "15",
-    "ean": "7891000409930|2309.10.00||true",
+    "ean": "7891000409930|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12623506 - FRISKIES Mix de Carnes 15x80g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12468802",
@@ -5590,9 +5590,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "6",
-    "ean": "7891000332849|2309.90.10EX01||true",
+    "ean": "7891000332849|2309.90.10EX01||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12469083",
@@ -5600,9 +5600,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "1",
-    "ean": "7891000333785|2309.90.10EX01||true",
+    "ean": "7891000333785|2309.90.10EX01||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534965",
@@ -5610,9 +5610,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "6",
-    "ean": "8445290538628|2309.90.10EX01||true",
+    "ean": "8445290538628|2309.90.10EX01||false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534969",
@@ -5620,9 +5620,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "1",
-    "ean": "8445290538093|2309.90.10EX01|8445290538093|true",
+    "ean": "8445290538093|2309.90.10EX01|8445290538093|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534939",
@@ -5630,9 +5630,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "6",
-    "ean": "8445290539045|2309.90.10EX01|8445290539052|true",
+    "ean": "8445290539045|2309.90.10EX01|8445290539052|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534986",
@@ -5640,9 +5640,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "1",
-    "ean": "8445290539038|2309.90.10EX01|8445290539038|true",
+    "ean": "8445290539038|2309.90.10EX01|8445290539038|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534962",
@@ -5650,9 +5650,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "6",
-    "ean": "8445290538062|2309.90.10EX01|8445290538079|true",
+    "ean": "8445290538062|2309.90.10EX01|8445290538079|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12534980",
@@ -5660,9 +5660,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "1",
-    "ean": "8445290538055|2309.90.10EX01|8445290538055|true",
+    "ean": "8445290538055|2309.90.10EX01|8445290538055|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12469073",
@@ -5670,9 +5670,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "8",
-    "ean": "7891000333747|2309.90.10EX01|7891000333754|true",
+    "ean": "7891000333747|2309.90.10EX01|7891000333754|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12536927",
@@ -5680,9 +5680,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "8",
-    "ean": "8445290567925|2309.90.10EX01|8445290567932|true",
+    "ean": "8445290567925|2309.90.10EX01|8445290567932|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12537301",
@@ -5690,9 +5690,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "8",
-    "ean": "8445290570116|2309.90.10EX01|8445290570123|true",
+    "ean": "8445290570116|2309.90.10EX01|8445290570123|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12537291",
@@ -5700,9 +5700,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN VETERINARY DIETS",
     "packSize": "1",
-    "ean": "8445290569554|2309.90.10EX01|8445290569554|true",
+    "ean": "8445290569554|2309.90.10EX01|8445290569554|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454901",
@@ -5710,9 +5710,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "10",
-    "ean": "7891000108659|2309.90.10EX01|7891000117064|true",
+    "ean": "7891000108659|2309.90.10EX01|7891000117064|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455297",
@@ -5720,9 +5720,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322406|2309.90.10EX01|7891000322413|true",
+    "ean": "7891000322406|2309.90.10EX01|7891000322413|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454998",
@@ -5730,9 +5730,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000246023|2309.90.10EX01|17891000397920|true",
+    "ean": "7891000246023|2309.90.10EX01|17891000397920|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12585565",
@@ -5740,9 +5740,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000397916|2309.90.10EX01|7891000320969|true",
+    "ean": "7891000397916|2309.90.10EX01|7891000320969|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12585564",
@@ -5750,9 +5750,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000397886|2309.10.00|7891000322536|true",
+    "ean": "7891000397886|2309.10.00|7891000322536|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454751",
@@ -5760,9 +5760,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "10",
-    "ean": "7891000320952|2309.90.10EX01|7891000117071|true",
+    "ean": "7891000320952|2309.90.10EX01|7891000117071|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455329",
@@ -5770,9 +5770,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322529|2309.90.10EX01|7891000322659|true",
+    "ean": "7891000322529|2309.90.10EX01|7891000322659|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454909",
@@ -5780,9 +5780,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000321591|2309.90.10EX01|7891000322611|true",
+    "ean": "7891000321591|2309.90.10EX01|7891000322611|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454907",
@@ -5790,9 +5790,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000321508|2309.10.00|7891000322574|true",
+    "ean": "7891000321508|2309.10.00|7891000322574|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454876",
@@ -5800,9 +5800,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "10",
-    "ean": "7891000060230|2309.90.10EX01|7891000322499|true",
+    "ean": "7891000060230|2309.90.10EX01|7891000322499|false",
     "imageUrl": "/uploads/produtos/12454876.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455309",
@@ -5810,9 +5810,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322642|2309.90.10EX01|17891000400705|true",
+    "ean": "7891000322642|2309.90.10EX01|17891000400705|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455020",
@@ -5820,9 +5820,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000246030|2309.90.10EX01|17891000322328|true",
+    "ean": "7891000246030|2309.90.10EX01|17891000322328|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455308",
@@ -5830,9 +5830,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322604|2309.90.10EX01|7891000307809|true",
+    "ean": "7891000322604|2309.90.10EX01|7891000307809|false",
     "imageUrl": "/uploads/produtos/12455308.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454898",
@@ -5840,9 +5840,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000060339|2309.10.00|7891000322215|true",
+    "ean": "7891000060339|2309.10.00|7891000322215|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455330",
@@ -5850,9 +5850,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322567|2309.90.10EX01|7891000308240|true",
+    "ean": "7891000322567|2309.90.10EX01|7891000308240|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454899",
@@ -5860,9 +5860,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000060315|2309.10.00|7891000307908|true",
+    "ean": "7891000060315|2309.10.00|7891000307908|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455316",
@@ -5870,9 +5870,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322482|2309.90.10EX01|7891000318874|true",
+    "ean": "7891000322482|2309.90.10EX01|7891000318874|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454922",
@@ -5880,9 +5880,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000246061|2309.90.10EX01|7891000308288|true",
+    "ean": "7891000246061|2309.90.10EX01|7891000308288|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454911",
@@ -5890,9 +5890,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000037492|2309.10.00|7891000307946|true",
+    "ean": "7891000037492|2309.10.00|7891000307946|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12590459",
@@ -5900,9 +5900,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000400708|2309.90.10EX01|7891000308356|true",
+    "ean": "7891000400708|2309.90.10EX01|7891000308356|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12592785",
@@ -5910,9 +5910,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000403273|2309.90.10EX01|7891000308417|true",
+    "ean": "7891000403273|2309.90.10EX01|7891000308417|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12612389",
@@ -5920,9 +5920,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "6",
-    "ean": "7891000322321|2309.90.10EX01|7891000307984|true",
+    "ean": "7891000322321|2309.90.10EX01|7891000307984|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12454889",
@@ -5930,9 +5930,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000037249|2309.10.00|7613287119612|true",
+    "ean": "7891000037249|2309.10.00|7613287119612|false",
     "imageUrl": "/uploads/produtos/12455327 - PRO PLAN RdcdCal Med&Gde 6x2,5kg BR.png",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443622",
@@ -5940,9 +5940,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "10",
-    "ean": "7891000307816|2309.90.10EX01|7613287119636|true",
+    "ean": "7891000307816|2309.90.10EX01|7613287119636|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12455119",
@@ -5950,9 +5950,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "5",
-    "ean": "7891000322208|2309.90.10EX01|7891000319871|true",
+    "ean": "7891000322208|2309.90.10EX01|7891000319871|false",
     "imageUrl": "/uploads/produtos/12455119.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443621",
@@ -5960,9 +5960,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "1",
-    "ean": "7891000102619|2309.90.10EX01|7891000319963|true",
+    "ean": "7891000102619|2309.90.10EX01|7891000319963|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443832",
@@ -5970,9 +5970,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "10",
-    "ean": "7891000308257|2309.90.10EX01|7891000319833|true",
+    "ean": "7891000308257|2309.90.10EX01|7891000319833|false",
     "imageUrl": "/uploads/produtos/12443832.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443609",
@@ -5980,9 +5980,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "5",
-    "ean": "7891000307915|2309.90.10EX01|7891000319918|true",
+    "ean": "7891000307915|2309.90.10EX01|7891000319918|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443619",
@@ -5990,9 +5990,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "1",
-    "ean": "7891000091784|2309.90.10EX01|7891000320433|true",
+    "ean": "7891000091784|2309.90.10EX01|7891000320433|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12453394",
@@ -6000,9 +6000,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "20",
-    "ean": "7891000318867|2309.90.10EX01|7891000321973|true",
+    "ean": "7891000318867|2309.90.10EX01|7891000321973|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443841",
@@ -6010,9 +6010,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "10",
-    "ean": "7891000308295|2309.90.10EX01|7891000322130|true",
+    "ean": "7891000308295|2309.90.10EX01|7891000322130|false",
     "imageUrl": "/uploads/produtos/12443841.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443650",
@@ -6020,9 +6020,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "5",
-    "ean": "7891000307953|2309.90.10EX01|7891000321812|true",
+    "ean": "7891000307953|2309.90.10EX01|7891000321812|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443618",
@@ -6030,9 +6030,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "1",
-    "ean": "7891000082577|2309.90.10EX01|7891000322017|true",
+    "ean": "7891000082577|2309.90.10EX01|7891000322017|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12444047",
@@ -6040,9 +6040,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "10",
-    "ean": "7891000308363|2309.90.10EX01|7891000321898|true",
+    "ean": "7891000308363|2309.90.10EX01|7891000321898|false",
     "imageUrl": "/uploads/produtos/12444047.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12444073",
@@ -6050,9 +6050,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "5",
-    "ean": "7891000308424|2309.90.10EX01|7891000320525|true",
+    "ean": "7891000308424|2309.90.10EX01|7891000320525|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443642",
@@ -6060,9 +6060,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "1",
-    "ean": "7891000102596|2309.90.10EX01|7891000248324|true",
+    "ean": "7891000102596|2309.90.10EX01|7891000248324|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12443641",
@@ -6070,9 +6070,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "10",
-    "ean": "7891000307991|2309.90.10EX01|7891000247853|true",
+    "ean": "7891000307991|2309.90.10EX01|7891000247853|false",
     "imageUrl": "/uploads/produtos/12443641.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12444488",
@@ -6080,9 +6080,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY DOG",
     "packSize": "1",
-    "ean": "7891000112250|2309.90.10EX01|7891000247839|true",
+    "ean": "7891000112250|2309.90.10EX01|7891000247839|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12458622",
@@ -6090,9 +6090,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "6",
-    "ean": "7613287119605|2309.90.10EX01|7891000247846|true",
+    "ean": "7613287119605|2309.90.10EX01|7891000247846|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12458608",
@@ -6100,9 +6100,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "PRO PLAN DRY CAT",
     "packSize": "6",
-    "ean": "7613287119629|2309.90.10EX01|7891000248355|true",
+    "ean": "7613287119629|2309.90.10EX01|7891000248355|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12573602",
@@ -6110,9 +6110,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000390344|2309.90.10EX01|7891000244739|true",
+    "ean": "7891000390344|2309.90.10EX01|7891000244739|false",
     "imageUrl": "/uploads/produtos/13754078 - FRSK Filhotes Frango 9x850g BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12573754",
@@ -6120,9 +6120,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000390375|2309.90.10EX01|7891000115688|true",
+    "ean": "7891000390375|2309.90.10EX01|7891000115688|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12573769",
@@ -6130,9 +6130,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY DOG LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000390436|2309.90.10EX01|7891000244753|true",
+    "ean": "7891000390436|2309.90.10EX01|7891000244753|false",
     "imageUrl": "/uploads/produtos/13400567 - FRISKIES Mix Carne Adulto 7x2,5kg BR.jpeg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12460569",
@@ -6140,9 +6140,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000326763|2309.90.10EX01|7891000001400|true",
+    "ean": "7891000326763|2309.90.10EX01|7891000001400|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12460600",
@@ -6150,9 +6150,9 @@ export const products: Product[] = [
     "brand": "SUPER PREMIUM DRY",
     "category": "ONE DRY CAT LARGE BAGS",
     "packSize": "1",
-    "ean": "7891000326732|2309.90.10EX01|7891000001394|true",
+    "ean": "7891000326732|2309.90.10EX01|7891000001394|false",
     "imageUrl": "/uploads/produtos/12460600.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12341824",
@@ -6160,9 +6160,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET CAT",
     "packSize": "15",
-    "ean": "7891000246481|2309.10.00|7891000115794|true",
+    "ean": "7891000246481|2309.10.00|7891000115794|false",
     "imageUrl": "/uploads/produtos/12341824.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12340775",
@@ -6170,9 +6170,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET CAT",
     "packSize": "15",
-    "ean": "7891000246443|2309.10.00|7891000116005|true",
+    "ean": "7891000246443|2309.10.00|7891000116005|false",
     "imageUrl": "/uploads/produtos/12340775.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12340773",
@@ -6180,9 +6180,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET CAT",
     "packSize": "15",
-    "ean": "7891000246429|2309.10.00|7891000116012|true",
+    "ean": "7891000246429|2309.10.00|7891000116012|false",
     "imageUrl": "/uploads/produtos/12340773.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12340774",
@@ -6190,9 +6190,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET CAT",
     "packSize": "15",
-    "ean": "7891000246344|2309.10.00|7891000116036|true",
+    "ean": "7891000246344|2309.10.00|7891000116036|false",
     "imageUrl": "/uploads/produtos/12340774.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12341820",
@@ -6200,9 +6200,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET DOG",
     "packSize": "15",
-    "ean": "7891000246405|2309.10.00||true",
+    "ean": "7891000246405|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12341820.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12341823",
@@ -6210,9 +6210,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "PRO PLAN WET CAT",
     "packSize": "15",
-    "ean": "7891000246382|2309.10.00||true",
+    "ean": "7891000246382|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12341823.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12482410",
@@ -6220,9 +6220,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "WET POUCH",
     "packSize": "15",
-    "ean": "7891000244012|2309.10.00||true",
+    "ean": "7891000244012|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12482410.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12482400",
@@ -6230,9 +6230,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "WET POUCH",
     "packSize": "15",
-    "ean": "7891000113066|2309.10.00||true",
+    "ean": "7891000113066|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12482400.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12482399",
@@ -6240,9 +6240,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "WET POUCH",
     "packSize": "15",
-    "ean": "7891000244074|2309.10.00||true",
+    "ean": "7891000244074|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12482399.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12482395",
@@ -6250,9 +6250,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "WET POUCH",
     "packSize": "15",
-    "ean": "7891000240205|2309.10.00||true",
+    "ean": "7891000240205|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12482395.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12482401",
@@ -6260,9 +6260,9 @@ export const products: Product[] = [
     "brand": "WET",
     "category": "WET POUCH",
     "packSize": "15",
-    "ean": "7891000244036|2309.10.00||true",
+    "ean": "7891000244036|2309.10.00||false",
     "imageUrl": "/uploads/produtos/12482401.jpg",
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "12628280",
@@ -6280,9 +6280,9 @@ export const products: Product[] = [
     "brand": "BONO",
     "category": "BISCOITOS",
     "packSize": "60",
-    "ean": "7891000452158|1905.31.00|17891000452155|true",
+    "ean": "7891000452158|1905.31.00|17891000452155|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "13612737",
@@ -6290,9 +6290,9 @@ export const products: Product[] = [
     "brand": "BONO",
     "category": "BISCOITOS",
     "packSize": "60",
-    "ean": "7891000452165|1905.31.00|17891000452162|true",
+    "ean": "7891000452165|1905.31.00|17891000452162|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "13680781",
@@ -6530,9 +6530,9 @@ export const products: Product[] = [
     "brand": "BONO",
     "category": "BISCOITOS",
     "packSize": "66",
-    "ean": "7891000376928|1905.31.00|17891000376932|true",
+    "ean": "7891000376928|1905.31.00|17891000376932|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "13522060",
@@ -6540,9 +6540,9 @@ export const products: Product[] = [
     "brand": "BONO",
     "category": "BISCOITOS",
     "packSize": "66",
-    "ean": "7891000376959|1905.31.00|17891000376734|true",
+    "ean": "7891000376959|1905.31.00|17891000376734|false",
     "imageUrl": null,
-    "isNew": true
+    "isNew": false
   },
   {
     "code": "13760033",
