@@ -1,18 +1,18 @@
 import { useRef, useState, useEffect } from "react";
-import { LayoutGrid, PawPrint, Coffee, IceCream, ChevronLeft, ChevronRight } from "lucide-react";
+import { LayoutGrid, PawPrint, Package, Utensils, CupSoda, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export type QuickFilterType = "all" | "purina" | "nespresso" | "nescafe" | "sorvetes";
+export type QuickFilterType = "all" | "seca" | "purina" | "food" | "bebidas";
 
 interface QuickBrandFiltersProps {
   activeFilter: QuickFilterType;
   onChange: (filter: QuickFilterType) => void;
   productsCount: {
     all: number;
+    seca: number;
     purina: number;
-    nespresso: number;
-    nescafe: number;
-    sorvetes: number;
+    food: number;
+    bebidas: number;
   };
 }
 
@@ -69,6 +69,14 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
       hoverClass: "hover:bg-slate-50 hover:text-slate-900 border border-transparent hover:border-slate-200",
     },
     {
+      id: "seca" as const,
+      label: "Seca",
+      icon: Package,
+      count: productsCount.seca,
+      activeClass: "bg-[#D97706] text-white shadow-[0_8px_20px_rgba(217,119,6,0.2)]",
+      hoverClass: "hover:bg-amber-50 hover:text-[#D97706] border border-transparent hover:border-amber-200",
+    },
+    {
       id: "purina" as const,
       label: "Purina",
       icon: PawPrint,
@@ -77,28 +85,20 @@ const QuickBrandFilters = ({ activeFilter, onChange, productsCount }: QuickBrand
       hoverClass: "hover:bg-red-50 hover:text-[#E31B23] border border-transparent hover:border-red-200",
     },
     {
-      id: "nespresso" as const,
-      label: "Nespresso",
-      icon: Coffee,
-      count: productsCount.nespresso,
-      activeClass: "bg-[#A37E58] text-white shadow-[0_8px_20px_rgba(163,126,88,0.2)]",
-      hoverClass: "hover:bg-amber-50 hover:text-[#A37E58] border border-transparent hover:border-amber-200",
+      id: "food" as const,
+      label: "Food",
+      icon: Utensils,
+      count: productsCount.food,
+      activeClass: "bg-[#10B981] text-white shadow-[0_8px_20px_rgba(16,185,129,0.2)]",
+      hoverClass: "hover:bg-emerald-50 hover:text-[#10B981] border border-transparent hover:border-emerald-200",
     },
     {
-      id: "nescafe" as const,
-      label: "Nescafé",
-      icon: Coffee,
-      count: productsCount.nescafe,
-      activeClass: "bg-[#8C5E3C] text-white shadow-[0_8px_20px_rgba(140,94,60,0.2)]",
-      hoverClass: "hover:bg-orange-50 hover:text-[#8C5E3C] border border-transparent hover:border-orange-200",
-    },
-    {
-      id: "sorvetes" as const,
-      label: "Sorvetes",
-      icon: IceCream,
-      count: productsCount.sorvetes,
-      activeClass: "bg-[#EC4899] text-white shadow-[0_8px_20px_rgba(236,72,153,0.2)]",
-      hoverClass: "hover:bg-pink-50 hover:text-[#EC4899] border border-transparent hover:border-pink-200",
+      id: "bebidas" as const,
+      label: "Bebidas",
+      icon: CupSoda,
+      count: productsCount.bebidas,
+      activeClass: "bg-[#2563EB] text-white shadow-[0_8px_20px_rgba(37,99,235,0.2)]",
+      hoverClass: "hover:bg-blue-50 hover:text-[#2563EB] border border-transparent hover:border-blue-200",
     },
   ];
 

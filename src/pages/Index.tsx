@@ -12,7 +12,7 @@ import { ChevronLeft, ChevronRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
-import PassarinhoAnimado from "@/components/PassarinhoAnimado";
+import { secaProductCodes, purinaProductCodes, foodProductCodes, bebidasProductCodes, isCodeInCategory } from "@/data/categoryMappings";
 
 const ITEMS_PER_PAGE = 48;
 
@@ -149,38 +149,35 @@ const Index = () => {
 
   const quickFilterCounts = useMemo(() => {
     const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
-    const nescafeBrands = ['NESCAFE SOLUVEL + T&M', 'SISTEMA DOLCE GUSTO'];
 
+    let seca = 0;
     let purina = 0;
-    let nespresso = 0;
-    let nescafe = 0;
-    let sorvetes = 0;
+    let food = 0;
+    let bebidas = 0;
 
     products.forEach(p => {
       const brandVal = p.brand || "";
-      const nameVal = p.name || "";
-      const catVal = p.category || "";
 
-      if (purinaBrands.includes(brandVal)) {
+      if (isCodeInCategory(p.code, secaProductCodes)) {
+        seca++;
+      }
+      if (isCodeInCategory(p.code, purinaProductCodes) || purinaBrands.includes(brandVal) || brandVal.toLowerCase().includes('purina')) {
         purina++;
       }
-      if (brandVal === 'COMPATIVEIS NESPRESSO' || nameVal.toLowerCase().includes('nespresso')) {
-        nespresso++;
+      if (foodProductCodes.size > 0 && isCodeInCategory(p.code, foodProductCodes)) {
+        food++;
       }
-      if (nescafeBrands.includes(brandVal) || nameVal.toLowerCase().includes('nescafe') || nameVal.toLowerCase().includes('dolce gusto')) {
-        nescafe++;
-      }
-      if (brandVal.toLowerCase().includes('sorvete') || catVal.toLowerCase().includes('sorvete') || nameVal.toLowerCase().includes('sorvete') || nameVal.toLowerCase().includes('picolé') || nameVal.toLowerCase().includes('picole')) {
-        sorvetes++;
+      if (bebidasProductCodes.size > 0 && isCodeInCategory(p.code, bebidasProductCodes)) {
+        bebidas++;
       }
     });
 
     return {
       all: products.length,
+      seca,
       purina,
-      nespresso,
-      nescafe,
-      sorvetes
+      food,
+      bebidas
     };
   }, [products]);
 
@@ -201,16 +198,15 @@ const Index = () => {
         const matchNewOnly = !showNewOnly || !!p.isNew;
         
         let matchQuickFilter = true;
-        if (quickFilter === "purina") {
+        if (quickFilter === "seca") {
+          matchQuickFilter = isCodeInCategory(p.code, secaProductCodes);
+        } else if (quickFilter === "purina") {
           const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
-          matchQuickFilter = purinaBrands.includes(p.brand);
-        } else if (quickFilter === "nespresso") {
-          matchQuickFilter = p.brand === 'COMPATIVEIS NESPRESSO' || p.name.toLowerCase().includes('nespresso');
-        } else if (quickFilter === "nescafe") {
-          const nescafeBrands = ['NESCAFE SOLUVEL + T&M', 'SISTEMA DOLCE GUSTO'];
-          matchQuickFilter = nescafeBrands.includes(p.brand) || p.name.toLowerCase().includes('nescafe') || p.name.toLowerCase().includes('dolce gusto');
-        } else if (quickFilter === "sorvetes") {
-          matchQuickFilter = p.brand?.toLowerCase().includes('sorvete') || p.category?.toLowerCase().includes('sorvete') || p.name.toLowerCase().includes('sorvete') || p.name.toLowerCase().includes('picolé') || p.name.toLowerCase().includes('picole');
+          matchQuickFilter = isCodeInCategory(p.code, purinaProductCodes) || purinaBrands.includes(p.brand) || p.brand?.toLowerCase().includes('purina');
+        } else if (quickFilter === "food") {
+          matchQuickFilter = foodProductCodes.size > 0 ? isCodeInCategory(p.code, foodProductCodes) : false;
+        } else if (quickFilter === "bebidas") {
+          matchQuickFilter = bebidasProductCodes.size > 0 ? isCodeInCategory(p.code, bebidasProductCodes) : false;
         }
 
         let matchSeasonal = true;
