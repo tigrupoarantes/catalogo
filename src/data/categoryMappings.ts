@@ -126,3 +126,50 @@ export function isCodeInCategory(code: string | number, categorySet: Set<string>
   
   return false;
 }
+
+export const foodBrands = ['MAGGI', 'LEITES CULINARIOS', 'MOCA', 'SPREADS'];
+export const foodCatKeywords = ['CREME', 'SOPA', 'TEMPERO', 'CALDO'];
+
+export const bebidasBrands = [
+  'NESCAFE SOLUVEL + T&M', 'SISTEMA DOLCE GUSTO', 'COMPATIVEIS NESPRESSO',
+  'RTD ADULTOS', 'RTD KIDS', 'BEBIDAS POS', 'NESCAU', 'MOLICO', 'BEBIDAS'
+];
+export const bebidasKeywords = ['NESCAFE', 'NESCAU', 'BEBIDA', 'CAFE', 'SOLUVEL', 'DOLCE GUSTO', 'NESPRESSO', 'CAPPUCCINO'];
+
+export const purinaBrands = [
+  'MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 
+  'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA', 'FRSK', 'DENTALIFE', 'TIDY CAT'
+];
+
+export function isPurinaProduct(p: { code: string; brand?: string; category?: string; name?: string }): boolean {
+  if (isCodeInCategory(p.code, purinaProductCodes)) return true;
+  const brand = (p.brand || '').toUpperCase();
+  if (purinaBrands.some(b => brand.includes(b)) || brand.includes('PURINA')) return true;
+  return false;
+}
+
+export function isFoodProduct(p: { code: string; brand?: string; category?: string; name?: string }): boolean {
+  if (isCodeInCategory(p.code, foodProductCodes)) return true;
+  const brand = (p.brand || '').toUpperCase();
+  const category = (p.category || '').toUpperCase();
+  if (foodBrands.some(b => brand.includes(b))) return true;
+  if (foodCatKeywords.some(kw => category.includes(kw) || (p.name || '').toUpperCase().includes(kw))) return true;
+  return false;
+}
+
+export function isBebidasProduct(p: { code: string; brand?: string; category?: string; name?: string }): boolean {
+  if (isCodeInCategory(p.code, bebidasProductCodes)) return true;
+  const brand = (p.brand || '').toUpperCase();
+  const category = (p.category || '').toUpperCase();
+  const name = (p.name || '').toUpperCase();
+  if (bebidasBrands.some(b => brand.includes(b))) return true;
+  if (bebidasKeywords.some(kw => brand.includes(kw) || category.includes(kw) || name.includes(kw))) return true;
+  return false;
+}
+
+export function isSecaProduct(p: { code: string; brand?: string; category?: string; name?: string }): boolean {
+  if (isPurinaProduct(p)) return false;
+  if (isFoodProduct(p)) return false;
+  if (isBebidasProduct(p)) return false;
+  return true;
+}

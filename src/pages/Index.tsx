@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
 import PassarinhoAnimado from "@/components/PassarinhoAnimado";
-import { secaProductCodes, purinaProductCodes, foodProductCodes, bebidasProductCodes, isCodeInCategory } from "@/data/categoryMappings";
+import { isSecaProduct, isPurinaProduct, isFoodProduct, isBebidasProduct } from "@/data/categoryMappings";
 
 const ITEMS_PER_PAGE = 48;
 
@@ -149,27 +149,20 @@ const Index = () => {
   };
 
   const quickFilterCounts = useMemo(() => {
-    const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
-
     let seca = 0;
     let purina = 0;
     let food = 0;
     let bebidas = 0;
 
     products.forEach(p => {
-      const brandVal = p.brand || "";
-
-      if (isCodeInCategory(p.code, secaProductCodes)) {
-        seca++;
-      }
-      if (isCodeInCategory(p.code, purinaProductCodes) || purinaBrands.includes(brandVal) || brandVal.toLowerCase().includes('purina')) {
+      if (isPurinaProduct(p)) {
         purina++;
-      }
-      if (foodProductCodes.size > 0 && isCodeInCategory(p.code, foodProductCodes)) {
+      } else if (isFoodProduct(p)) {
         food++;
-      }
-      if (bebidasProductCodes.size > 0 && isCodeInCategory(p.code, bebidasProductCodes)) {
+      } else if (isBebidasProduct(p)) {
         bebidas++;
+      } else if (isSecaProduct(p)) {
+        seca++;
       }
     });
 
@@ -200,14 +193,13 @@ const Index = () => {
         
         let matchQuickFilter = true;
         if (quickFilter === "seca") {
-          matchQuickFilter = isCodeInCategory(p.code, secaProductCodes);
+          matchQuickFilter = isSecaProduct(p);
         } else if (quickFilter === "purina") {
-          const purinaBrands = ['MAINSTREAM', 'SNACKS', 'ORAL CARE', 'WET', 'SUPER PREMIUM DRY', 'PREMIUM DRY CAT', 'PREMIUM DRY DOG', 'NFA'];
-          matchQuickFilter = isCodeInCategory(p.code, purinaProductCodes) || purinaBrands.includes(p.brand) || p.brand?.toLowerCase().includes('purina');
+          matchQuickFilter = isPurinaProduct(p);
         } else if (quickFilter === "food") {
-          matchQuickFilter = foodProductCodes.size > 0 ? isCodeInCategory(p.code, foodProductCodes) : false;
+          matchQuickFilter = isFoodProduct(p);
         } else if (quickFilter === "bebidas") {
-          matchQuickFilter = bebidasProductCodes.size > 0 ? isCodeInCategory(p.code, bebidasProductCodes) : false;
+          matchQuickFilter = isBebidasProduct(p);
         }
 
         let matchSeasonal = true;
