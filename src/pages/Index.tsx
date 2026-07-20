@@ -12,6 +12,7 @@ import { ChevronLeft, ChevronRight, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import QuickBrandFilters, { QuickFilterType } from "@/components/QuickBrandFilters";
+import PassarinhoAnimado from "@/components/PassarinhoAnimado";
 import { secaProductCodes, purinaProductCodes, foodProductCodes, bebidasProductCodes, isCodeInCategory } from "@/data/categoryMappings";
 
 const ITEMS_PER_PAGE = 48;
